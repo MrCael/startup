@@ -1,4 +1,4 @@
-# Your startup name here
+# Freedom Dance Footwear
 
 [My Notes](notes.md)
 
