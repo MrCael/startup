@@ -26,7 +26,7 @@ For this deliverable I did the following. I checked the box `[x]` and added a de
 
 ### Elevator pitch
 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+Shoes are one of the most important parts of a dancer's wardrobe, but so often they have to settle for shoes that just barely don't fit, or that break way to quickly to consistantly afford due to improper sizing. Well, my company specializes in creating shoes exactly fit to each dancer's feet. All they have to do is create a free account, fill out our measurement chart, and select the type of shoes they want and we they will have a pair of dance shoes that fit them perfectly. No more dealing with shoes that are slightly too big, or that blow out in just a month because they aren't wide enough. This will forever change how dancers buy shoes for the better.
 
 ### Design
 
