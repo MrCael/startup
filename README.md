@@ -55,6 +55,7 @@ sequenceDiagram
 - Display ratings and reviews for products and processes
 - Perform electronic transfers
 - Chat with a representative
+- View purchase history
 
 ### Technologies
 
