@@ -2,7 +2,7 @@
 
 [My Notes](notes.md)
 
-This page is the website for my startup Freedom Dance Footwear. We specialize in creating dance shoes for dancers with unusual feet sizes and shapes. Whether you have wide, narrow, short, or long feet, we can make shoes just for you! We have an in depth set of measurements that we have you take and send to us so we know just how to make the best shoes for your feet.
+This page is the website for my startup Freedom Dance Footwear. We specialize in creating dance shoes that fit each dancers' feet exactly. Whether you have wide, narrow, short, or long feet, we can make shoes just for you! We have an in depth set of measurements that we have you take and send to us so we know just how to make the best shoes for your feet.
 
 
 > [!NOTE]
