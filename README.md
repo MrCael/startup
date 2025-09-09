@@ -63,7 +63,11 @@ I am going to use the required technologies in the following ways.
 - **HTML** - Up to six HTML pages: one for account login, one to create/edit account, one page to browse and search products (main page), one to view product details and purchase it or add it to the cart, one to view and/or checkout cart, one to verify purchase details (payment method, shipping and billing address, etc.), and one to view purchase history.
 - **CSS** - Styling that is compatable with different screen sizes and is pleasing to the eye.
 - **React** - Display login, display product list with ratings and reviews on different pages, and account creation and editing functionality.
-- **Service** - Backend services that allow for: user login, pulling product information, pulling user measurements and payment information, and verifying purchases.
+- **Service** - Backend services that allow for:
+    - user login
+    - pulling product information
+    - pulling user measurements and payment information
+    - verifying purchases
 - **DB/Login** - Store users, products, ratings and reviews, purchase history, etc. Allows users to register and log in. Secure storage of user log in credentials and personal information.
 - **WebSocket** - Chat with a representative in real time.
 
