@@ -34,13 +34,17 @@ This is a mockup of the 'homepage' of the website; it will open to a page to bro
 
 ![Design image](startup_mockup.png)
 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+Here's a sequence diagram to show how the chat feature will communicate with the server.
 
 ```mermaid
 sequenceDiagram
     actor You
+    actor Representative
     actor Website
-    You->>Website: Replace this with your design
+    You->>Website: Initial message
+    Website-->>Representative: Initial message
+    Representative->>Website: Initial response
+    Website-->>You: Initial response
 ```
 
 ### Key features
