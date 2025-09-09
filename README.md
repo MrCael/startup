@@ -40,7 +40,6 @@ Here's a sequence diagram to show how the chat feature will communicate with the
 sequenceDiagram
     actor You
     actor Representative
-    actor Website
     You->>Website: Initial message
     Website-->>Representative: Initial message
     Representative->>Website: Initial response
