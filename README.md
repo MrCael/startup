@@ -30,6 +30,8 @@ Shoes are one of the most important parts of a dancer's wardrobe, but so often t
 
 ### Design
 
+This is a mockup of the 'homepage' of the website; it will open to a page to browse available products. If a user is not signed in, the table in the top right corner of the screen will display a button/link to log in instead.
+
 ![Design image](startup_mockup.png)
 
 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
