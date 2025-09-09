@@ -43,9 +43,13 @@ sequenceDiagram
 
 ### Key features
 
-- Describe your key feature
-- Describe your key feature
-- Describe your key feature
+- Browse and view measurement chart without creating a login
+- Secure login over HTTPS
+- Store measurements for future purchases
+- View, purchase, and request new products
+- Display ratings and reviews for products and processes
+- Perform electronic transfers
+- Chat with a representative
 
 ### Technologies
 
