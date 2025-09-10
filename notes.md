@@ -16,7 +16,7 @@ The first step in setting up AWS is creating an EC2 Node
 
 ### EC2 Steps:
 - Log into AWS and go to the Console Home
-- Select the EC2 service and click Launch instance
+- Select the EC2 service and click `Launch instance`
 - name your instance \(A good name for the instance follows the convention \[owner\]-\[purpose\]-\[version\]\)
 - Select AMI
 - Select instance type
@@ -26,22 +26,38 @@ The first step in setting up AWS is creating an EC2 Node
   - Move the key pair file to this folder
   - Secure the folder by running this command `chmod 600 ~/.ssh/[key_pair_file_name]`
 - Under Network Settings
-  - make sure Auto-assign Public IP is enabled
+  - make sure `Auto-assign Public IP` is enabled
   - Allow SSH, HTTPS, and HTTP traffic from anyone
 - Select storage ammount \(can be upgraded later\)
-- Click Launch instance
+- Click `Launch instance`
 
 Next you'll need to create a domain with Route 53
 
 ### Route 53 Steps:
-- On the Route 53 dashboard, type your desired domain name into the Register Domain search bar
+- On the Route 53 dashboard, type your desired domain name into the `Register Domain` search bar
 - Select a domain name from the options and purchase it
-- Go back to the Route 53 dashboard and click Hosted Zones in the menu on the left of the screen
+- Go back to the Route 53 dashboard and click `Hosted Zones` in the menu on the left of the screen
 - After waiting a bit, you should see your domain name. Click on it.
-- Click Create Record and do the following twice
-  - Copy and paste the IP Address that correlates with your EC2 Node into the Value text box
-  - Make sure the Record Type is set to A
-  - /(Second time only/) Enter an asterisk \(`*`\) in the Record name text box. This configures for all subdomains under your main domain.
+- Do the following twice
+  - Click `Create Record`
+  - Copy and paste the IP Address that correlates with your EC2 Node into the `Value` text box
+  - Make sure the `Record Type` is set to A
+  - /(Second time only/) Enter an asterisk \(`*`\) in the `Record name` text box. This configures for all subdomains under your main domain.
+
+An optional final step is to associate an Elastic IP Address with your EC2 Node. That way you can power down the server when you don't need it to save money and keep the same IP Address when you power it back up again.
+
+### Elastic IP Steps:
+- On the EC2 dashboard select `Elastic IPs` from the menu on the left
+- Press the `Allocate Elastic IP address` button
+- Press the `Allocate` button
+- There will be a new allocated IP address displayed. Click on it and click `Actions`
+- Select `Associate Elastic IP address`
+- Click `Instance` and select your server instance
+- Click `Associate`
+- Copy the Elastic IP Address and navigate back to your domain in Route 53
+- Edit both the type A records you created earlier and paste the new Elastic IP Address into the `Value` box
+
+Now you have a functioning server with a domain name that you can shut off and turn on at your leisure.
 
 ## Caddy
 
