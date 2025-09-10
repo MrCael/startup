@@ -41,7 +41,6 @@ Next you'll need to create a domain with Route 53
   - Copy and paste the IP Address that correlates with your EC2 Node into the Value text box
   - Make sure the Record Type is set to A
   - /(Second time only/) Enter an asterisk \(`*`\) in the Record name text box. This configures for all subdomains under your main domain.
-- 
 
 ## Caddy
 
