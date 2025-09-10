@@ -10,7 +10,7 @@
 
 ## AWS
 
-My IP address is: 18.206.234.40
+My IP address is: 98.86.126.242
 
 The first step in setting up AWS is creating an EC2 Node
 
