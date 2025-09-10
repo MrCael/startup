@@ -22,8 +22,9 @@ The first step in setting up AWS is creating an EC2 Node
 - Select instance type
 - Create a key pair
   - Name and create new key pair in AWS
-  - Create a secure folder to store it in \(a good convention is to create a .ssh folder in the base directory by running the commands `cd ~`, `mkdir .ssh`, `chmod 700 ~/.ssh`\)
+  - Create a secure folder to it in \(a good convention is to create a .ssh folder in the base directory by running the commands `cd ~`, `mkdir .ssh`\)
   - Move the key pair file to this folder
+  - Secure the folder by running this command `chmod 700 ~/.ssh/[key_pair_file_name]`
 - Under Network Settings
   - make sure Auto-assign Public IP is enabled
   - Allow SSH, HTTPS, and HTTP traffic from anyone
