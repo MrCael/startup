@@ -10,8 +10,38 @@
 
 ## AWS
 
-My IP address is: 54.81.96.130
-Launching my AMI I initially put it on a private subnet. Even though it had a public IP address and the security group was right, I wasn't able to connect to it.
+My IP address is: 18.206.234.40
+
+The first step in setting up AWS is creating an EC2 Node
+
+### EC2 Steps:
+- Log into AWS and go to the Console Home
+- Select the EC2 service and click Launch instance
+- name your instance \(A good name for the instance follows the convention \[owner\]-\[purpose\]-\[version\]\)
+- Select AMI
+- Select instance type
+- Create a key pair
+  - Name and create new key pair in AWS
+  - Create a secure folder to store it in \(a good convention is to create a .ssh folder in the base directory by running the commands `cd ~`, `mkdir .ssh`, `chmod 700 ~/.ssh`\)
+  - Move the key pair file to this folder
+- Under Network Settings
+  - make sure Auto-assign Public IP is enabled
+  - Allow SSH, HTTPS, and HTTP traffic from anyone
+- Select storage ammount \(can be upgraded later\)
+- Click Launch instance
+
+Next you'll need to create a domain with Route 53
+
+### Route 53 Steps:
+- On the Route 53 dashboard, type your desired domain name into the Register Domain search bar
+- Select a domain name from the options and purchase it
+- Go back to the Route 53 dashboard and click Hosted Zones in the menu on the left of the screen
+- After waiting a bit, you should see your domain name. Click on it.
+- Click Create Record and do the following twice
+  - Copy and paste the IP Address that correlates with your EC2 Node into the Value text box
+  - Make sure the Record Type is set to A
+  - /(Second time only/) Enter an asterisk \(`*`\) in the Record name text box. This configures for all subdomains under your main domain.
+- 
 
 ## Caddy
 
