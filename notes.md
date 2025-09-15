@@ -61,7 +61,13 @@ Now you have a functioning server with a domain name that you can shut off and t
 
 ## Caddy
 
-No problems worked just like it said in the [instruction](https://github.com/webprogramming260/.github/blob/main/profile/webServers/https/https.md).
+### Caddy Steps:
+- Open the console
+- Use `ssh` to shell into your production environment server with the command `ssh -i [key pair file] ubuntu@[yourdomainnamehere]`.
+- Edit Caddyfile (Caddy's configuration file) with the command `vi Caddyfile`
+- Edit each header of the file to contain your domain name
+- Save the file and exit with `:wq`
+- Restart Caddy so your changes take affect with the command `sudo service caddy restart`
 
 ## HTML
 
