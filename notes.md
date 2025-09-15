@@ -2,6 +2,19 @@
 
 [My startup - Freedom Dance Footwear](https://simon.cs260.click)
 
+## Table of Contents
+- [Helpful links](#helpful-links)
+- [AWS](#aws)
+  - [EC2 Steps](#ec2-steps)
+  - [Route 53 Steps](#route-53-steps)
+  - [Elastic IP Steps](#elastic-ip-steps)
+- [Caddy](#caddy)
+  - [Caddy Steps](#caddy-steps)
+- [HTML](#html)
+- [CSS](#css)
+- [React Part 1: Routing](#react-part-1:-routing)
+- [React Part 2: Reactivity](#react-part-2:-reactivity)
+
 ## Helpful links
 
 - [Course instruction](https://github.com/webprogramming260)
