@@ -12,8 +12,8 @@
   - [Caddy Steps](#caddy-steps)
 - [HTML](#html)
 - [CSS](#css)
-- [React Part 1: Routing](#react-part-1:-routing)
-- [React Part 2: Reactivity](#react-part-2:-reactivity)
+- [React Part 1: Routing](#react-part-1-routing)
+- [React Part 2: Reactivity](#react-part-2-reactivity)
 
 ## Helpful links
 
