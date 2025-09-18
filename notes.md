@@ -1,6 +1,6 @@
 # CS 260 Notes
 
-[My startup - Freedom Dance Footwear](https://simon.cs260.click)
+[My startup - Freedom Dance Footwear](https://simon.csecs260.click)
 
 ## Table of Contents
 - [Helpful links](#helpful-links)
