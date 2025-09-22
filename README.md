@@ -88,6 +88,7 @@ For this deliverable I did the following. I checked the box `[x]` and added a de
     - Product Details \(details.html\)
     - Purchase Product \(purchase.html\)
     - View Cart \(cart.html\)
+    - View Profile \(profile.html\)
     - Contact \(contact.html\)
     - About Company \(about.html\)
 - [x] **Proper HTML element usage** - The tags I used include, but are not limited to, the following:
