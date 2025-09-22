@@ -105,8 +105,8 @@ For this deliverable I did the following. I checked the box `[x]` and added a de
     - span
     - input
 - [x] **Links** - I included links to each page to each other page (except product details and purchase product pages, those are only available through the shop and cart pages).
-- [ ] **Text** - 
-- [ ] **3rd party API placeholder** - 
+- [x] **Text** - I included AI generated text for the about page, and the product details page.
+- [x] **3rd party API placeholder** - I included a login page that will use a 3rd party api.
 - [x] **Images** - I included stock images for each 'product' my site will 'sell' and for a logo.
 - [x] **Login placeholder** - I included a login placeholder on the index.html page.
 - [x] **DB data placeholder** - I included many database placeholders including product information, reviews, cart contents, and purchase history.
