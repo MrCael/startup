@@ -76,21 +76,41 @@ I am going to use the required technologies in the following ways.
 
 For this deliverable I did the following. I checked the box `[x]` and added a description for things I completed.
 
-- [ ] **Server deployed and accessible with custom domain name** - [My server link](https://yourdomainnamehere.click).
+- [x] **Server deployed and accessible with custom domain name** - [My server link](https://csecs260.click).
 
 ## 🚀 HTML deliverable
 
 For this deliverable I did the following. I checked the box `[x]` and added a description for things I completed.
 
-- [ ] **HTML pages** - I did not complete this part of the deliverable.
-- [ ] **Proper HTML element usage** - I did not complete this part of the deliverable.
-- [ ] **Links** - I did not complete this part of the deliverable.
-- [ ] **Text** - I did not complete this part of the deliverable.
-- [ ] **3rd party API placeholder** - I did not complete this part of the deliverable.
-- [ ] **Images** - I did not complete this part of the deliverable.
-- [ ] **Login placeholder** - I did not complete this part of the deliverable.
-- [ ] **DB data placeholder** - I did not complete this part of the deliverable.
-- [ ] **WebSocket placeholder** - I did not complete this part of the deliverable.
+- [x] **HTML pages** - I completed 7 html pages, one for each of the following purposes:
+      - Login \(index.html\)
+      - Browsing \(shop.html\)
+      - Product Details \(details.html\)
+      - Purchase Product \(purchase.html\)
+      - View Cart \(cart.html\)
+      - Contact \(contact.html\)
+      - About Company \(about.html\)
+- [x] **Proper HTML element usage** - The tags I used include, but are not limited to, the following:
+      - html
+      - head
+      - body
+      - header
+      - main
+      - footer
+      - nav
+      - menu
+      - form
+      - table
+      - p
+      - span
+      - input
+- [x] **Links** - I included links to each page to each other page (except product details and purchase product pages, those are only available through the shop and cart pages).
+- [ ] **Text** - 
+- [ ] **3rd party API placeholder** - 
+- [x] **Images** - I included stock images for each 'product' my site will 'sell' and for a logo.
+- [x] **Login placeholder** - I included a login placeholder on the index.html page.
+- [x] **DB data placeholder** - I included many database placeholders including product information, reviews, cart contents, and purchase history.
+- [x] **WebSocket placeholder** - I included a live chat feature that will serve as a WebSocket placeholder.
 
 ## 🚀 CSS deliverable
 
