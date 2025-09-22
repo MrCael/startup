@@ -83,27 +83,27 @@ For this deliverable I did the following. I checked the box `[x]` and added a de
 For this deliverable I did the following. I checked the box `[x]` and added a description for things I completed.
 
 - [x] **HTML pages** - I completed 7 html pages, one for each of the following purposes:
-      - Login \(index.html\)
-      - Browsing \(shop.html\)
-      - Product Details \(details.html\)
-      - Purchase Product \(purchase.html\)
-      - View Cart \(cart.html\)
-      - Contact \(contact.html\)
-      - About Company \(about.html\)
+    - Login \(index.html\)
+    - Browsing \(shop.html\)
+    - Product Details \(details.html\)
+    - Purchase Product \(purchase.html\)
+    - View Cart \(cart.html\)
+    - Contact \(contact.html\)
+    - About Company \(about.html\)
 - [x] **Proper HTML element usage** - The tags I used include, but are not limited to, the following:
-      - html
-      - head
-      - body
-      - header
-      - main
-      - footer
-      - nav
-      - menu
-      - form
-      - table
-      - p
-      - span
-      - input
+    - html
+    - head
+    - body
+    - header
+    - main
+    - footer
+    - nav
+    - menu
+    - form
+    - table
+    - p
+    - span
+    - input
 - [x] **Links** - I included links to each page to each other page (except product details and purchase product pages, those are only available through the shop and cart pages).
 - [ ] **Text** - 
 - [ ] **3rd party API placeholder** - 
