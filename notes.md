@@ -84,7 +84,7 @@ Now you have a functioning server with a domain name that you can shut off and t
 
 ## HTML
 
-I have no problems with `HTML`. I've worked with it for 8 years, and some of those I've worked with it in a professional capacity.
+I have no problems with `HTML`. I've worked with it for 8 years, and some of those I've worked with it in a professional capacity. Some of my structure choices reflect the structural conventions of the html I worked with professionally, namely formatting the body content of a page primarily in tables.
 
 ## CSS
 
