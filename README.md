@@ -107,7 +107,7 @@ For this deliverable I did the following. I checked the box `[x]` and added a de
     - input
 - [x] **Links** - I included links to each page to each other page (except product details and purchase product pages, those are only available through the shop and cart pages).
 - [x] **Text** - I included AI generated text for the about page, and the product details page.
-- [x] **3rd party API placeholder** - I included a login page that will use a 3rd party api to allow users to log in directly with google or facebook.
+- [x] **3rd party API placeholder** - I included a live chat feature that will use an api to communicate with a representative computer.
 - [x] **Images** - I included stock images for each 'product' my site will 'sell' and for a logo.
 - [x] **Login placeholder** - I included a login placeholder on the index.html page.
 - [x] **DB data placeholder** - I included many database placeholders including product information, reviews, cart contents, and purchase history.
