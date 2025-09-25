@@ -32,26 +32,17 @@
                 </menu>
             </nav>
         </header>
-        <main>
+        <main class="d-flex flex-column flex-wrap justify-content-center align-items-center">
             <h1>Welcome to Freedom Dance Footwear!</h1>
-            <p>Please sign in if you would like to shop <span class="note">This is my Login placeholder</span></p>
-            <form method="get" action="shop.html">
-                <div>
-                    <input type="email" placeholder="your@email.com" />
-                </div>
-                <div>
-                    <input type="password" placeholder="password" />
-                </div>
-                <div>
-                    <button type="submit" class="btn btn-primary">Log In</button>
-                    <button type="submit" class="btn btn-secondary">Create Account</button>
-                </div>
+            <form method="get" action="shop.html" class="login">
+                <input class="form-control" type="email" placeholder="your@email.com" />
+                <input class="form-control" type="password" placeholder="password" />
+                <button type="submit" class="btn btn-primary form-control">Log In</button>
+                <button type="submit" class="btn btn-secondary form-control">Create Account</button>
             </form>
         </main>
         <footer>
-            <span>Author Name(s)</span> Cael Erickson
-            <br />
-            <a href="https://github.com/MrCael/startup.git">GitHub</a>
+            <p>Author Name(s): <a href="https://github.com/MrCael/startup.git">Cael Erickson</a></p>
         </footer>
     </body>
 </html>

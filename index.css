@@ -39,10 +39,12 @@
 body {
     height: 100vh;
     background-color: #F5F5DC;
+    color: #333333;
 }
 
 header {
     flex: 0 50px;
+    background-color: cornflowerblue;
 }
 
 main {
@@ -51,12 +53,18 @@ main {
 
 footer {
     flex: 0 30px;
+    background-color: cornflowerblue;
+    border-top: var(--bs-border-width) solid #333333;
+}
+
+footer > p {
+    margin: 0;
 }
 
 .nav-tabs {
-    --bs-nav-tabs-border-color: #A9A9A9;
-    --bs-nav-tabs-link-active-color: cornflowerblue;
-    border-bottom: var(--bs-nav-tabs-border-width) solid #A9A9A9;
+    --bs-nav-tabs-border-color: #333333;
+    --bs-nav-tabs-link-active-color: #F5F5DC;
+    border-bottom: var(--bs-nav-tabs-border-width) solid #333333;
 }
 
 .nav-link {
@@ -65,13 +73,30 @@ footer {
 
 .nav-tabs .nav-link:hover:not(.active), .nav-tabs .nav-link:focus:not(.active) {
     isolation: isolate;
-    border-color: #A9A9A9;
-    color: #333333;
+    border-color: #333333;
+    color: #F5F5DC;
 }
 
 .nav-tabs .nav-link.active,
 .nav-tabs .nav-item.show .nav-link {
     background-color: #F5F5DC;
-    border-color: #A9A9A9;
+    border-color: #333333;
     border-bottom: var(--bs-nav-tabs-border-width) solid #F5F5DC;
+    color: cornflowerblue;
+}
+
+h6, .h6, h5, .h5, h4, .h4, h3, .h3, h2, .h2, h1, .h1 {
+    color: #333333;
+}
+
+.login {
+    text-align: center;
+}
+
+.form-control {
+    margin: 7px;
+}
+
+button.form-control {
+    margin-top: 0px;
 }
