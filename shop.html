@@ -33,75 +33,86 @@
             </nav>
         </header>
         <main>
-            <input type="text" placeholder="search" />
-            <br />
+            <input type="text" class="form-control" placeholder="search" />
             <span class="note">This is a database placeholder</span>
-            <table>
-                <tr>
-                    <td>
-                        <a href="details.html">
-                            <img src="images/clogging.jpg" alt="Clogging Shoes" height="100">
-                        </a>
-                        <p>Clogging Shoes</p>
-                        <input type="button" value="Add to Cart" />
-                        <a href="purchase.html">
-                            <input type="button" value="Buy Now" />
-                        </a>
-                    </td>
-                    <td>
-                        <a href="details.html">
-                            <img src="images/tap.jpg.webp" alt="Tap Shoes" height="100">
-                        </a>
-                        <p>Tap Shoes</p>
-                        <input type="button" value="Add to Cart" />
-                        <a href="purchase.html">
-                            <input type="button" value="Buy Now" />
-                        </a>
-                    </td>
-                    <td>
-                        <a href="details.html">
-                            <img src="images/irish_hard.jpg" alt="Irish Hard Shoes" height="100">
-                        </a>
-                        <p>Irish Hard Shoes</p>
-                        <input type="button" value="Add to Cart" />
-                        <a href="purchase.html">
-                            <input type="button" value="Buy Now" />
-                        </a>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <a href="details.html">
-                            <img src="images/ballet.jpeg" alt="Ballet Shoes" height="100">
-                        </a>
-                        <p>Ballet Shoes</p>
-                        <input type="button" value="Add to Cart" />
-                        <a href="purchase.html">
-                            <input type="button" value="Buy Now" />
-                        </a>
-                    </td>
-                    <td>
-                        <a href="details.html">
-                            <img src="images/pointe.jpeg" alt="Pointe Shoes" height="100">
-                        </a>
-                        <p>Pointe Shoes</p>
-                        <input type="button" value="Add to Cart" />
-                        <a href="purchase.html">
-                            <input type="button" value="Buy Now" />
-                        </a>
-                    </td>
-                    <td>
-                        <a href="details.html">
-                            <img src="images/character.jpeg" alt="Character Shoes" height="100">
-                        </a>
-                        <p>Character Shoes</p>
-                        <input type="button" value="Add to Cart" />
-                        <a href="purchase.html">
-                            <input type="button" value="Buy Now" />
-                        </a>
-                    </td>
-                </tr>
-            </table>
+            <div>
+                <div class="d-flex justify-content-around">
+                    <div class="card">
+                        <div class="card-body">
+                            <a href="details.html">
+                                <img src="images/clogging.jpg" alt="Clogging Shoes" height="100">
+                            </a>
+                            <p>Clogging Shoes</p>
+                        </div>
+                        <div class="card-footer d-flex flex-column align-content-center">
+                            <button class="form-control btn btn-secondary" onclick="">Add to Cart</button>
+                            <button class="form-control btn btn-primary" onclick="location.href='purchase.html'">Buy Now</button>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="card-body">
+                            <a href="details.html">
+                                <img src="images/tap.jpg.webp" alt="Tap Shoes" height="100">
+                            </a>
+                            <p>Tap Shoes</p>
+                        </div>
+                        <div class="card-footer">
+                            <button class="form-control btn btn-secondary" onclick="">Add to Cart</button>
+                            <button class="form-control btn btn-primary" onclick="location.href='purchase.html'">Buy Now</button>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="card-body">
+                            <a href="details.html">
+                                <img src="images/irish_hard.jpg" alt="Irish Hard Shoes" height="100">
+                            </a>
+                            <p>Irish Hard Shoes</p>
+                        </div>
+                        <div class="card-footer">
+                            <button class="form-control btn btn-secondary" onclick="">Add to Cart</button>
+                            <button class="form-control btn btn-primary" onclick="location.href='purchase.html'">Buy Now</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="d-flex justify-content-around">
+                    <div class="card">
+                        <div class="card-body">
+                            <a href="details.html">
+                                <img src="images/ballet.jpeg" alt="Ballet Shoes" height="100">
+                            </a>
+                            <p>Ballet Shoes</p>
+                        </div>
+                        <div class="card-footer">
+                            <button class="form-control btn btn-secondary" onclick="">Add to Cart</button>
+                            <button class="form-control btn btn-primary" onclick="location.href='purchase.html'">Buy Now</button>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="card-body">
+                            <a href="details.html">
+                                <img src="images/pointe.jpeg" alt="Pointe Shoes" height="100">
+                            </a>
+                            <p>Pointe Shoes</p>
+                        </div>
+                        <div class="card-footer">
+                            <button class="form-control btn btn-secondary" onclick="">Add to Cart</button>
+                            <button class="form-control btn btn-primary" onclick="location.href='purchase.html'">Buy Now</button>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="card-body">
+                            <a href="details.html">
+                                <img src="images/character.jpeg" alt="Character Shoes" height="100">
+                            </a>
+                            <p>Character Shoes</p>
+                        </div>
+                        <div class="card-footer">
+                            <button class="form-control btn btn-secondary" onclick="">Add to Cart</button>
+                            <button class="form-control btn btn-primary" onclick="location.href='purchase.html'">Buy Now</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </main>
         <footer>
             <p>Author Name(s): <a href="https://github.com/MrCael/startup.git">Cael Erickson</a></p>

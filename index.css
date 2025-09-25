@@ -100,3 +100,12 @@ h6, .h6, h5, .h5, h4, .h4, h3, .h3, h2, .h2, h1, .h1 {
 button.form-control {
     margin-top: 0px;
 }
+
+.card-footer > button {
+    margin-left: 0;
+}
+
+div.card {
+    width: 250px; /* change this based on screen size */
+    margin: 10px;
+}
