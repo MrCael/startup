@@ -33,99 +33,122 @@
             </nav>
         </header>
         <main>
-            <input type="button" value="Edit Profile" />
-            <span class="note">This is a database placeholder</span>
-            <table>
-                <tr>
-                    <td colspan="2">
-                        <p>Username: cerickson</p>
-                    </td>
-                </tr>
-                <tr>
-                    <td colspan="2">
-                        <p>Password: ********</p>
-                    </td>
-                </tr>
-                <tr>
-                    <td colspan="2">
-                        <p>Name: Cael Erickson</p>
-                    </td>
-                </tr>
-                <tr>
-                    <td colspan="2">
-                        <img src="images/cael.jpg" alt="Profile Picture" width="100">
-                    </td>
-                </tr>
-                <tr>
-                    <td colspan="2">
-                        <h1>Shipping Information</h1>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <p>First Name: Cael</p>
-                    </td>
-                    <td>
-                        <p>Last Name: Erickson</p>
-                    </td>
-                </tr>
-                <tr>
-                    <td colspan="2">
-                        <p>Address Line 1: 603 N 100 W</p>
-                    </td>
-                </tr>
-                <tr>
-                    <td colspan="2">
-                        <p>Address Line 2: Apt 8</p>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <p>City: Provo</p>
-                    </td>
-                    <td>
-                        <p>State: UT</p>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <p>Zip Code: 84601</p>
-                    </td>
-                </tr>
-                <tr>
-                    <td colspan="2">
-                        <h1>Billing Information</h1>
-                    </td>
-                </tr>
-                <tr>
-                    <td colspan="2">
-                        <p>Card Number: **** **** **** 1234</p>
-                    </td>
-                </tr>
-                <tr>
-                    <td colspan="2">
-                        <p>Name on Card: Cael Erickson</p>
-                    </td>
-                </tr>
-                <tr>
-                    <td colspan="2">
-                        <input type="button" value="Add New Payment Method" />
-                        <span class="note">This is a React placeholder</span>
-                    </td>
-                </tr>
-                <tr>
-                    <td colspan="2">
-                        <input type="button" value="Edit Measurements" />
-                        <span class="note">This is a React placeholder</span>
-                    </td>
-                </tr>
-                <tr>
-                    <td colspan="2">
-                        <input type="button" value="View Purchase History" />
-                        <span class="note">This is a React placeholder</span>
-                    </td>
-                </tr>
-            </table>
+            <div class="d-flex flex-row" style="margin: 10px;">
+                <div class="profile-box">
+                    <button class="btn btn-secondary">Edit Profile</button>
+                    <span class="note">This is a database placeholder</span>
+                    <table>
+                        <tr>
+                            <td olspan="2">
+                                <h1>Personal Information</h1>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="2">
+                                <p>Username: cerickson</p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="2">
+                                <p>Password: ******** <button class="btn btn-secondary">Show Password</button></p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="2">
+                                <p>Name: Cael Erickson</p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="2">
+                                <p>Email: cael.erickson@gmail.com</p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="2">
+                                <p>Phone Number:(801) 205-7320</p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="2">
+                                <input type="checkbox" value="1" /> <span>Opt in to recieve notifications</span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="2">
+                                <button class="btn btn-secondary">View Measurements</button>
+                                <button class="btn btn-secondary">Edit Measurements</button>
+                                <span class="note">These are React placeholders</span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="2">
+                                <h1>Shipping Information</h1>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <p>First Name: Cael</p>
+                            </td>
+                            <td>
+                                <p>Last Name: Erickson</p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="2">
+                                <p>Address Line 1: 603 N 100 W</p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="2">
+                                <p>Address Line 2: Apt 8</p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <p>City: Provo</p>
+                            </td>
+                            <td>
+                                <p>State: UT</p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <p>Zip Code: 84601</p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="2">
+                                <h1>Billing Information</h1>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="2">
+                                <p>Card Number: **** **** **** 1234 <button class="btn btn-secondary">Show Card Number</button></p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="2">
+                                <p>Name on Card: Cael Erickson</p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="2">
+                                <button class="btn btn-secondary">Add New Payment Method</button>
+                                <span class="note">This is a React placeholder</span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="2">
+                                <button class="btn btn-secondary">View Purchase History</button>
+                                <span class="note">This is a React placeholder</span>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+                <div class="profile-box">
+                    <img src="images/cael.jpg" alt="Profile Picture" class="img-thumbnail img-flex">
+                </div>
+            </div>
         </main>
         <footer>
             <p>Author Name(s): <a href="https://github.com/MrCael/startup.git">Cael Erickson</a></p>

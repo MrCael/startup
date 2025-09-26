@@ -109,3 +109,7 @@ div.card {
     width: 250px; /* change this based on screen size */
     margin: 10px;
 }
+
+div.profile-box {
+    flex: 1;
+}
