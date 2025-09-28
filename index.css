@@ -106,6 +106,10 @@ button.form-control {
     margin-left: 0;
 }
 
+.card-body {
+    text-align: center;
+}
+
 div.card {
     width: 250px; /* change this based on screen size */
     margin: 10px;
