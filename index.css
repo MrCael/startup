@@ -95,6 +95,7 @@ h6, .h6, h5, .h5, h4, .h4, h3, .h3, h2, .h2, h1, .h1 {
 
 .form-control {
     margin: 7px;
+    margin-left: 0;
 }
 
 button.form-control {
@@ -112,4 +113,9 @@ div.card {
 
 div.profile-box {
     flex: 1;
+}
+
+div:not([class]) {
+    height: fit-content;
+    width: fit-content;
 }
