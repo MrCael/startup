@@ -98,6 +98,15 @@ h6, .h6, h5, .h5, h4, .h4, h3, .h3, h2, .h2, h1, .h1 {
     margin-left: 0;
 }
 
+.form-select {
+    margin: 7px;
+    margin-left: 0;
+}
+
+.date-select ~ select {
+    width: 5%;
+}
+
 button.form-control {
     margin-top: 0px;
 }
@@ -115,6 +124,11 @@ div.card {
     margin: 10px;
 }
 
+.cart-div {
+    width: 250px;
+    margin: 0 auto;
+}
+
 div.profile-box {
     flex: 1;
 }
@@ -122,4 +136,11 @@ div.profile-box {
 div:not([class]) {
     height: fit-content;
     width: fit-content;
+}
+
+.search-bar {
+    width: 95%;
+    margin: 0 auto;
+    margin-top: 10px;
+    margin-bottom: 5px;
 }
