@@ -164,12 +164,24 @@ td {
 
 @media (min-width: 800px) {
     .shop-div {
-        flex-direction: row;
+        flex-direction: row  !important;
     }
 }
 
 @media (max-width: 800px) {
     .shop-div {
-        flex-direction: column;
+        flex-direction: column  !important;
+    }
+}
+
+@media (min-width: 500px) {
+    .details-div {
+        flex-direction: row !important;
+    }
+}
+
+@media (max-width: 500px) {
+    .details-div {
+        flex-direction: column !important;
     }
 }
