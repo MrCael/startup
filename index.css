@@ -121,7 +121,8 @@ button.form-control {
 
 div.card {
     width: 250px; /* change this based on screen size */
-    margin: 10px;
+    margin: 0 auto;
+    margin-top: 10px;
 }
 
 .align-div {
@@ -132,6 +133,7 @@ div.card {
 
 div.profile-box {
     flex: 1;
+    margin-top: 0;
 }
 
 div:not([class]) {
@@ -153,4 +155,9 @@ div:not([class]) {
 
 td {
     vertical-align: middle;
+}
+
+.profile-pic {
+    height: 200px;
+    margin: 10px;
 }
