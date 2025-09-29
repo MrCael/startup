@@ -129,6 +129,11 @@ div.card {
     margin: 0 auto;
 }
 
+.purchase-div {
+    width: fit-content;
+    margin: 0 auto;
+}
+
 div.profile-box {
     flex: 1;
 }
