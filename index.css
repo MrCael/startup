@@ -161,3 +161,15 @@ td {
     height: 200px;
     margin: 10px;
 }
+
+@media (min-width: 800px) {
+    .shop-div {
+        flex-direction: row;
+    }
+}
+
+@media (max-width: 800px) {
+    .shop-div {
+        flex-direction: column;
+    }
+}
