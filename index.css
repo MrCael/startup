@@ -163,13 +163,13 @@ td {
 }
 
 @media (min-width: 800px) {
-    .shop-div {
+    .three-div {
         flex-direction: row  !important;
     }
 }
 
 @media (max-width: 800px) {
-    .shop-div {
+    .three-div {
         flex-direction: column  !important;
     }
 }
