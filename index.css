@@ -124,12 +124,7 @@ div.card {
     margin: 10px;
 }
 
-.cart-div {
-    width: 250px;
-    margin: 0 auto;
-}
-
-.purchase-div {
+.align-div {
     width: fit-content;
     margin: 0 auto;
 }
