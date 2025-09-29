@@ -205,3 +205,31 @@ td {
         display: none;
     }
 }
+
+@media (max-width: 500px) {
+    .opt-item-head {
+        display: none;
+    }
+
+    .opt-item-foot {
+        display: block;
+    }
+
+    footer {
+        text-align: center;
+    }
+}
+
+@media (min-width: 500px) {
+    .opt-item-head {
+        display: block;
+    }
+
+    .opt-item-foot {
+        display: none;
+    }
+
+    footer {
+        text-align: left;
+    }
+}
