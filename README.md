@@ -118,12 +118,12 @@ For this deliverable I did the following. I checked the box `[x]` and added a de
 
 For this deliverable I did the following. I checked the box `[x]` and added a description for things I completed.
 
-- [ ] **Header, footer, and main content body** - I did not complete this part of the deliverable.
-- [ ] **Navigation elements** - I did not complete this part of the deliverable.
-- [ ] **Responsive to window resizing** - I did not complete this part of the deliverable.
-- [ ] **Application elements** - I did not complete this part of the deliverable.
-- [ ] **Application text content** - I did not complete this part of the deliverable.
-- [ ] **Application images** - I did not complete this part of the deliverable.
+- [x] **Header, footer, and main content body** - I styled the header and footer cornflowerblue with a nav bar in the header, and styled the body #F5F5DC.
+- [x] **Navigation elements** - I styled the nav bar with bootstrap styles to look like tabs in a tabbed binder. They also change color when hovered over.
+- [x] **Responsive to window resizing** - I styled all pages to be responsive to window resizing, most particularly to be compatible with various mobile devices.
+- [x] **Application elements** - I formatted all placeholder elements to fit with the aesthetic of the site.
+- [x] **Application text content** - I styled all text content to fit with the aesthetic of the site as well as their role on the page.
+- [x] **Application images** - I styled all the images in the application with bootstrap classes as well as my own custom styles for page resizing.
 
 ## 🚀 React part 1: Routing deliverable
 
