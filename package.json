@@ -20,7 +20,8 @@
   },
   "homepage": "https://github.com/MrCael/startup#readme",
   "dependencies": {
-    "bootstrap": "^5.3.3"
+    "bootstrap": "^5.3.8",
+    "react-bootstrap": "^2.10.10"
   },
   "devDependencies": {
     "vite": "^7.1.9"
