@@ -1,50 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>Startup HTML</title>
-        <link rel="icon" href="public/red_shoes.jpg" />
-        <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.min.css" type="text/css">
-        <link rel="stylesheet" href="index.css" type="text/css">
-    </head>
-    <body class="d-flex flex-column">
-        <header>
-            <nav>
-                <menu class="nav nav-tabs">
-                    <li class="nav-item">
-                        <a href="index.html" class="nav-link active">Home</a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="shop.html" class="nav-link">Shop</a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="cart.html" class="nav-link">Cart</a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="profile.html" class="nav-link">Profile</a>
-                    </li>
-                    <li class="nav-item opt-item-head">
-                        <a href="about.html" class="nav-link">About</a>
-                    </li>
-                    <li class="nav-item opt-item-head">
-                        <a href="contact.html" class="nav-link">Contact Us</a>
-                    </li>
-                </menu>
-            </nav>
-        </header>
-        <main class="d-flex flex-column flex-wrap justify-content-center align-items-center" style="text-align: center;">
-            <h1>Welcome to Freedom Dance Footwear!</h1>
-            <form method="get" action="shop.html" class="login">
-                <input class="form-control" type="email" placeholder="your@email.com" />
-                <input class="form-control" type="password" placeholder="password" />
-                <button type="submit" class="btn btn-primary form-control">Log In</button>
-                <button type="submit" class="btn btn-secondary form-control">Create Account</button>
-            </form>
-        </main>
-        <footer>
-            <p>Author Name(s): <a href="https://github.com/MrCael/startup.git">Cael Erickson</a></p>
-            <p class="opt-item-foot"><a href="about.html">About</a></p>
-            <p class="opt-item-foot"><a href="contact.html">Contact Us</a></p>
-        </footer>
-    </body>
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" href="/favicon.ico" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+  </head>
+  <body>
+    <noscript>You need to enable JavaScript to run this app.</noscript>
+    <div id="root"></div>
+    <script type="module" src="/index.jsx"></script>
+  </body>
 </html>
