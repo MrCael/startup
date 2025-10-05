@@ -162,6 +162,35 @@ td {
     margin: 10px;
 }
 
+.cart-text {
+    width: fit-content;
+    margin: auto;
+    margin-top: 10px;
+}
+
+.checkout-cart {
+    margin: auto;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.centered {
+    text-align: center;
+}
+
+.item-display {
+    width: 33%;
+    text-align: center;
+    margin: 10px;
+}
+
+.profile-btn {
+    height: fit-content;
+    margin-top: auto;
+    margin-bottom: auto;
+    margin-right: 10px;
+}
+
 @media (min-width: 800px) {
     .three-div {
         flex-direction: row  !important;

@@ -1,18 +1,19 @@
 import React from 'react';
+import { NavLink } from "react-router-dom";
 
 export function Details() {
     return (
         <main>
-            <div class="d-flex flex-row justify-content-around details-div">
-                <div width="33%" style="text-align: center; margin: 10px;">
-                    <img src="clogging.jpg" alt="Clogging Shoes" class="img-thumbnail" />
+            <div className="d-flex flex-row justify-content-around details-div">
+                <div className="item-display">
+                    <img src="clogging.jpg" alt="Clogging Shoes" className="img-thumbnail" />
                     <p>Clogging Shoes</p>
                     <p>$160.00</p>
-                    <button class="btn btn-secondary form-control">Add to Cart</button>
-                    <button class="btn btn-primary form-control" onclick="location.href='purchase.html'">Buy Now</button>
+                    <button className="btn btn-secondary form-control">Add to Cart</button>
+                    <NavLink className="form-control btn btn-primary" to="purchase">Buy Now</NavLink>
                 </div>
-                <div style="margin: 10px;">
-                    <p>The Avriel International white clogging shoe is crafted with precision for dancers who demand both durability and elegance in their footwear. Designed in Canada with an emphasis on performance, these shoes offer a clean, classic profile that complements both practice attire and stage costumes. The sleek white finish lends a crisp, professional appearance, making them equally suitable for rehearsals, performances, and exhibitions.</p>
+                <div style={{margin: "10px"}}>
+                    <p>The Avriel International white clogging shoe is crafted with precision for dancers who demand both durability and elegance in their footwear. Designed in Canada with an emphasis on performance, these shoes offer a clean, classNameic profile that complements both practice attire and stage costumes. The sleek white finish lends a crisp, professional appearance, making them equally suitable for rehearsals, performances, and exhibitions.</p>
                     <p>Engineered for demanding footwork, the shoe features a reinforced shank and a protective steel toe box. Together, these elements provide both structural integrity and added resilience, ensuring the shoe can withstand the rigors of clogging’s fast, percussive movements. The steel toe box delivers essential protection without compromising comfort, while the reinforced shank offers reliable arch support, enabling dancers to maintain precision and stability during even the most intricate routines.</p>
                     <p>Crafted from premium materials, the upper is supple yet durable, paired with reinforced stitching that prolongs the life of the shoe. Inside, a cushioned insole and breathable lining reduce fatigue and enhance comfort, making the shoe suitable for long practice sessions as well as extended stage use. The securely mounted taps are balanced for clarity and resonance, producing a bright, authoritative sound that highlights the artistry and musicality of clogging.</p>
                     <p>The outsole is engineered for optimal traction and responsiveness, allowing dancers to execute precise movements with confidence. Taps are fitted securely, producing a clear, resonant sound that carries effortlessly across the floor, highlighting the artistry of clogging with professional-grade quality.</p>

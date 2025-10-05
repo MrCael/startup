@@ -3,7 +3,7 @@ import React from 'react';
 export function Purchase() {
     return (
         <main>
-            <div class="d-flex flex-column justify-content-center align-div">
+            <div className="d-flex flex-column justify-content-center align-div">
                 <form method="get" action="shop.html">
                     <table>
                         <tr>
@@ -14,33 +14,33 @@ export function Purchase() {
                         <tr>
                             <td width="50%">
                                 <p>First Name</p>
-                                <input type="text" class="form-control" autofocus />
+                                <input type="text" className="form-control" autofocus />
                             </td>
                             <td>
                                 <p>Last Name</p>
-                                <input type="text" class="form-control" />
+                                <input type="text" className="form-control" />
                             </td>
                         </tr>
                         <tr>
                             <td colspan="2">
                                 <p>Address Line 1</p>
-                                <input type="text" class="form-control" />
+                                <input type="text" className="form-control" />
                             </td>
                         </tr>
                         <tr>
                             <td colspan="2">
                                 <p>Address Line 2</p>
-                                <input type="text" class="form-control" />
+                                <input type="text" className="form-control" />
                             </td>
                         </tr>
                         <tr>
                             <td>
                                 <p>City</p>
-                                <input type="text" class="form-control" />
+                                <input type="text" className="form-control" />
                             </td>
                             <td>
                                 <p>State</p>
-                                <select class="form-select">
+                                <select className="form-select">
                                     <option value="--">--</option>
                                     <option value="AL">Alabama</option>
                                     <option value="AK">Alaska</option>
@@ -98,7 +98,7 @@ export function Purchase() {
                         <tr>
                             <td>
                                 <p>Zip Code</p>
-                                <input type="text" class="form-control" pattern="\d{5}" maxlength="5" />
+                                <input type="text" className="form-control" pattern="\d{5}" maxlength="5" />
                             </td>
                         </tr>
                         <tr><td><br /></td></tr>
@@ -110,20 +110,20 @@ export function Purchase() {
                         <tr>
                             <td colspan="2">
                                 <p>Card Number</p>
-                                <input type="text" class="form-control" pattern="\d{4} \d{4} \d{4} \d{4}" maxlength="16" />
+                                <input type="text" className="form-control" pattern="\d{4} \d{4} \d{4} \d{4}" maxlength="16" />
                             </td>
                         </tr>
                         <tr>
                             <td colspan="2">
                                 <p>Name on Card</p>
-                                <input type="text" class="form-control" />
+                                <input type="text" className="form-control" />
                             </td>
                         </tr>
                         <tr>
                             <td>
-                                <p class="date-select">Expiration Date</p>
-                                <div class="d-flex flex-row">
-                                    <select class="form-select">
+                                <p className="date-select">Expiration Date</p>
+                                <div className="d-flex flex-row">
+                                    <select className="form-select">
                                         <option value="1">01</option>
                                         <option value="2">02</option>
                                         <option value="3">03</option>
@@ -137,7 +137,7 @@ export function Purchase() {
                                         <option value="11">11</option>
                                         <option value="12">12</option>
                                     </select>
-                                    <select class="form-select">
+                                    <select className="form-select">
                                         <option value="2025">2025</option>
                                         <option value="2026">2026</option>
                                         <option value="2027">2027</option>
@@ -164,7 +164,7 @@ export function Purchase() {
                             </td>
                             <td>
                                 <p>CVV</p>
-                                <input type="text" class="form-control" pattern="\d{3}" maxlength="3" />
+                                <input type="text" className="form-control" pattern="\d{3}" maxlength="3" />
                             </td>
                         </tr>
                         <tr>
@@ -178,7 +178,7 @@ export function Purchase() {
                         <tr><td><br /></td></tr>
                         <tr>
                             <td colspan="2">
-                                <input type="submit" class="btn btn-secondary form-control" value="Complete Transaction" />
+                                <input type="submit" className="btn btn-secondary form-control" value="Complete Transaction" />
                             </td>
                         </tr>
                     </table>

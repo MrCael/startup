@@ -3,12 +3,12 @@ import React from 'react';
 export function About() {
     return (
         <main>
-            <div class="d-flex flex-row justify-content-around">
-                <img src="cloggers.jpeg" alt="Cloggers" class="img-fluid img-thumbnail" style="height: 200px;" />
-                <img src="irish_dancers.jpg" alt="Irish Dancers" class="img-fluid img-thumbnail img-opt-2" style="height: 200px;" />
-                <img src="tap_dancers.webp" class="img-fluid img-thumbnail img-opt-1" style="height: 200px;" />
+            <div className="d-flex flex-row justify-content-around">
+                <img src="cloggers.jpeg" alt="Cloggers" className="img-fluid img-thumbnail" style="height: 200px;" />
+                <img src="irish_dancers.jpg" alt="Irish Dancers" className="img-fluid img-thumbnail img-opt-2" style="height: 200px;" />
+                <img src="tap_dancers.webp" className="img-fluid img-thumbnail img-opt-1" style="height: 200px;" />
             </div>
-            <div class="d-flex flex-column" style="text-align: center;">
+            <div className="d-flex flex-column" style="text-align: center;">
                 <p>At Freedom Dance Footwear, we believe that every dancer deserves shoes that fit—not just in size, but in spirit. Too often, dancers with unusually sized feet struggle to find footwear that offers both comfort and performance. We set out to change that.</p>
                 <p>Our journey began with a simple question: Why should foot size limit artistry? Dancers of all shapes, sizes, and backgrounds deserve to move with confidence, grace, and support. That’s why we design and craft specialized dance shoes made to fit where standard sizing falls short.</p>
                 <p>Each pair is built with precision and care, combining innovative design with time-tested craftsmanship. Whether your feet are smaller, larger, wider, or narrower than most, our shoes are made to support your unique form—so you can focus on what truly matters: the dance.</p>

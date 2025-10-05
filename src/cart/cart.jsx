@@ -1,53 +1,54 @@
 import React from 'react';
+import { NavLink } from "react-router-dom";
 
 export function Cart() {
     return (
-        <main>
-            <div style="width: fit-content; margin: auto; margin-top: 10px;">
+        <main className="centered">
+            <div className="cart-text">
                 <h1>Cael Erickson's Cart</h1>
             </div>
-            <div class="d-flex flex-column justify-content-center">
-                <div class="d-flex justify-content-around three-div">
-                    <div class="card">
-                        <div class="card-body">
-                            <a href="details.html">
+            <div className="d-flex flex-column justify-content-center">
+                <div className="d-flex justify-content-around three-div">
+                    <div className="card">
+                        <div className="card-body">
+                            <NavLink to="details">
                                 <img src="clogging.jpg" alt="Clogging Shoes" height="100" />
-                            </a>
+                            </NavLink>
                             <p>Clogging Shoes</p>
                             <p>$160.00</p>
                         </div>
-                        <div class="card-footer d-flex flex-column align-content-center">
-                            <button class="form-control btn btn-primary" onclick="location.href='purchase.html'">Buy Now</button>
+                        <div className="card-footer d-flex flex-column align-content-center">
+                            <NavLink className="form-control btn btn-primary" to="purchase">Buy Now</NavLink>
                         </div>
                     </div>
-                    <div class="card">
-                        <div class="card-body">
-                            <a href="details.html">
+                    <div className="card">
+                        <div className="card-body">
+                            <NavLink to="details">
                                 <img src="tap.jpg.webp" alt="Tap Shoes" height="100" />
-                            </a>
+                            </NavLink>
                             <p>Tap Shoes</p>
                             <p>$120.00</p>
                         </div>
-                        <div class="card-footer">
-                            <button class="form-control btn btn-primary" onclick="location.href='purchase.html'">Buy Now</button>
+                        <div className="card-footer">
+                        <NavLink className="form-control btn btn-primary" to="purchase">Buy Now</NavLink>
                         </div>
                     </div>
-                    <div class="card">
-                        <div class="card-body">
-                            <a href="details.html">
+                    <div className="card">
+                        <div className="card-body">
+                            <NavLink to="details">
                                 <img src="irish_hard.jpg" alt="Irish Hard Shoes" height="100" />
-                            </a>
+                            </NavLink>
                             <p>Irish Hard Shoes</p>
                             <p>$180.00</p>
                         </div>
-                        <div class="card-footer">
-                            <button class="form-control btn btn-primary" onclick="location.href='purchase.html'">Buy Now</button>
+                        <div className="card-footer">
+                        <NavLink className="form-control btn btn-primary" to="purchase">Buy Now</NavLink>
                         </div>
                     </div>
                 </div>
             </div>
-            <div style="margin: auto; margin-top: 10px; margin-bottom: 10px;">
-                <button class="btn btn-secondary" onclick="location.href='purchase.html'">Checkout Cart</button>
+            <div className="checkout-cart">
+                <NavLink className="btn btn-secondary" to="purchase">Checkout Cart</NavLink>
             </div>
         </main>
     );
