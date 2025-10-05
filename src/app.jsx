@@ -19,7 +19,7 @@ export default function App() {
                     <nav>
                         <menu className="nav nav-tabs">
                             <li className="nav-item">
-                                <NavLink to="" className="nav-link active">Login</NavLink>
+                                <NavLink to="" className="nav-link">Login</NavLink>
                             </li>
                             <li className="nav-item">
                                 <NavLink to="shop" className="nav-link">Shop</NavLink>
