@@ -184,11 +184,17 @@ td {
     margin: 10px;
 }
 
-.profile-btn {
+.profile-img-row-style {
     height: fit-content;
     margin-top: auto;
     margin-bottom: auto;
     margin-right: 10px;
+}
+
+.profile-button {
+    margin: 5px;
+    margin-top: 0;
+    margin-bottom: 0;
 }
 
 @media (min-width: 800px) {
