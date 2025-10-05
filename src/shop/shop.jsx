@@ -17,7 +17,7 @@ export function Shop() {
                         </div>
                         <div className="card-footer d-flex flex-column align-content-center">
                             <button className="form-control btn btn-secondary">Add to Cart</button>
-                            <NavLink className="form-control btn btn-primary" to="purchase">Buy Now</NavLink>
+                            <NavLink className="form-control btn btn-primary" to="/purchase">Buy Now</NavLink>
                         </div>
                     </div>
                     <div className="card">
@@ -30,7 +30,7 @@ export function Shop() {
                         </div>
                         <div className="card-footer">
                             <button className="form-control btn btn-secondary">Add to Cart</button>
-                            <NavLink className="form-control btn btn-primary" to="purchase">Buy Now</NavLink>
+                            <NavLink className="form-control btn btn-primary" to="/purchase">Buy Now</NavLink>
                         </div>
                     </div>
                     <div className="card">
@@ -43,7 +43,7 @@ export function Shop() {
                         </div>
                         <div className="card-footer">
                             <button className="form-control btn btn-secondary">Add to Cart</button>
-                            <NavLink className="form-control btn btn-primary" to="purchase">Buy Now</NavLink>
+                            <NavLink className="form-control btn btn-primary" to="/purchase">Buy Now</NavLink>
                         </div>
                     </div>
                 </div>
@@ -58,7 +58,7 @@ export function Shop() {
                         </div>
                         <div className="card-footer">
                             <button className="form-control btn btn-secondary">Add to Cart</button>
-                            <NavLink className="form-control btn btn-primary" to="purchase">Buy Now</NavLink>
+                            <NavLink className="form-control btn btn-primary" to="/purchase">Buy Now</NavLink>
                         </div>
                     </div>
                     <div className="card">
@@ -71,7 +71,7 @@ export function Shop() {
                         </div>
                         <div className="card-footer">
                             <button className="form-control btn btn-secondary">Add to Cart</button>
-                            <NavLink className="form-control btn btn-primary" to="purchase">Buy Now</NavLink>
+                            <NavLink className="form-control btn btn-primary" to="/purchase">Buy Now</NavLink>
                         </div>
                     </div>
                     <div className="card">
@@ -84,7 +84,7 @@ export function Shop() {
                         </div>
                         <div className="card-footer">
                             <button className="form-control btn btn-secondary">Add to Cart</button>
-                            <NavLink className="form-control btn btn-primary" to="purchase">Buy Now</NavLink>
+                            <NavLink className="form-control btn btn-primary" to="/purchase">Buy Now</NavLink>
                         </div>
                     </div>
                 </div>

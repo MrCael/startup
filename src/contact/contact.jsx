@@ -17,25 +17,25 @@ export function Contact() {
                             </td>
                         </tr>
                         <tr>
-                            <td colspan="2">
+                            <td colSpan="2">
                                 Email Address
                                 <input type="email" className="form-control" />
                             </td>
                         </tr>
                         <tr>
-                            <td colspan="2">
+                            <td colSpan="2">
                                 Phone Number
                                 <input type="text" className="form-control" />
                             </td>
                         </tr>
                         <tr>
-                            <td colspan="2">
+                            <td colSpan="2">
                                 Message
                                 <textarea className="form-control"></textarea>
                             </td>
                         </tr>
                         <tr>
-                            <td colspan="2" className="centered">
+                            <td colSpan="2" className="centered">
                                 <button className="btn btn-secondary">Submit</button>
                             </td>
                         </tr>
