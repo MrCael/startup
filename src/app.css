@@ -36,10 +36,16 @@
     --bs-btn-disabled-border-color: #59be86;
 }
 
-.body {
+.body, html {
     height: 100vh;
+    min-height: 100vh;
     background-color: #F5F5DC;
     color: #333333;
+}
+
+#root {
+    height: 100vh;
+    background-color: inherit;
 }
 
 header {

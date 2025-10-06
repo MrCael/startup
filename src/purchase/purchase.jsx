@@ -5,7 +5,7 @@ export function Purchase() {
         <main>
             <div className="d-flex flex-column justify-content-center align-div">
                 <form method="get" action="shop.html">
-                    <table>
+                    <table style={{marginBottom: "10px"}}>
                         <tbody>
                             <tr>
                                 <td colSpan="2" className="centered">

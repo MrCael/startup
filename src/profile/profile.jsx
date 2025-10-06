@@ -6,7 +6,6 @@ export function Profile() {
             <div className="d-flex flex-row profile-div" style={{margin: "10px"}}>
                 <div className="profile-box align-div">
                     <button className="btn btn-secondary">Edit Profile</button>
-                    <span className="note">This is a database placeholder</span>
                     <table className="table">
                         <tbody>
                             <tr>
@@ -64,9 +63,8 @@ export function Profile() {
                         </tbody>
                     </table>
                 </div>
-                <div className="profile-box align-div">
-                    <button className="btn btn-secondary">Edit Shippign Information</button>
-                    <span className="note">This is a database placeholder</span>
+                <div className="profile-box align-div" height="100%">
+                    <button className="btn btn-secondary">Edit Shipping Information</button>
                     <table className="table">
                         <tbody>
                             <tr>

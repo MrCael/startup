@@ -47,7 +47,7 @@ export function Shop() {
                         </div>
                     </div>
                 </div>
-                <div className="d-flex justify-content-around three-div">
+                <div className="d-flex justify-content-around three-div" style={{margin: "10px"}}>
                     <div className="card">
                         <div className="card-body">
                             <NavLink href="details">
