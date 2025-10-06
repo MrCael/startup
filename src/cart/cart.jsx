@@ -11,7 +11,7 @@ export function Cart() {
                 <div className="d-flex justify-content-around three-div">
                     <div className="card">
                         <div className="card-body">
-                            <NavLink to="details">
+                            <NavLink to="/details">
                                 <img src="clogging.jpg" alt="Clogging Shoes" height="100" />
                             </NavLink>
                             <p>Clogging Shoes</p>
@@ -23,7 +23,7 @@ export function Cart() {
                     </div>
                     <div className="card">
                         <div className="card-body">
-                            <NavLink to="details">
+                            <NavLink to="/details">
                                 <img src="tap.jpg.webp" alt="Tap Shoes" height="100" />
                             </NavLink>
                             <p>Tap Shoes</p>
@@ -35,7 +35,7 @@ export function Cart() {
                     </div>
                     <div className="card">
                         <div className="card-body">
-                            <NavLink to="details">
+                            <NavLink to="/details">
                                 <img src="irish_hard.jpg" alt="Irish Hard Shoes" height="100" />
                             </NavLink>
                             <p>Irish Hard Shoes</p>
