@@ -18,7 +18,7 @@ export function Cart() {
                             <p>$160.00</p>
                         </div>
                         <div className="card-footer d-flex flex-column align-content-center">
-                            <NavLink className="form-control btn btn-primary" to="purchase">Buy Now</NavLink>
+                            <NavLink className="form-control btn btn-primary" to="/purchase">Buy Now</NavLink>
                         </div>
                     </div>
                     <div className="card">
@@ -30,7 +30,7 @@ export function Cart() {
                             <p>$120.00</p>
                         </div>
                         <div className="card-footer">
-                        <NavLink className="form-control btn btn-primary" to="purchase">Buy Now</NavLink>
+                        <NavLink className="form-control btn btn-primary" to="/purchase">Buy Now</NavLink>
                         </div>
                     </div>
                     <div className="card">
@@ -42,13 +42,13 @@ export function Cart() {
                             <p>$180.00</p>
                         </div>
                         <div className="card-footer">
-                        <NavLink className="form-control btn btn-primary" to="purchase">Buy Now</NavLink>
+                        <NavLink className="form-control btn btn-primary" to="/purchase">Buy Now</NavLink>
                         </div>
                     </div>
                 </div>
             </div>
             <div className="checkout-cart">
-                <NavLink className="btn btn-secondary" to="purchase">Checkout Cart</NavLink>
+                <NavLink className="btn btn-secondary" to="/purchase">Checkout Cart</NavLink>
             </div>
         </main>
     );
