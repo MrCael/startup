@@ -10,7 +10,7 @@ export function Details() {
                     <p>Clogging Shoes</p>
                     <p>$160.00</p>
                     <button className="btn btn-secondary form-control">Add to Cart</button>
-                    <NavLink className="form-control btn btn-primary" to="purchase">Buy Now</NavLink>
+                    <NavLink className="form-control btn btn-primary" to="/purchase">Buy Now</NavLink>
                 </div>
                 <div style={{margin: "10px"}}>
                     <p>The Avriel International white clogging shoe is crafted with precision for dancers who demand both durability and elegance in their footwear. Designed in Canada with an emphasis on performance, these shoes offer a clean, classNameic profile that complements both practice attire and stage costumes. The sleek white finish lends a crisp, professional appearance, making them equally suitable for rehearsals, performances, and exhibitions.</p>

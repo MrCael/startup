@@ -9,7 +9,7 @@ export function Shop() {
                 <div className="d-flex justify-content-around three-div">
                     <div className="card">
                         <div className="card-body">
-                            <NavLink href="details">
+                            <NavLink to="/details">
                                 <img src="clogging.jpg" alt="Clogging Shoes" height="100" />
                             </NavLink>
                             <p>Clogging Shoes</p>
@@ -22,7 +22,7 @@ export function Shop() {
                     </div>
                     <div className="card">
                         <div className="card-body">
-                            <NavLink href="details">
+                            <NavLink to="/details">
                                 <img src="tap.jpg.webp" alt="Tap Shoes" height="100" />
                             </NavLink>
                             <p>Tap Shoes</p>
@@ -35,7 +35,7 @@ export function Shop() {
                     </div>
                     <div className="card">
                         <div className="card-body">
-                            <NavLink href="details">
+                            <NavLink to="/details">
                                 <img src="irish_hard.jpg" alt="Irish Hard Shoes" height="100" />
                             </NavLink>
                             <p>Irish Hard Shoes</p>
@@ -50,7 +50,7 @@ export function Shop() {
                 <div className="d-flex justify-content-around three-div" style={{margin: "10px"}}>
                     <div className="card">
                         <div className="card-body">
-                            <NavLink href="details">
+                            <NavLink to="/details">
                                 <img src="ballet.jpeg" alt="Ballet Shoes" height="100" />
                             </NavLink>
                             <p>Ballet Shoes</p>
@@ -63,7 +63,7 @@ export function Shop() {
                     </div>
                     <div className="card">
                         <div className="card-body">
-                            <NavLink href="details">
+                            <NavLink to="/details">
                                 <img src="pointe.jpeg" alt="Pointe Shoes" height="100" />
                             </NavLink>
                             <p>Pointe Shoes</p>
@@ -76,7 +76,7 @@ export function Shop() {
                     </div>
                     <div className="card">
                         <div className="card-body">
-                            <NavLink href="details">
+                            <NavLink to="/details">
                                 <img src="character.jpeg" alt="Character Shoes" height="100" />
                             </NavLink>
                             <p>Character Shoes</p>
