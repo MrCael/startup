@@ -129,9 +129,9 @@ For this deliverable I did the following. I checked the box `[x]` and added a de
 
 For this deliverable I did the following. I checked the box `[x]` and added a description for things I completed.
 
-- [ ] **Bundled using Vite** - I did not complete this part of the deliverable.
-- [ ] **Components** - I did not complete this part of the deliverable.
-- [ ] **Router** - I did not complete this part of the deliverable.
+- [x] **Bundled using Vite** - I bundled my React code using Vite
+- [x] **Components** - I created components for each page, as well as a component to contain my header, Routes component, and footer, so I could keep the most recent nav link highlighted when navigating to a page not on the nav bar.
+- [x] **Router** - I created a Router component to display the body of each page
 
 ## 🚀 React part 2: Reactivity deliverable
 
