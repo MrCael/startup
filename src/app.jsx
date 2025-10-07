@@ -71,7 +71,7 @@ function AppContent() {
                 <Route path="*" element={<NotFound />} />
             </Routes>
             <footer>
-                <p>Author Name(s): <a to="https://github.com/MrCael/startup.git">Cael Erickson</a></p>
+                <p>Author Name(s): <a href="https://github.com/MrCael/startup.git">Cael Erickson</a></p>
                 <p className="opt-item-foot"><NavLink to="about">About</NavLink></p>
                 <p className="opt-item-foot"><NavLink to="contact">Contact Us</NavLink></p>
             </footer>
