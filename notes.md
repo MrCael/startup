@@ -100,26 +100,13 @@ I also used AI to help me figure out how to make the most recently visited nav b
 
 ## React Part 2: Reactivity
 
-This was a lot of fun to see it all come together. I had to keep remembering to use React state instead of just manipulating the DOM directly.
+### State variables
 
-Handling the toggling of the checkboxes was particularly interesting.
+Calling React.useState() initializes a row in the state table, that function returns both the value of that cell in the state table, as well as a setter function. This output is caught by deconstruction in this format `const [var, setVar] = React.useState(state);`
 
-```jsx
-<div className="input-group sound-button-container">
-  {calmSoundTypes.map((sound, index) => (
-    <div key={index} className="form-check form-switch">
-      <input
-        className="form-check-input"
-        type="checkbox"
-        value={sound}
-        id={sound}
-        onChange={() => togglePlay(sound)}
-        checked={selectedSounds.includes(sound)}
-      ></input>
-      <label className="form-check-label" htmlFor={sound}>
-        {sound}
-      </label>
-    </div>
-  ))}
-</div>
-```
+Calling the state variable setter function with a value sets the state variable in the state table to that value.
+Calling the state variable setter function with a function automatically passes the current value of the state variable as the input to that function and the return value of that function is what the state variable is set to.
+
+### useEffect function
+
+This function takes two inputs: a function, and a list of dependancies. The function describes the code to be executed, and the dependancy list describes the values that, when changes, trigger the code to be executed. The function can also have a return value that is itself another function that acts as cleanup, for example, removing event listeners.
