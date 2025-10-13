@@ -1,6 +1,31 @@
-import React from 'react';
+import React from "react";
+import Button from "react-bootstrap/Button";
 
 export function Profile() {
+    const passwordTrue = "password123";
+    const passwordStar = "***********";
+    const [password, setPassword] = React.useState(passwordStar);
+    const [passwordButtonText, setPasswordButtonText] = React.useState("Show Password");
+    const [passwordShown, setPasswordShown] = React.useState(false);
+
+    const cardNumTrue = "1234 5678 9000 0000";
+    const cardNumStar = "**** **** **** 0000";
+    const [cardNum, setCardNum] = React.useState(cardNumStar);
+    const [cardNumButtonText, setCardNumButtonText] = React.useState("Show Card Number");
+    const [cardNumShown, setCardNumShown] = React.useState(false);
+
+    function toggleField(shown, setField, valueTrue, valueStar, setText, fieldName, setShown) {
+        if (!shown) {
+            setField(valueTrue)
+            setText(`Hide ${fieldName}`);
+            setShown(true);
+        } else {
+            setField(valueStar);
+            setText(`Show ${fieldName}`);
+            setShown(false);
+        }
+    }
+
     return (
         <main>
             <div className="d-flex flex-row profile-div" style={{margin: "10px"}}>
@@ -17,7 +42,6 @@ export function Profile() {
                                 <td className="d-flex flex-row">
                                     <p className="profile-img-row-style">Profile Image: </p>
                                     <img src="cael.jpg" alt="Profile Image" className="img-fluid img-thumbnail profile-pic" />
-                                    <button className="profile-img-row-style btn btn-secondary">Edit Profile Image</button>
                                 </td>
                             </tr>
                             <tr>
@@ -27,7 +51,7 @@ export function Profile() {
                             </tr>
                             <tr>
                                 <td colSpan="2">
-                                    <p>Password: ******** <button className="btn btn-secondary">Show Password</button></p>
+                                    <p>Password: {password} <Button className="btn btn-secondary" onClick={() => toggleField(passwordShown, setPassword, passwordTrue, passwordStar, setPasswordButtonText, "Password", setPasswordShown)}>{passwordButtonText}</Button></p>
                                 </td>
                             </tr>
                             <tr>
@@ -55,8 +79,8 @@ export function Profile() {
                             </tr>
                             <tr>
                                 <td colSpan="2">
-                                    <button className="btn btn-secondary profile-button">View Measurements</button>
-                                    <button className="btn btn-secondary profile-button">Edit Measurements</button>
+                                    <button className="btn btn-secondary profile-button">View Measurements</button> {/* pop up window(?) */}
+                                    <button className="btn btn-secondary profile-button">Edit Measurements</button> {/* another page(?) */}
                                     <span className="note">These are React placeholders</span>
                                 </td>
                             </tr>
@@ -107,7 +131,7 @@ export function Profile() {
                             </tr>
                             <tr>
                                 <td colSpan="2">
-                                    <p>Card Number: **** **** **** 1234 <button className="btn btn-secondary">Show Card Number</button></p>
+                                    <p>Card Number: {cardNum} <Button className="btn btn-secondary" onClick={() => toggleField(cardNumShown, setCardNum, cardNumTrue, cardNumStar, setCardNumButtonText, "Card Number", setCardNumShown)}>{cardNumButtonText}</Button></p>
                                 </td>
                             </tr>
                             <tr>
@@ -117,8 +141,8 @@ export function Profile() {
                             </tr>
                             <tr>
                                 <td colSpan="2">
-                                    <button className="btn btn-secondary profile-button">Add New Payment Method</button>
-                                    <button className="btn btn-secondary profile-button">View Purchase History</button>
+                                    <button className="btn btn-secondary profile-button">Add New Payment Method</button> {/* pop up window */}
+                                    <button className="btn btn-secondary profile-button">View Purchase History</button> {/* new page(?) */}
                                     <span className="note">These are React placeholders</span>
                                 </td>
                             </tr>

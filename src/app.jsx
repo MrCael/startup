@@ -10,6 +10,7 @@ import { Details } from "./details/details";
 import { Profile } from "./profile/profile";
 import { Purchase } from "./purchase/purchase";
 import { Shop } from "./shop/shop";
+import { AuthState } from "./login/authState";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./app.css";
 
@@ -20,6 +21,8 @@ function NotFound() {
 function AppContent() {
     const { activePage, setActivePage } = useActivePage();
     const location = useLocation();
+    const [userName, setUserName] = React.useState(localStorage.getItem('userName') || "");
+    const [authState, setAuthState] = React.useState(userName ? AuthState.Authenticated : AuthState.Unauthenticated);
 
     // Update active page when user clicks a nav link
     const handleNavClick = (path) => {
@@ -60,7 +63,7 @@ function AppContent() {
                 </nav>
             </header>
             <Routes>
-                <Route path="/" element={<Login />} exact />
+                <Route path="/" element={<Login userName={userName} setUserName={setUserName} authState={authState} onAuthChange={(userName, authState) => { setAuthState(authState); setUserName(userName); }} />} exact />
                 <Route path="/about" element={<About />} />
                 <Route path="/cart" element={<Cart />} />
                 <Route path="/contact" element={<Contact />} />

@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 
 export function About() {
     return (
@@ -14,7 +14,9 @@ export function About() {
                 <p>Each pair is built with precision and care, combining innovative design with time-tested craftsmanship. Whether your feet are smaller, larger, wider, or narrower than most, our shoes are made to support your unique form—so you can focus on what truly matters: the dance.</p>
                 <p>We’re more than a shoe company—we’re a community that celebrates difference and embraces individuality. Because when the right fit meets the right passion, the possibilities are endless.</p>
                 <p>Freedom Dance Footwear: Made for every dancer, every step of the way.</p>
-                <p><a href="https://www.instagram.com/p/DBIOkCJt6W0/">Abour Our Creator</a></p>
+                <p>
+                    <a href="https://www.instagram.com/p/DBIOkCJt6W0/">Abour Our Creator</a>
+                </p>
             </div>
         </main>
     );

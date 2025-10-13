@@ -8,9 +8,7 @@ export function ActivePageProvider({ children }) {
     const location = useLocation();
 
     // Initialize from localStorage if available, otherwise use current path
-    const [activePage, setActivePage] = useState(
-        localStorage.getItem("activePage") || location.pathname
-    );
+    const [activePage, setActivePage] = useState(localStorage.getItem("activePage") || location.pathname);
 
     // Whenever activePage changes, save it to localStorage
     useEffect(() => {

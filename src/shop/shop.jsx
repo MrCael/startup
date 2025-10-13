@@ -1,7 +1,39 @@
-import React from 'react';
+import React from "react";
 import { NavLink } from "react-router-dom";
 
 export function Shop() {
+    const products = [
+        {img: "clogging.jpg", name: "Clogging Shoes", price: 160.00},
+        {img: "tap.jpg.webp", name: "Tap Shoes", price: 120.00},
+        {img: "irish_hard.jpg", name: "Irish Hard Shoes", price: 180.00},
+        {img: "ballet.jpeg", name: "Ballet Shoes", price: 30.00},
+        {img: "pointe.jpeg", name: "Point Shoes", price: 150.00},
+        {img: "character.jpeg", name: "Character Shoes", price: 140.00}
+    ];
+
+    function buildShopTable(products) {
+        // Q90 Method
+        // for every three items of products
+            // set row 2 and 3 to empty string
+            // define row 1
+            // if next item in products exists
+                // define row 2
+            // if next item in products exists
+                // define row 3
+        
+        // New Method
+        // for every item in products
+            // create bootstrap card for product
+        // for every three items of products
+            // make table row
+            // append next card to table row
+        
+        for (let i = 0; i < length(products); i++) {
+            let new_item = document.createElement("td");
+            // new_item.
+        }
+    }
+    
     return (
         <main>
             <input type="text" className="search-bar form-control" placeholder="search" />

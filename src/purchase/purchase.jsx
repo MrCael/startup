@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 
 export function Purchase() {
     return (
@@ -9,7 +9,7 @@ export function Purchase() {
                         <tbody>
                             <tr>
                                 <td colSpan="2" className="centered">
-                                    <h1>Shipping Information</h1>
+                                    <h1>Shipping Information</h1> {/* Edit to select shipping address if user has any defined, and to fill one out otherwise */}
                                 </td>
                             </tr>
                             <tr>
@@ -105,7 +105,7 @@ export function Purchase() {
                             <tr><td><br /></td></tr>
                             <tr>
                                 <td colSpan="2" className="centered">
-                                    <h1>Billing Information</h1>
+                                    <h1>Billing Information</h1> {/* Edit to select billing information if user has any defined, and to fill one out otherwise */}
                                 </td>
                             </tr>
                             <tr>

@@ -1,15 +1,14 @@
-import React from 'react';
+import React from "react";
+import { Unauthenticated } from "./unauthenticated";
+import { Authenticated } from "./authenticated";
+import { AuthState } from "./authState";
 
-export function Login() {
+export function Login({ userName, setUserName, authState, onAuthChange }) {
     return (
         <main className="d-flex flex-column flex-wrap justify-content-center align-items-center centered">
-            <h1>Welcome to Freedom Dance Footwear!</h1>
-            <form method="get" action="shop.html" className="login">
-                <input className="form-control" type="email" placeholder="your@email.com" />
-                <input className="form-control" type="password" placeholder="password" />
-                <button type="submit" className="btn btn-primary form-control">Log In</button>
-                <button type="submit" className="btn btn-secondary form-control">Create Account</button>
-            </form>
+            {authState !== AuthState.Unknown && authState !== AuthState.Authenticated && <h1>Welcome to Freedom Dance Footwear!</h1>}
+            {authState === AuthState.Authenticated && <Authenticated userName={userName} onLogout={() => onAuthChange(userName, AuthState.Unauthenticated)} />}
+            {authState === AuthState.Unauthenticated && <Unauthenticated userName={userName} setUserName={setUserName} onLogin={(loginUserName) => onAuthChange(loginUserName, AuthState.Authenticated)} />}
         </main>
     );
 }

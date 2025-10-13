@@ -1,7 +1,13 @@
-import React from 'react';
+import React from "react";
 import { NavLink } from "react-router-dom";
 
 export function Cart() {
+    const products = [
+        {img: "clogging.jpg", name: "Clogging Shoes", price: 160.00},
+        {img: "tap.jpg.webp", name: "Tap Shoes", price: 120.00},
+        {img: "irish_hard.jpg", name: "Irish Hard Shoes", price: 180.00}
+    ];
+
     return (
         <main className="centered">
             <div className="cart-text">
