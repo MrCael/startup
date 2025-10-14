@@ -25,18 +25,6 @@ function AppContent() {
     const [authState, setAuthState] = React.useState(userName ? AuthState.Authenticated : AuthState.Unauthenticated);
     const [cart, setCart] = React.useState(JSON.parse(localStorage.getItem("cart")) || []);
 
-    function updateCart(newItem) {
-        setCart(prevCart => {
-            if (prevCart.some(item => item.name === newItem.name)) {
-                return prevCart;
-            } else {
-                const newCart = [...prevCart, newItem];
-                // localStorage.setItem("cart", JSON.stringify(newCart));
-                return newCart;
-            }
-        });
-    }
-
     // Update active page when user clicks a nav link
     const handleNavClick = (path) => {
         setActivePage(path);
@@ -68,9 +56,9 @@ function AppContent() {
                         <li className="nav-item">
                             <NavLink to="/cart" className={`nav-link ${activePage === "/cart" ? "active" : ""}`} onClick={() => handleNavClick("/cart")}>Cart</NavLink>
                         </li>
-                        <li className="nav-item">
+                        {authState === AuthState.Authenticated && <li className="nav-item">
                             <NavLink to="/profile" className={`nav-link ${activePage === "/profile" ? "active" : ""}`} onClick={() => handleNavClick("/profile")}>Profile</NavLink>
-                        </li>
+                        </li>}
                         <li className="nav-item opt-item-head">
                             <NavLink to="/about" className={`nav-link ${activePage === "/about" ? "active" : ""}`} onClick={() => handleNavClick("/about")}>About</NavLink>
                         </li>
@@ -88,7 +76,7 @@ function AppContent() {
                 <Route path="/details" element={<Details />} />
                 <Route path="/profile" element={<Profile />} />
                 <Route path="/purchase" element={<Purchase setCart={setCart} />} />
-                <Route path="/shop" element={<Shop updateCart={updateCart} />} />
+                <Route path="/shop" element={<Shop setCart={setCart} />} />
                 <Route path="*" element={<NotFound />} />
             </Routes>
             <footer>

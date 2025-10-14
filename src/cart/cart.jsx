@@ -1,12 +1,17 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
 
-export function Cart({ cart }) {
+function EmptyCart() {
     return (
-        <main className="centered">
-            <div className="cart-text">
-                <h1>Cael Erickson's Cart</h1>
-            </div>
+        <>
+            <p>Your cart is currently empty, head to the <NavLink to="/shop">shop</NavLink>!</p>
+        </>
+    );
+}
+
+function FullCart({ cart }) {
+    return (
+        <>
             <div className="d-flex flex-column justify-content-center">
                 <div className="d-flex justify-content-around three-div">
                     {cart.map((item) => (
@@ -64,6 +69,18 @@ export function Cart({ cart }) {
             <div className="checkout-cart">
                 <NavLink className="btn btn-secondary" to="/purchase">Checkout Cart</NavLink>
             </div>
+        </>
+    );
+}
+
+export function Cart({ cart }) {
+    return (
+        <main className="centered">
+            <div className="cart-text">
+                <h1>Cael Erickson's Cart</h1>
+            </div>
+            {cart.length === 0 && <EmptyCart />}
+            {cart.length > 0 && <FullCart cart={cart} />}
         </main>
     );
 }

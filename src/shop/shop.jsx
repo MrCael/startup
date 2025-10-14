@@ -2,7 +2,15 @@ import React from "react";
 import Button from "react-bootstrap/Button";
 import { NavLink } from "react-router-dom";
 
-export function Shop({ updateCart }) {
+function ConfirmAddToCart({ productAdded }) {
+    return (
+        <div className="centered" id="confirmAddToCart" style={{ display: "none" }}>
+            <p style={{ color: "#3CB371" }}>{productAdded} added to cart!</p>
+        </div>
+    );
+}
+
+export function Shop({ setCart }) {
     const products = [
         {img: "clogging.jpg", name: "Clogging Shoes", price: 160.00},
         {img: "tap.jpg.webp", name: "Tap Shoes", price: 120.00},
@@ -11,10 +19,32 @@ export function Shop({ updateCart }) {
         {img: "pointe.jpeg", name: "Point Shoes", price: 150.00},
         {img: "character.jpeg", name: "Character Shoes", price: 140.00}
     ];
+    const [productAdded, setProductAdded] = React.useState("");
+
+    function updateCart(newItem) {
+        setCart(prevCart => {
+            if (prevCart.some(item => item.name === newItem.name)) {
+                return prevCart;
+            } else {
+                const newCart = [...prevCart, newItem];
+                setProductAdded(newItem.name);
+
+                new Promise(() => {
+                    document.getElementById("confirmAddToCart").style.display = "block";
+                    setTimeout(() => {
+                        document.getElementById("confirmAddToCart").style.display = "none";
+                    }, 2000);
+                });
+
+                return newCart;
+            }
+        });
+    }
     
     return (
         <main>
             <input type="text" className="search-bar form-control" placeholder="search" />
+            <ConfirmAddToCart productAdded={productAdded} />
             <div className="d-flex flex-column justify-content-center">
                 <div className="d-flex justify-content-around three-div">
                     <div className="card">
