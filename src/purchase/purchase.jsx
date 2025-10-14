@@ -1,6 +1,6 @@
 import React from "react";
 
-export function Purchase() {
+export function Purchase({ setCart }) {
     return (
         <main>
             <div className="d-flex flex-column justify-content-center align-div">
@@ -179,7 +179,7 @@ export function Purchase() {
                             <tr><td><br /></td></tr>
                             <tr>
                                 <td colSpan="2">
-                                    <input type="submit" className="btn btn-secondary form-control" value="Complete Transaction" />
+                                    <input type="submit" className="btn btn-secondary form-control" value="Complete Transaction" onClick={() => setCart([])} />
                                 </td>
                             </tr>
                         </tbody>

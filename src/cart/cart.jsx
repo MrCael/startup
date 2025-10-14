@@ -1,13 +1,7 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
 
-export function Cart() {
-    const products = [
-        {img: "clogging.jpg", name: "Clogging Shoes", price: 160.00},
-        {img: "tap.jpg.webp", name: "Tap Shoes", price: 120.00},
-        {img: "irish_hard.jpg", name: "Irish Hard Shoes", price: 180.00}
-    ];
-
+export function Cart({ cart }) {
     return (
         <main className="centered">
             <div className="cart-text">
@@ -15,7 +9,21 @@ export function Cart() {
             </div>
             <div className="d-flex flex-column justify-content-center">
                 <div className="d-flex justify-content-around three-div">
-                    <div className="card">
+                    {cart.map((item) => (
+                        <div className="card">
+                            <div className="card-body">
+                                <NavLink to="/details">
+                                    <img src={item.img} alt={item.name} height="100" />
+                                </NavLink>
+                                <p>{item.name}</p>
+                                <p>${item.price}</p>
+                            </div>
+                            <div className="card-footer d-flex flex-column align-content-center">
+                                <NavLink className="form-control btn btn-primary" to="/purchase">Buy Now</NavLink>
+                            </div>
+                        </div>
+                    ))}
+                    {/* <div className="card">
                         <div className="card-body">
                             <NavLink to="/details">
                                 <img src="clogging.jpg" alt="Clogging Shoes" height="100" />
@@ -50,7 +58,7 @@ export function Cart() {
                         <div className="card-footer">
                         <NavLink className="form-control btn btn-primary" to="/purchase">Buy Now</NavLink>
                         </div>
-                    </div>
+                    </div> */}
                 </div>
             </div>
             <div className="checkout-cart">

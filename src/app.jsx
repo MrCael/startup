@@ -21,8 +21,21 @@ function NotFound() {
 function AppContent() {
     const { activePage, setActivePage } = useActivePage();
     const location = useLocation();
-    const [userName, setUserName] = React.useState(localStorage.getItem('userName') || "");
+    const [userName, setUserName] = React.useState(localStorage.getItem("userName") || "");
     const [authState, setAuthState] = React.useState(userName ? AuthState.Authenticated : AuthState.Unauthenticated);
+    const [cart, setCart] = React.useState(JSON.parse(localStorage.getItem("cart")) || []);
+
+    function updateCart(newItem) {
+        setCart(prevCart => {
+            if (prevCart.some(item => item.name === newItem.name)) {
+                return prevCart;
+            } else {
+                const newCart = [...prevCart, newItem];
+                // localStorage.setItem("cart", JSON.stringify(newCart));
+                return newCart;
+            }
+        });
+    }
 
     // Update active page when user clicks a nav link
     const handleNavClick = (path) => {
@@ -35,6 +48,11 @@ function AppContent() {
             setActivePage(location.pathname);
         }
     }, [location.pathname, setActivePage]);
+
+    useEffect(() => {
+        localStorage.setItem("cart", JSON.stringify(cart));
+        console.log("Setting cart");
+    }, [cart]);
 
     return (
         <div className="body d-flex flex-column">
@@ -65,12 +83,12 @@ function AppContent() {
             <Routes>
                 <Route path="/" element={<Login userName={userName} setUserName={setUserName} authState={authState} onAuthChange={(userName, authState) => { setAuthState(authState); setUserName(userName); }} />} exact />
                 <Route path="/about" element={<About />} />
-                <Route path="/cart" element={<Cart />} />
+                <Route path="/cart" element={<Cart cart={cart} />} />
                 <Route path="/contact" element={<Contact />} />
                 <Route path="/details" element={<Details />} />
                 <Route path="/profile" element={<Profile />} />
-                <Route path="/purchase" element={<Purchase />} />
-                <Route path="/shop" element={<Shop />} />
+                <Route path="/purchase" element={<Purchase setCart={setCart} />} />
+                <Route path="/shop" element={<Shop updateCart={updateCart} />} />
                 <Route path="*" element={<NotFound />} />
             </Routes>
             <footer>

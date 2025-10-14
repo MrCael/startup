@@ -1,7 +1,8 @@
 import React from "react";
+import Button from "react-bootstrap/Button";
 import { NavLink } from "react-router-dom";
 
-export function Shop() {
+export function Shop({ updateCart }) {
     const products = [
         {img: "clogging.jpg", name: "Clogging Shoes", price: 160.00},
         {img: "tap.jpg.webp", name: "Tap Shoes", price: 120.00},
@@ -10,29 +11,6 @@ export function Shop() {
         {img: "pointe.jpeg", name: "Point Shoes", price: 150.00},
         {img: "character.jpeg", name: "Character Shoes", price: 140.00}
     ];
-
-    function buildShopTable(products) {
-        // Q90 Method
-        // for every three items of products
-            // set row 2 and 3 to empty string
-            // define row 1
-            // if next item in products exists
-                // define row 2
-            // if next item in products exists
-                // define row 3
-        
-        // New Method
-        // for every item in products
-            // create bootstrap card for product
-        // for every three items of products
-            // make table row
-            // append next card to table row
-        
-        for (let i = 0; i < length(products); i++) {
-            let new_item = document.createElement("td");
-            // new_item.
-        }
-    }
     
     return (
         <main>
@@ -48,7 +26,7 @@ export function Shop() {
                             <p>$160.00</p>
                         </div>
                         <div className="card-footer d-flex flex-column align-content-center">
-                            <button className="form-control btn btn-secondary">Add to Cart</button>
+                            <Button className="form-control btn btn-secondary" onClick={() => updateCart(products[0])}>Add to Cart</Button>
                             <NavLink className="form-control btn btn-primary" to="/purchase">Buy Now</NavLink>
                         </div>
                     </div>
@@ -61,7 +39,7 @@ export function Shop() {
                             <p>$120.00</p>
                         </div>
                         <div className="card-footer">
-                            <button className="form-control btn btn-secondary">Add to Cart</button>
+                            <Button className="form-control btn btn-secondary" onClick={() => updateCart(products[1])}>Add to Cart</Button>
                             <NavLink className="form-control btn btn-primary" to="/purchase">Buy Now</NavLink>
                         </div>
                     </div>
@@ -74,7 +52,7 @@ export function Shop() {
                             <p>$180.00</p>
                         </div>
                         <div className="card-footer">
-                            <button className="form-control btn btn-secondary">Add to Cart</button>
+                            <Button className="form-control btn btn-secondary" onClick={() => updateCart(products[2])}>Add to Cart</Button>
                             <NavLink className="form-control btn btn-primary" to="/purchase">Buy Now</NavLink>
                         </div>
                     </div>
@@ -89,7 +67,7 @@ export function Shop() {
                             <p>$30.00</p>
                         </div>
                         <div className="card-footer">
-                            <button className="form-control btn btn-secondary">Add to Cart</button>
+                            <Button className="form-control btn btn-secondary" onClick={() => updateCart(products[3])}>Add to Cart</Button>
                             <NavLink className="form-control btn btn-primary" to="/purchase">Buy Now</NavLink>
                         </div>
                     </div>
@@ -102,7 +80,7 @@ export function Shop() {
                             <p>$150.00</p>
                         </div>
                         <div className="card-footer">
-                            <button className="form-control btn btn-secondary">Add to Cart</button>
+                            <Button className="form-control btn btn-secondary" onClick={() => updateCart(products[4])}>Add to Cart</Button>
                             <NavLink className="form-control btn btn-primary" to="/purchase">Buy Now</NavLink>
                         </div>
                     </div>
@@ -115,7 +93,7 @@ export function Shop() {
                             <p>$140.00</p>
                         </div>
                         <div className="card-footer">
-                            <button className="form-control btn btn-secondary">Add to Cart</button>
+                            <Button className="form-control btn btn-secondary" onClick={() => updateCart(products[5])}>Add to Cart</Button>
                             <NavLink className="form-control btn btn-primary" to="/purchase">Buy Now</NavLink>
                         </div>
                     </div>
