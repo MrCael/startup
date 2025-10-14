@@ -4,6 +4,7 @@
 
 ## Table of Contents
 - [Helpful links](#helpful-links)
+- [Terminal Commands](#terminal-commands)
 - [AWS](#aws)
   - [EC2 Steps](#ec2-steps)
   - [Route 53 Steps](#route-53-steps)
