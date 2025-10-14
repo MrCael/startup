@@ -21,6 +21,23 @@
 - [Canvas](https://byu.instructure.com)
 - [MDN](https://developer.mozilla.org)
 
+## Terminal Commands
+
+- chmod - Edit file or directory permissions
+- pwd - Prints working directory
+- cd - Changes directory
+- ls - Lists contents of current directory
+- vim - Use the Vim text editor to edit files
+- nano - Allow developer to interact with file contents without a graphical interface
+- mkdir - Creates new directory
+- mv - Move file or directory
+- rm - Removes file or directory
+- man - Access manual page for a command
+- ssh - Allows developers to shell into a remote server
+- ps - display info about running process
+- wget - Downloads files from the internet
+- sudo - Allows developer to act as super user, or admin, without logging in as such
+
 ## AWS
 
 My IP address is: 98.86.126.242
