@@ -1,5 +1,6 @@
 import React from "react";
 import Button from "react-bootstrap/Button";
+import { NavLink } from "react-router-dom";
 import { MessageDialog } from "./messageDialog";
 
 export function Unauthenticated({ userName, setUserName, onLogin }) {
@@ -22,7 +23,8 @@ export function Unauthenticated({ userName, setUserName, onLogin }) {
                 <input className="form-control" type="email" onChange={(e) => setUserName(e.target.value)} placeholder="your@email.com" />
                 <input className="form-control" type="password" onChange={(e) => setPassword(e.target.value)} placeholder="password" />
                 <Button className="btn btn-primary form-control" onClick={() => loginUser()} disabled={!userName || !password}>Log In</Button>
-                <Button className="btn btn-secondary form-control" onClick={() => createUser()} disabled={!userName || !password}>Create Account</Button>
+                <NavLink className="btn btn-secondary form-control" to="./editUser" onClick={() => createUser()} disabled={!userName || !password}>Create Account</NavLink>
+                {/* Fix the disabled attribute on the create user button */}
             </div>
             <MessageDialog message={displayError} onHide={() => setDisplayError(null)} />
         </>
