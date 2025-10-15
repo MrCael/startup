@@ -156,7 +156,8 @@ export function ShippingInfo({ from }) {
                 <h1 className="centered">Shipping Information</h1>
                 <AddressList addressList={addressList} addingAddress={addingAddress} setAddingAddress={setAddingAddress} />
                 {addingAddress && <AddAddress addressList={addressList} setAddressList={setAddressList} setAddingAddress={setAddingAddress} />}
-                <NavLink className="btn btn-primary form-control" to={from === "/login" ? "/billingInfo" : "/profile"}>{from === "/login" ? "Continue" : "Save"}</NavLink>
+                <NavLink className="btn btn-primary form-control" to={from === "login" ? "/billingInfo" : "/profile"}>{from === "login" ? "Continue" : "Save"}</NavLink>
+                {from !== "login" && <NavLink className="btn btn-primary form-control" to="/profile">Back</NavLink>}
             </div>
         </main>
     );

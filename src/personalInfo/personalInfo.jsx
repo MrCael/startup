@@ -40,7 +40,7 @@ function UsernameAndPassword({ setLoginInfoSet }) {
     );
 }
 
-function PersonalInfoContent() {
+function PersonalInfoContent({ from }) {
     return (
         <main>
             <div className="d-flex flex-column justify-content-center align-div">
@@ -88,7 +88,8 @@ function PersonalInfoContent() {
                         </tr>
                         <tr>
                             <td colSpan="2">
-                                <NavLink className="btn btn-primary form-control" to="/shippingInfo">Continue</NavLink>
+                                <NavLink className="btn btn-primary form-control" to={from === "login" ? "/shippingInfo" : "/profile"}>{from === "login" ? "Continue" : "Save"}</NavLink>
+                                {from !== "login" && <NavLink className="btn btn-primary form-control" to="/profile">Back</NavLink>}
                             </td>
                         </tr>
                     </tbody>
@@ -98,13 +99,11 @@ function PersonalInfoContent() {
     );
 }
 
-export function PersonalInfo() {
-    const [loginInfoSet, setLoginInfoSet] = React.useState(false);
-
+export function PersonalInfo({ from, loginInfoSet, setLoginInfoSet }) {
     return (
         <>
             {!loginInfoSet && <UsernameAndPassword setLoginInfoSet={setLoginInfoSet} />}
-            {loginInfoSet && <PersonalInfoContent />}
+            {loginInfoSet && <PersonalInfoContent from={from} />}
         </>
     );
 }

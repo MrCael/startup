@@ -1,7 +1,8 @@
 import React from "react";
 import Button from "react-bootstrap/Button";
+import { NavLink } from "react-router-dom";
 
-export function Profile() {
+export function Profile({ setLoginInfoSet, setFrom }) {
     const passwordTrue = "password123";
     const passwordStar = "***********";
     const [password, setPassword] = React.useState(passwordStar);
@@ -26,11 +27,16 @@ export function Profile() {
         }
     }
 
+    function editUser() {
+        setLoginInfoSet(true);
+        setFrom("profile");
+    }
+
     return (
         <main>
             <div className="d-flex flex-row profile-div" style={{margin: "10px"}}>
                 <div className="profile-box align-div">
-                    <button className="btn btn-secondary">Edit Profile</button>
+                    <NavLink className="btn btn-secondary" onClick={() => editUser()} to="/personalInfo">Edit Profile</NavLink>
                     <table className="table">
                         <tbody>
                             <tr>
@@ -80,7 +86,7 @@ export function Profile() {
                             <tr>
                                 <td colSpan="2">
                                     <button className="btn btn-secondary profile-button">View Measurements</button> {/* pop up window(?) */}
-                                    <button className="btn btn-secondary profile-button">Edit Measurements</button> {/* another page(?) */}
+                                    <NavLink className="btn btn-secondary profile-button" to="/measurementInfo">Edit Measurements</NavLink> {/* another page(?) */}
                                     <span className="note">These are React placeholders</span>
                                 </td>
                             </tr>
@@ -88,7 +94,7 @@ export function Profile() {
                     </table>
                 </div>
                 <div className="profile-box align-div" height="100%">
-                    <button className="btn btn-secondary">Edit Shipping Information</button>
+                    <NavLink className="btn btn-secondary" onClick={() => setFrom("profile")} to="/shippingInfo">Edit Shipping Information</NavLink>
                     <table className="table">
                         <tbody>
                             <tr>
@@ -141,8 +147,8 @@ export function Profile() {
                             </tr>
                             <tr>
                                 <td colSpan="2">
-                                    <button className="btn btn-secondary profile-button">Add New Payment Method</button> {/* pop up window */}
-                                    <button className="btn btn-secondary profile-button">View Purchase History</button> {/* new page(?) */}
+                                    <NavLink className="btn btn-secondary profile-button" onClick={() => setFrom("profile")} to="/billingInfo">Add New Payment Method</NavLink>
+                                    <NavLink className="btn btn-secondary profile-button" to="/purchaseHistory">View Purchase History</NavLink> {/* new page(?) */}
                                     <span className="note">These are React placeholders</span>
                                 </td>
                             </tr>

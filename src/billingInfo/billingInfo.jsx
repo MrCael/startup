@@ -129,7 +129,8 @@ export function BillingInfo({ from }) {
                 <h1 className="centered">Billing Information</h1>
                 <CardList cardList={cardList} addingCard={addingCard} setAddingCard={setAddingCard} />
                 {addingCard && <AddCard cardList={cardList} setCardList={setCardList} setAddingCard={setAddingCard} />}
-                <NavLink className="btn btn-primary form-control" to={from === "/login" ? "/measurementInfo" : "/profile"}>{from === "/login" ? "Continue" : "Save"}</NavLink>
+                <NavLink className="btn btn-primary form-control" to={from === "login" ? "/measurementInfo" : "/profile"}>{from === "login" ? "Continue" : "Save"}</NavLink>
+                {from !== "login" && <NavLink className="btn btn-primary form-control" to="/profile">Back</NavLink>}
             </div>
         </main>
     );
