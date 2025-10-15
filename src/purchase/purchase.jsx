@@ -139,27 +139,27 @@ export function Purchase({ setCart }) {
                                             <option value="12">12</option>
                                         </select>
                                         <select className="form-select">
-                                            <option value="2025">2025</option>
-                                            <option value="2026">2026</option>
-                                            <option value="2027">2027</option>
-                                            <option value="2028">2028</option>
-                                            <option value="2029">2029</option>
-                                            <option value="2030">2030</option>
-                                            <option value="2031">2031</option>
-                                            <option value="2032">2032</option>
-                                            <option value="2033">2033</option>
-                                            <option value="2034">2034</option>
-                                            <option value="2035">2035</option>
-                                            <option value="2036">2036</option>
-                                            <option value="2037">2037</option>
-                                            <option value="2038">2038</option>
-                                            <option value="2039">2039</option>
-                                            <option value="2040">2040</option>
-                                            <option value="2041">2041</option>
-                                            <option value="2042">2042</option>
-                                            <option value="2043">2043</option>
-                                            <option value="2044">2044</option>
-                                            <option value="2045">2045</option>
+                                            <option value="25">25</option>
+                                            <option value="26">26</option>
+                                            <option value="27">27</option>
+                                            <option value="28">28</option>
+                                            <option value="29">29</option>
+                                            <option value="30">30</option>
+                                            <option value="31">31</option>
+                                            <option value="32">32</option>
+                                            <option value="33">33</option>
+                                            <option value="34">34</option>
+                                            <option value="35">35</option>
+                                            <option value="36">36</option>
+                                            <option value="37">37</option>
+                                            <option value="38">38</option>
+                                            <option value="39">39</option>
+                                            <option value="40">40</option>
+                                            <option value="41">41</option>
+                                            <option value="42">42</option>
+                                            <option value="43">43</option>
+                                            <option value="44">44</option>
+                                            <option value="45">45</option>
                                         </select>
                                     </div>
                                 </td>

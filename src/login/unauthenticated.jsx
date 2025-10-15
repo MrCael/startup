@@ -23,8 +23,7 @@ export function Unauthenticated({ userName, setUserName, onLogin }) {
                 <input className="form-control" type="email" onChange={(e) => setUserName(e.target.value)} placeholder="your@email.com" />
                 <input className="form-control" type="password" onChange={(e) => setPassword(e.target.value)} placeholder="password" />
                 <Button className="btn btn-primary form-control" onClick={() => loginUser()} disabled={!userName || !password}>Log In</Button>
-                <NavLink className="btn btn-secondary form-control" to="./editUser" onClick={() => createUser()} disabled={!userName || !password}>Create Account</NavLink>
-                {/* Fix the disabled attribute on the create user button */}
+                <NavLink className="btn btn-secondary form-control" to="./personalInfo" onClick={() => createUser()} /* The previous function may need to go later */disabled={!userName || !password}>Create Account</NavLink>
             </div>
             <MessageDialog message={displayError} onHide={() => setDisplayError(null)} />
         </>

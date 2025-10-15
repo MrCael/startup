@@ -203,6 +203,19 @@ td {
     margin-bottom: 0;
 }
 
+.error-text {
+    color: #F28B82;
+}
+
+.no-margin-bottom {
+    margin-bottom: 0 !important;
+}
+
+.measurement-pic { /* Make this and profile-pic scale with screen size with the calc() function */
+    height: 400px;
+    width: 400px;
+}
+
 @media (min-width: 800px) {
     .three-div {
         flex-direction: row  !important;

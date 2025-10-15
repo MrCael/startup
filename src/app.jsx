@@ -6,8 +6,11 @@ import { Login } from "./login/login";
 import { About } from "./about/about";
 import { Cart } from "./cart/cart";
 import { Contact } from "./contact/contact";
-import { EditUser } from "./editUser/editUser";
 import { Details } from "./details/details";
+import { PersonalInfo } from "./personalInfo/personalInfo";
+import { ShippingInfo } from "./shippingInfo/shippingInfo";
+import { BillingInfo } from "./billingInfo/billingInfo";
+import { MeasurementInfo } from "./measurementInfo/measurementInfo";
 import { Profile } from "./profile/profile";
 import { Purchase } from "./purchase/purchase";
 import { Shop } from "./shop/shop";
@@ -25,7 +28,6 @@ function AppContent() {
     const [userName, setUserName] = React.useState(localStorage.getItem("userName") || "");
     const [authState, setAuthState] = React.useState(userName !== "" ? AuthState.Authenticated : AuthState.Unauthenticated);
     const [cart, setCart] = React.useState(JSON.parse(localStorage.getItem("cart")) || []);
-    console.log(localStorage.getItem("userName"));
 
     // Update active page when user clicks a nav link
     const handleNavClick = (path) => {
@@ -79,7 +81,10 @@ function AppContent() {
                 <Route path="/cart" element={<Cart cart={cart} />} />
                 <Route path="/contact" element={<Contact />} />
                 <Route path="/details" element={<Details />} />
-                <Route path="/editUser" element={<EditUser />} />
+                <Route path="/personalInfo" element={<PersonalInfo />} />
+                <Route path="/shippingInfo" element={<ShippingInfo from="/login" />} />
+                <Route path="/billingInfo" element={<BillingInfo from="/login" />} />
+                <Route path="/measurementInfo" element={<MeasurementInfo />} />
                 <Route path="/profile" element={<Profile />} />
                 <Route path="/purchase" element={<Purchase setCart={setCart} />} />
                 <Route path="/shop" element={<Shop setCart={setCart} />} />
