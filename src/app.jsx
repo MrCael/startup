@@ -31,6 +31,7 @@ function AppContent() {
     const [cart, setCart] = React.useState(JSON.parse(localStorage.getItem("cart")) || []);
     const [loginInfoSet, setLoginInfoSet] = React.useState(false);
     const [from, setFrom] = React.useState("login");
+    const [measurementMethod, setMeasurementMethod] = React.useState("edit");
 
     // Update active page when user clicks a nav link
     const handleNavClick = (path) => {
@@ -87,8 +88,8 @@ function AppContent() {
                 <Route path="/personalInfo" element={<PersonalInfo from={from} loginInfoSet={loginInfoSet} />} />
                 <Route path="/shippingInfo" element={<ShippingInfo from={from} />} />
                 <Route path="/billingInfo" element={<BillingInfo from={from} />} />
-                <Route path="/measurementInfo" element={<MeasurementInfo />} />
-                <Route path="/profile" element={<Profile setLoginInfoSet={setLoginInfoSet} setFrom={setFrom} />} />
+                <Route path="/measurementInfo" element={<MeasurementInfo from={from} method={measurementMethod} />} />
+                <Route path="/profile" element={<Profile setLoginInfoSet={setLoginInfoSet} setFrom={setFrom} setMeasurementMethod={setMeasurementMethod} />} />
                 <Route path="/purchase" element={<Purchase setCart={setCart} />} />
                 <Route path="/purchaseHistory" element={<PurchaseHistory />} />
                 <Route path="/shop" element={<Shop setCart={setCart} />} />

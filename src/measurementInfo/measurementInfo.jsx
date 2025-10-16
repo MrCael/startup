@@ -1,7 +1,7 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
 
-export function MeasurementInfo() {
+export function MeasurementInfo({ from, method }) {
     return (
         <main>
             <div className="d-flex flex-column justify-content-center align-div">
@@ -27,147 +27,148 @@ export function MeasurementInfo() {
                         </tr>
                         <tr>
                             <td>
-                                <p>1</p>
-                                <input type="text" className="form-control" />
+                                <p>1{method ==="view" && ":"}</p>
+                                {method === "edit" && <input type="text" className="form-control" />}
                             </td>
                             <td>
-                                <p>1</p>
-                                <input type="text" className="form-control" />
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <p>2</p>
-                                <input type="text" className="form-control" />
-                            </td>
-                            <td>
-                                <p>2</p>
-                                <input type="text" className="form-control" />
+                                <p>1{method ==="view" && ":"}</p>
+                                {method === "edit" && <input type="text" className="form-control" />}
                             </td>
                         </tr>
                         <tr>
                             <td>
-                                <p>3</p>
-                                <input type="text" className="form-control" />
+                                <p>2{method ==="view" && ":"}</p>
+                                {method === "edit" && <input type="text" className="form-control" />}
                             </td>
                             <td>
-                                <p>3</p>
-                                <input type="text" className="form-control" />
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <p>4</p>
-                                <input type="text" className="form-control" />
-                            </td>
-                            <td>
-                                <p>4</p>
-                                <input type="text" className="form-control" />
+                                <p>2{method ==="view" && ":"}</p>
+                                {method === "edit" && <input type="text" className="form-control" />}
                             </td>
                         </tr>
                         <tr>
                             <td>
-                                <p>5</p>
-                                <input type="text" className="form-control" />
+                                <p>3{method ==="view" && ":"}</p>
+                                {method === "edit" && <input type="text" className="form-control" />}
                             </td>
                             <td>
-                                <p>5</p>
-                                <input type="text" className="form-control" />
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <p>5a</p>
-                                <input type="text" className="form-control" />
-                            </td>
-                            <td>
-                                <p>5a</p>
-                                <input type="text" className="form-control" />
+                                <p>3{method ==="view" && ":"}</p>
+                                {method === "edit" && <input type="text" className="form-control" />}
                             </td>
                         </tr>
                         <tr>
                             <td>
-                                <p>6</p>
-                                <input type="text" className="form-control" />
+                                <p>4{method ==="view" && ":"}</p>
+                                {method === "edit" && <input type="text" className="form-control" />}
                             </td>
                             <td>
-                                <p>6</p>
-                                <input type="text" className="form-control" />
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <p>6a</p>
-                                <input type="text" className="form-control" />
-                            </td>
-                            <td>
-                                <p>6a</p>
-                                <input type="text" className="form-control" />
+                                <p>4{method ==="view" && ":"}</p>
+                                {method === "edit" && <input type="text" className="form-control" />}
                             </td>
                         </tr>
                         <tr>
                             <td>
-                                <p>7</p>
-                                <input type="text" className="form-control" />
+                                <p>5{method ==="view" && ":"}</p>
+                                {method === "edit" && <input type="text" className="form-control" />}
                             </td>
                             <td>
-                                <p>7</p>
-                                <input type="text" className="form-control" />
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <p>7a</p>
-                                <input type="text" className="form-control" />
-                            </td>
-                            <td>
-                                <p>7a</p>
-                                <input type="text" className="form-control" />
+                                <p>5{method ==="view" && ":"}</p>
+                                {method === "edit" && <input type="text" className="form-control" />}
                             </td>
                         </tr>
                         <tr>
                             <td>
-                                <p>8</p>
-                                <input type="text" className="form-control" />
+                                <p>5a{method ==="view" && ":"}</p>
+                                {method === "edit" && <input type="text" className="form-control" />}
                             </td>
                             <td>
-                                <p>8</p>
-                                <input type="text" className="form-control" />
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <p>8a</p>
-                                <input type="text" className="form-control" />
-                            </td>
-                            <td>
-                                <p>8a</p>
-                                <input type="text" className="form-control" />
+                                <p>5a{method ==="view" && ":"}</p>
+                                {method === "edit" && <input type="text" className="form-control" />}
                             </td>
                         </tr>
                         <tr>
                             <td>
-                                <p>9</p>
-                                <input type="text" className="form-control" />
+                                <p>6{method ==="view" && ":"}</p>
+                                {method === "edit" && <input type="text" className="form-control" />}
                             </td>
                             <td>
-                                <p>9</p>
-                                <input type="text" className="form-control" />
+                                <p>6{method ==="view" && ":"}</p>
+                                {method === "edit" && <input type="text" className="form-control" />}
                             </td>
                         </tr>
                         <tr>
                             <td>
-                                <p>10</p>
-                                <input type="text" className="form-control" />
+                                <p>6a{method ==="view" && ":"}</p>
+                                {method === "edit" && <input type="text" className="form-control" />}
                             </td>
                             <td>
-                                <p>10</p>
-                                <input type="text" className="form-control" />
+                                <p>6a{method ==="view" && ":"}</p>
+                                {method === "edit" && <input type="text" className="form-control" />}
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <p>7{method ==="view" && ":"}</p>
+                                {method === "edit" && <input type="text" className="form-control" />}
+                            </td>
+                            <td>
+                                <p>7{method ==="view" && ":"}</p>
+                                {method === "edit" && <input type="text" className="form-control" />}
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <p>7a{method ==="view" && ":"}</p>
+                                {method === "edit" && <input type="text" className="form-control" />}
+                            </td>
+                            <td>
+                                <p>7a{method ==="view" && ":"}</p>
+                                {method === "edit" && <input type="text" className="form-control" />}
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <p>8{method ==="view" && ":"}</p>
+                                {method === "edit" && <input type="text" className="form-control" />}
+                            </td>
+                            <td>
+                                <p>8{method ==="view" && ":"}</p>
+                                {method === "edit" && <input type="text" className="form-control" />}
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <p>8a{method ==="view" && ":"}</p>
+                                {method === "edit" && <input type="text" className="form-control" />}
+                            </td>
+                            <td>
+                                <p>8a{method ==="view" && ":"}</p>
+                                {method === "edit" && <input type="text" className="form-control" />}
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <p>9{method ==="view" && ":"}</p>
+                                {method === "edit" && <input type="text" className="form-control" />}
+                            </td>
+                            <td>
+                                <p>9{method ==="view" && ":"}</p>
+                                {method === "edit" && <input type="text" className="form-control" />}
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <p>10{method ==="view" && ":"}</p>
+                                {method === "edit" && <input type="text" className="form-control" />}
+                            </td>
+                            <td>
+                                <p>10{method ==="view" && ":"}</p>
+                                {method === "edit" && <input type="text" className="form-control" />}
                             </td>
                         </tr>
                         <tr>
                             <td colSpan="2">
-                                <NavLink className="btn btn-primary form-control" to="/profile">Create User</NavLink>
+                                {method === "edit" && <NavLink className="btn btn-primary form-control" to="/profile">{from === "login" ? "Create User" : "Save"}</NavLink>}
+                                {from !== "login" && <NavLink className="btn btn-secondary form-control" to="/profile">Back</NavLink>}
                             </td>
                         </tr>
                     </tbody>

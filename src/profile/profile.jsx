@@ -2,7 +2,7 @@ import React from "react";
 import Button from "react-bootstrap/Button";
 import { NavLink } from "react-router-dom";
 
-export function Profile({ setLoginInfoSet, setFrom }) {
+export function Profile({ setLoginInfoSet, setFrom, setMeasurementMethod }) {
     const passwordTrue = "password123";
     const passwordStar = "***********";
     const [password, setPassword] = React.useState(passwordStar);
@@ -85,8 +85,8 @@ export function Profile({ setLoginInfoSet, setFrom }) {
                             </tr>
                             <tr>
                                 <td colSpan="2">
-                                    <button className="btn btn-secondary profile-button">View Measurements</button> {/* pop up window(?) */}
-                                    <NavLink className="btn btn-secondary profile-button" to="/measurementInfo">Edit Measurements</NavLink> {/* another page(?) */}
+                                    <NavLink className="btn btn-secondary profile-button" onClick={() => { setFrom("profile");setMeasurementMethod("view"); }} to="/measurementInfo">View Measurements</NavLink>
+                                    <NavLink className="btn btn-secondary profile-button" onClick={() => { setFrom("profile"); setMeasurementMethod("edit"); }} to="/measurementInfo">Edit Measurements</NavLink>
                                     <span className="note">These are React placeholders</span>
                                 </td>
                             </tr>
@@ -148,7 +148,7 @@ export function Profile({ setLoginInfoSet, setFrom }) {
                             <tr>
                                 <td colSpan="2">
                                     <NavLink className="btn btn-secondary profile-button" onClick={() => setFrom("profile")} to="/billingInfo">Add New Payment Method</NavLink>
-                                    <NavLink className="btn btn-secondary profile-button" to="/purchaseHistory">View Purchase History</NavLink> {/* new page(?) */}
+                                    <NavLink className="btn btn-secondary profile-button" to="/purchaseHistory">View Purchase History</NavLink>
                                     <span className="note">These are React placeholders</span>
                                 </td>
                             </tr>
