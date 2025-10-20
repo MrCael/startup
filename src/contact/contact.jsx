@@ -1,5 +1,50 @@
 import React from "react";
 
+function ChatBody({ chatHistory }) {
+    return (
+        <div className="message-area d-flex flex-column">
+            {chatHistory.map((message) => (
+                <div className={`message ${message.sender}`}>
+                    {message.message}
+                </div>
+            ))}
+        </div>
+    );
+}
+
+function LiveChat() {
+    const [chatHistory, setChatHistory] = React.useState([]);
+
+    function updateChat() {
+        let messageInput = document.getElementById("message-input");
+        if (messageInput.value !== "") {
+            const newMessage = {sender: "user", message: messageInput.value}
+            messageInput.value = "";
+            const newHistory = [...chatHistory, newMessage]
+            setChatHistory(newHistory);
+            new Promise(() => {
+                setTimeout(() => {
+                    const adminMessage = {sender: "admin", message: "Sorry, we are not available to chat right now."}
+                    setChatHistory([...newHistory, adminMessage]);
+                }, 2000);
+            });
+        }
+    }
+    
+    return (
+        <div className="chat-container d-flex flex-column">
+            <div className="chat-header">
+                Live Chat
+            </div>
+            {chatHistory.length > 0 && <ChatBody chatHistory={chatHistory} />}
+            <div className="input-container">
+                <input type="text" id="message-input" />
+                <button id="btn btn-secondary form-control" onClick={() => updateChat()}>Send</button>
+            </div>
+        </div>
+    );
+}
+
 export function Contact({ contactConfirmed }) {
     const [confirmingContact, setConfirmingContact] = React.useState(false);
 
@@ -65,20 +110,7 @@ export function Contact({ contactConfirmed }) {
                         </tbody>
                     </table>
                 </div>
-                <div className="d-flex flex-column justify-content-center align-div">
-                    <table>
-                        <tbody>
-                            <tr>
-                                <td>Live Chat <span className="note">This is my WebKit placeholder</span></td>
-                            </tr>
-                            <tr>
-                                <td className="centered">
-                                    <input type="text" className="form-control" /> <button className="btn btn-secondary">Send</button>
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
+                <LiveChat />
             </div>
         </main>
     );

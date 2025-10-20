@@ -28,42 +28,6 @@ function FullCart({ cart }) {
                             </div>
                         </div>
                     ))}
-                    {/* <div className="card">
-                        <div className="card-body">
-                            <NavLink to="/details">
-                                <img src="clogging.jpg" alt="Clogging Shoes" height="100" />
-                            </NavLink>
-                            <p>Clogging Shoes</p>
-                            <p>$160.00</p>
-                        </div>
-                        <div className="card-footer d-flex flex-column align-content-center">
-                            <NavLink className="form-control btn btn-primary" to="/purchase">Buy Now</NavLink>
-                        </div>
-                    </div>
-                    <div className="card">
-                        <div className="card-body">
-                            <NavLink to="/details">
-                                <img src="tap.jpg.webp" alt="Tap Shoes" height="100" />
-                            </NavLink>
-                            <p>Tap Shoes</p>
-                            <p>$120.00</p>
-                        </div>
-                        <div className="card-footer">
-                        <NavLink className="form-control btn btn-primary" to="/purchase">Buy Now</NavLink>
-                        </div>
-                    </div>
-                    <div className="card">
-                        <div className="card-body">
-                            <NavLink to="/details">
-                                <img src="irish_hard.jpg" alt="Irish Hard Shoes" height="100" />
-                            </NavLink>
-                            <p>Irish Hard Shoes</p>
-                            <p>$180.00</p>
-                        </div>
-                        <div className="card-footer">
-                        <NavLink className="form-control btn btn-primary" to="/purchase">Buy Now</NavLink>
-                        </div>
-                    </div> */}
                 </div>
             </div>
             <div className="checkout-cart">
