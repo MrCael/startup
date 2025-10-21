@@ -28,6 +28,8 @@
 - pwd - Prints working directory
 - cd - Changes directory
 - ls - Lists contents of current directory
+  - -l - Parameter to display entries in a long list format
+  - -a - Parameter to list all files, even those whose names begin with .
 - vim - Use the Vim text editor to edit files
 - nano - Allow developer to interact with file contents without a graphical interface
 - mkdir - Creates new directory
@@ -38,6 +40,12 @@
 - ps - display info about running process
 - wget - Downloads files from the internet
 - sudo - Allows developer to act as super user, or admin, without logging in as such
+
+## Ports and Their Protocols
+
+- 443 - Default port for HTTPS (Secure HTTP)
+- 80 - Default port for HTTP
+- 22 - Default for secure shell (ssh)
 
 ## AWS
 
@@ -75,6 +83,9 @@ Next you'll need to create a domain with Route 53
   - Make sure the `Record Type` is set to A
   - /(Second time only/) Enter an asterisk \(`*`\) in the `Record name` text box. This configures for all subdomains under your main domain.
 
+> [!NOTE]
+> An A record cannot point to another A record, only to an IP address
+
 An optional final step is to associate an Elastic IP Address with your EC2 Node. That way you can power down the server when you don't need it to save money and keep the same IP Address when you power it back up again.
 
 ### Elastic IP Steps:
@@ -91,6 +102,8 @@ An optional final step is to associate an Elastic IP Address with your EC2 Node.
 Now you have a functioning server with a domain name that you can shut off and turn on at your leisure.
 
 ## Caddy
+
+A web certificate is required to access HTTPS
 
 ### Caddy Steps:
 - Open the console
@@ -110,6 +123,10 @@ CSS can be super finicky, even with Bootstrap. But searching through the Bootstr
 
 Media tags are also super nice, but I found they were also just as finicky. I had do a lot of finagling to get the scren to adjust the way I wanted it to.
 
+### CSS Box Model
+
+From inside working out: content, padding, border, margin
+
 ## React Part 1: Routing
 
 Vite was super easy to work with, I had some problems with my CSS, but they didn't take too long to get figured out. Using React felt really easy and fun, I looked forward to going back to my code each time I stopped working on it.
@@ -128,3 +145,7 @@ Calling the state variable setter function with a function automatically passes 
 ### useEffect function
 
 This function takes two inputs: a function, and a list of dependancies. The function describes the code to be executed, and the dependancy list describes the values that, when changes, trigger the code to be executed. The function can also have a return value that is itself another function that acts as cleanup, for example, removing event listeners.
+
+### Misc.
+
+JSON stands for JavaScript Object Notation and is a readable way to store data. It is used for sending data between servers and web applications.
