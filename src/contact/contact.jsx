@@ -2,7 +2,7 @@ import React from "react";
 
 function ChatBody({ chatHistory }) {
     return (
-        <div className="message-area d-flex flex-column">
+        <div className="message-area d-flex flex-column" id="message-area">
             {chatHistory.map((message) => (
                 <div className={`message ${message.sender}`}>
                     {message.message}
@@ -19,15 +19,25 @@ function LiveChat() {
         let messageInput = document.getElementById("message-input");
         if (messageInput.value !== "") {
             const newMessage = {sender: "user", message: messageInput.value}
-            messageInput.value = "";
             const newHistory = [...chatHistory, newMessage]
+
+            messageInput.value = "";
             setChatHistory(newHistory);
-            new Promise(() => {
+
+            if (chatHistory.length > 0) {
                 setTimeout(() => {
-                    const adminMessage = {sender: "admin", message: "Sorry, we are not available to chat right now."}
-                    setChatHistory([...newHistory, adminMessage]);
-                }, 2000);
-            });
+                    document.getElementById("message-area").scrollTop = document.getElementById("message-area").scrollHeight;
+                }, 0);
+            }
+
+            setTimeout(() => {
+                const adminMessage = {sender: "admin", message: "Sorry, we are not available to chat right now."}
+                setChatHistory([...newHistory, adminMessage]);
+                
+                setTimeout(() => {
+                    document.getElementById("message-area").scrollTop = document.getElementById("message-area").scrollHeight;
+                }, 0);
+            }, 1000);
         }
     }
     
@@ -54,9 +64,11 @@ export function Contact({ contactConfirmed }) {
             Array.from(document.getElementsByTagName("input")).forEach(input => {
                 input.value = "";
             });
+
             Array.from(document.getElementsByTagName("textarea")).forEach(input => {
                 input.value = "";
             });
+            
             setTimeout(() => {
                 setConfirmingContact(false);
             }, 2000);
