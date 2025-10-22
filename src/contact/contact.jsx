@@ -1,4 +1,5 @@
 import React from "react";
+import { useEffect } from "react";
 
 function ChatBody({ chatHistory }) {
     return (
@@ -24,22 +25,19 @@ function LiveChat() {
             messageInput.value = "";
             setChatHistory(newHistory);
 
-            if (chatHistory.length > 0) {
-                setTimeout(() => {
-                    document.getElementById("message-area").scrollTop = document.getElementById("message-area").scrollHeight;
-                }, 0);
-            }
-
             setTimeout(() => {
-                const adminMessage = {sender: "admin", message: "Sorry, we are not available to chat right now."}
-                setChatHistory([...newHistory, adminMessage]);
-                
-                setTimeout(() => {
-                    document.getElementById("message-area").scrollTop = document.getElementById("message-area").scrollHeight;
-                }, 0);
+                setChatHistory([...newHistory, {sender: "admin", message: "Sorry, we are not available to chat right now."}]);
             }, 1000);
         }
     }
+
+    useEffect(() => {
+        if (chatHistory.length > 0) {
+            setTimeout(() => {
+                document.getElementById("message-area").scrollTop = document.getElementById("message-area").scrollHeight;
+            }, 0);
+        }
+    }, [chatHistory])
     
     return (
         <div className="chat-container d-flex flex-column">
@@ -49,7 +47,7 @@ function LiveChat() {
             {chatHistory.length > 0 && <ChatBody chatHistory={chatHistory} />}
             <div className="input-container">
                 <input type="text" id="message-input" />
-                <button id="btn btn-secondary form-control" onClick={() => updateChat()}>Send</button>
+                <button className="btn btn-secondary" onClick={() => updateChat()}>Send</button>
             </div>
         </div>
     );
