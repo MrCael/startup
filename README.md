@@ -137,8 +137,8 @@ For this deliverable I did the following. I checked the box `[x]` and added a de
 
 For this deliverable I did the following. I checked the box `[x]` and added a description for things I completed.
 
-- [ ] **All functionality implemented or mocked out** - I did not complete this part of the deliverable.
-- [ ] **Hooks** - I did not complete this part of the deliverable.
+- [x] **All functionality implemented or mocked out** - Every functionality is either implimented or has placeholder functionality.
+- [x] **Hooks** - I use useState and useEffect hooks in many different places to define state variables, and trigger page changes when those state variables change. for example, I use a useEffect trigger to update the live chat feature each time a message is sent.
 
 ## 🚀 Service deliverable
 
