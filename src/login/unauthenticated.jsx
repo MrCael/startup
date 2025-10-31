@@ -24,20 +24,10 @@ export function Unauthenticated({ userName, setUserName, onLogin }) {
         }
     }
 
-    // async function loginUser() { // turn these into useEffects calls in another file instead
-    //     localStorage.setItem('userName', userName);
-    //     onLogin(userName);
-    // }
-
-    // async function createUser() {
-    //     localStorage.setItem('userName', userName);
-    //     onLogin(userName);
-    // }
-
     return (
         <>
             <div>
-                <input className="form-control" type="email" onChange={(e) => setUserName(e.target.value)} placeholder="your@email.com" />
+                <input className="form-control" type="text" onChange={(e) => setUserName(e.target.value)} placeholder="username" />
                 <input className="form-control" type="password" onChange={(e) => setPassword(e.target.value)} placeholder="password" />
                 <Button className="btn btn-primary form-control" onClick={() => loginUser()} disabled={!userName || !password}>Log In</Button>
                 <NavLink className="btn btn-secondary form-control" to="/createUser" disabled={userName || password}>Create Account</NavLink>
