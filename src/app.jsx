@@ -7,10 +7,11 @@ import { About } from "./about/about";
 import { Cart } from "./cart/cart";
 import { Contact } from "./contact/contact";
 import { Details } from "./details/details";
-import { PersonalInfo } from "./personalInfo/personalInfo";
-import { ShippingInfo } from "./shippingInfo/shippingInfo";
-import { BillingInfo } from "./billingInfo/billingInfo";
-import { MeasurementInfo } from "./measurementInfo/measurementInfo";
+import { CreateUser } from "./editUser/createUser";
+import { PersonalInfo } from "./editUser/personalInfo";
+import { ShippingInfo } from "./editUser/shippingInfo";
+import { BillingInfo } from "./editUser/billingInfo";
+import { MeasurementInfo } from "./editUser/measurementInfo";
 import { Profile } from "./profile/profile";
 import { Purchase } from "./purchase/purchase";
 import { PurchaseHistory } from "./purchaseHistory/purchaseHistory";
@@ -29,9 +30,7 @@ function AppContent() {
     const [userName, setUserName] = React.useState(localStorage.getItem("userName") || "");
     const [authState, setAuthState] = React.useState(userName !== "" ? AuthState.Authenticated : AuthState.Unauthenticated);
     const [cart, setCart] = React.useState(JSON.parse(localStorage.getItem("cart")) || []);
-    const [loginInfoSet, setLoginInfoSet] = React.useState(false);
     const [from, setFrom] = React.useState("login");
-    const [measurementMethod, setMeasurementMethod] = React.useState("edit");
 
     // Update active page when user clicks a nav link
     const handleNavClick = (path) => {
@@ -85,11 +84,12 @@ function AppContent() {
                 <Route path="/cart" element={<Cart cart={cart} />} />
                 <Route path="/contact" element={<Contact />} />
                 <Route path="/details" element={<Details />} />
-                <Route path="/personalInfo" element={<PersonalInfo from={from} loginInfoSet={loginInfoSet} />} />
+                <Route path="/createUser" element={<CreateUser />} />
+                <Route path="/personalInfo" element={<PersonalInfo from={from} />} />
                 <Route path="/shippingInfo" element={<ShippingInfo from={from} />} />
                 <Route path="/billingInfo" element={<BillingInfo from={from} />} />
-                <Route path="/measurementInfo" element={<MeasurementInfo from={from} method={measurementMethod} />} />
-                <Route path="/profile" element={<Profile setLoginInfoSet={setLoginInfoSet} setFrom={setFrom} setMeasurementMethod={setMeasurementMethod} />} />
+                <Route path="/measurementInfo" element={<MeasurementInfo from={from} />} />
+                <Route path="/profile" element={<Profile setFrom={setFrom} />} />
                 <Route path="/purchase" element={<Purchase setCart={setCart} />} />
                 <Route path="/purchaseHistory" element={<PurchaseHistory />} />
                 <Route path="/shop" element={<Shop setCart={setCart} />} />

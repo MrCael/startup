@@ -2,7 +2,7 @@ import React from "react";
 import Button from "react-bootstrap/Button";
 import { NavLink } from "react-router-dom";
 
-export function Profile({ setLoginInfoSet, setFrom, setMeasurementMethod }) {
+export function Profile({ setFrom }) {
     const passwordTrue = "password123";
     const passwordStar = "***********";
     const [password, setPassword] = React.useState(passwordStar);
@@ -27,16 +27,15 @@ export function Profile({ setLoginInfoSet, setFrom, setMeasurementMethod }) {
         }
     }
 
-    function editUser() {
-        setLoginInfoSet(true);
-        setFrom("profile");
+    function pathConfig() {
+        setFrom("profile")
     }
 
     return (
         <main>
             <div className="d-flex flex-row profile-div" style={{margin: "10px"}}>
                 <div className="profile-box align-div">
-                    <NavLink className="btn btn-secondary" onClick={() => editUser()} to="/personalInfo">Edit Profile</NavLink>
+                    <NavLink className="btn btn-secondary" onClick={() => pathConfig()} to="/personalInfo">Edit Profile</NavLink>
                     <table className="table">
                         <tbody>
                             <tr>
@@ -85,8 +84,7 @@ export function Profile({ setLoginInfoSet, setFrom, setMeasurementMethod }) {
                             </tr>
                             <tr>
                                 <td colSpan="2">
-                                    <NavLink className="btn btn-secondary profile-button" onClick={() => { setFrom("profile");setMeasurementMethod("view"); }} to="/measurementInfo">View Measurements</NavLink>
-                                    <NavLink className="btn btn-secondary profile-button" onClick={() => { setFrom("profile"); setMeasurementMethod("edit"); }} to="/measurementInfo">Edit Measurements</NavLink>
+                                    <NavLink className="btn btn-secondary profile-button" onClick={() => pathConfig()} to="/measurementInfo">View Measurements</NavLink>
                                     <span className="note">These are React placeholders</span>
                                 </td>
                             </tr>
@@ -94,7 +92,7 @@ export function Profile({ setLoginInfoSet, setFrom, setMeasurementMethod }) {
                     </table>
                 </div>
                 <div className="profile-box align-div" height="100%">
-                    <NavLink className="btn btn-secondary" onClick={() => setFrom("profile")} to="/shippingInfo">Edit Shipping Information</NavLink>
+                    <NavLink className="btn btn-secondary" onClick={() => pathConfig()} to="/shippingInfo">Edit Shipping Information</NavLink>
                     <table className="table">
                         <tbody>
                             <tr>
@@ -147,7 +145,7 @@ export function Profile({ setLoginInfoSet, setFrom, setMeasurementMethod }) {
                             </tr>
                             <tr>
                                 <td colSpan="2">
-                                    <NavLink className="btn btn-secondary profile-button" onClick={() => setFrom("profile")} to="/billingInfo">Add New Payment Method</NavLink>
+                                    <NavLink className="btn btn-secondary profile-button" onClick={() => pathConfig()} to="/billingInfo">Add New Payment Method</NavLink>
                                     <NavLink className="btn btn-secondary profile-button" to="/purchaseHistory">View Purchase History</NavLink>
                                     <span className="note">These are React placeholders</span>
                                 </td>

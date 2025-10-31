@@ -1,46 +1,45 @@
 import React from "react";
-import Button from "react-bootstrap/Button";
 import { NavLink } from "react-router-dom";
 
-function UsernameAndPassword({ setLoginInfoSet }) {
-    const [setupUserName, setSetupUserName] = React.useState("");
-    const [setupPassword, setSetupPassword] = React.useState("");
-    const [confirmPassword, setConfirmPassword] = React.useState("");
+// function UsernameAndPassword({ setLoginInfoSet }) {
+//     const [setupUserName, setSetupUserName] = React.useState("");
+//     const [setupPassword, setSetupPassword] = React.useState("");
+//     const [confirmPassword, setConfirmPassword] = React.useState("");
 
-    function confirmLogin() {
-        setLoginInfoSet(true);
-    }
+//     function confirmLogin() {
+//         setLoginInfoSet(true);
+//     }
 
-    return (
-        <main>
-            <div className="d-flex flex-column justify-content-center align-items-center align-div">
-                <div>
-                    <h1>Login Credentials</h1>
-                </div>
-                <div>
-                    <p className="no-margin-bottom">Username</p>
-                    <input className="form-control" type="email" onChange={(e) => setSetupUserName(e.target.value)} placeholder="your@email.com" />
-                </div>
-                <div>
-                    <p className="no-margin-bottom">Password</p>
-                    <input className="form-control" type="password" onChange={(e) => setSetupPassword(e.target.value)} placeholder="password" />
-                </div>
-                <div>
-                    <p className="no-margin-bottom">Confirm Password</p>
-                    <input className="form-control" type="password" onChange={(e) => setConfirmPassword(e.target.value)} placeholder="password" />
-                </div>
-                {setupPassword !== confirmPassword && confirmPassword !== "" && <div>
-                    <p className="error-text">Passwords must match</p>
-                </div>}
-                <div className="centered" style={{ marginTop: "10px" }}>
-                    <Button className="btn btn-primary form-control" onClick={() => confirmLogin()} disabled={!setupUserName || !setupPassword || setupPassword !== confirmPassword}>Submit</Button>
-                </div>
-            </div>
-        </main>
-    );
-}
+//     return (
+//         <main>
+//             <div className="d-flex flex-column justify-content-center align-items-center align-div">
+//                 <div>
+//                     <h1>Login Credentials</h1>
+//                 </div>
+//                 <div>
+//                     <p className="no-margin-bottom">Username</p>
+//                     <input className="form-control" type="email" onChange={(e) => setSetupUserName(e.target.value)} placeholder="your@email.com" />
+//                 </div>
+//                 <div>
+//                     <p className="no-margin-bottom">Password</p>
+//                     <input className="form-control" type="password" onChange={(e) => setSetupPassword(e.target.value)} placeholder="password" />
+//                 </div>
+//                 <div>
+//                     <p className="no-margin-bottom">Confirm Password</p>
+//                     <input className="form-control" type="password" onChange={(e) => setConfirmPassword(e.target.value)} placeholder="password" />
+//                 </div>
+//                 {setupPassword !== confirmPassword && confirmPassword !== "" && <div>
+//                     <p className="error-text">Passwords must match</p>
+//                 </div>}
+//                 <div className="centered" style={{ marginTop: "10px" }}>
+//                     <Button className="btn btn-primary form-control" onClick={() => confirmLogin()} disabled={!setupUserName || !setupPassword || setupPassword !== confirmPassword}>Submit</Button>
+//                 </div>
+//             </div>
+//         </main>
+//     );
+// }
 
-function PersonalInfoContent({ from }) {
+export function PersonalInfo({ from }) {
     return (
         <main>
             <div className="d-flex flex-column justify-content-center align-div">
@@ -89,7 +88,7 @@ function PersonalInfoContent({ from }) {
                         <tr>
                             <td colSpan="2">
                                 <NavLink className="btn btn-primary form-control" to={from === "login" ? "/shippingInfo" : "/profile"}>{from === "login" ? "Continue" : "Save"}</NavLink>
-                                {from !== "login" && <NavLink className="btn btn-primary form-control" to="/profile">Back</NavLink>}
+                                {from !== "login" && <NavLink className="btn btn-secondary form-control" to="/profile">Back</NavLink>}
                             </td>
                         </tr>
                     </tbody>
@@ -99,11 +98,11 @@ function PersonalInfoContent({ from }) {
     );
 }
 
-export function PersonalInfo({ from, loginInfoSet, setLoginInfoSet }) {
-    return (
-        <>
-            {!loginInfoSet && <UsernameAndPassword setLoginInfoSet={setLoginInfoSet} />}
-            {loginInfoSet && <PersonalInfoContent from={from} />}
-        </>
-    );
-}
+// export function PersonalInfo({ from, loginInfoSet, setLoginInfoSet }) {
+//     return (
+//         <>
+//             {!loginInfoSet && <UsernameAndPassword setLoginInfoSet={setLoginInfoSet} />}
+//             {loginInfoSet && <PersonalInfoContent from={from} />}
+//         </>
+//     );
+// }

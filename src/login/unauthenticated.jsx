@@ -7,23 +7,40 @@ export function Unauthenticated({ userName, setUserName, onLogin }) {
     const [password, setPassword] = React.useState("");
     const [displayError, setDisplayError] = React.useState(null);
 
-    async function loginUser() { // turn these into useEffects calls in another file instead
-        localStorage.setItem('userName', userName);
-        onLogin(userName);
+    async function loginUser(endpoint) {
+        const response = await fetch(endpoint, {
+            method: 'post',
+            body: JSON.stringify({ email: userName, password: password }),
+            headers: {
+                'Content-type': 'application/json; charset=UTF-8',
+            },
+        });
+        if (response?.status === 200) {
+            localStorage.setItem('userName', userName);
+            onLogin(userName);
+        } else {
+            const body = await response.json();
+            setDisplayError(`Error: ${body.msg}`);
+        }
     }
 
-    async function createUser() {
-        localStorage.setItem('userName', userName);
-        onLogin(userName);
-    }
+    // async function loginUser() { // turn these into useEffects calls in another file instead
+    //     localStorage.setItem('userName', userName);
+    //     onLogin(userName);
+    // }
+
+    // async function createUser() {
+    //     localStorage.setItem('userName', userName);
+    //     onLogin(userName);
+    // }
 
     return (
         <>
             <div>
                 <input className="form-control" type="email" onChange={(e) => setUserName(e.target.value)} placeholder="your@email.com" />
                 <input className="form-control" type="password" onChange={(e) => setPassword(e.target.value)} placeholder="password" />
-                <Button className="btn btn-primary form-control" onClick={() => loginUser()} disabled={!userName || !password}>Log In</Button>
-                <NavLink className="btn btn-secondary form-control" to="./personalInfo" /* onClick={() => createUser()} This function may need to go later */disabled={!userName || !password}>Create Account</NavLink>
+                <Button className="btn btn-primary form-control" onClick={() => loginUser("api/auth/login")} disabled={!userName || !password}>Log In</Button>
+                <NavLink className="btn btn-secondary form-control" to="/createUser" disabled={userName || password}>Create Account</NavLink>
             </div>
             <MessageDialog message={displayError} onHide={() => setDisplayError(null)} />
         </>
