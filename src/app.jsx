@@ -84,7 +84,7 @@ function AppContent() {
                 <Route path="/cart" element={<Cart cart={cart} />} />
                 <Route path="/contact" element={<Contact />} />
                 <Route path="/details" element={<Details />} />
-                <Route path="/createUser" element={<CreateUser />} />
+                <Route path="/createUser" element={<CreateUser onAuthChange={(authState, userName) => { setAuthState(authState); setUserName(userName); }} />} />
                 <Route path="/personalInfo" element={<PersonalInfo from={from} />} />
                 <Route path="/shippingInfo" element={<ShippingInfo from={from} />} />
                 <Route path="/billingInfo" element={<BillingInfo from={from} />} />
