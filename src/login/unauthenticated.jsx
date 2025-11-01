@@ -1,5 +1,6 @@
 import React from "react";
 import Button from "react-bootstrap/Button";
+
 import { NavLink } from "react-router-dom";
 import { MessageDialog } from "../messageDialog/messageDialog";
 
@@ -8,18 +9,20 @@ export function Unauthenticated({ userName, setUserName, onLogin }) {
     const [displayError, setDisplayError] = React.useState(null);
 
     async function loginUser() {
-        const response = await fetch("api/auth/login", {
+        const response = await fetch("/api/auth/login", {
             method: 'post',
             body: JSON.stringify({ userName: userName, password: password }),
             headers: {
                 'Content-type': 'application/json; charset=UTF-8',
             },
         });
+        
+        const body = await response.json();
         if (response?.status === 200) {
-            localStorage.setItem('userName', userName);
-            onLogin(userName);
+            localStorage.setItem("userName", body.userName);
+            onLogin(body.userName);
         } else {
-            const body = await response.json();
+            localStorage.setItem("userName", "");
             setDisplayError(`Error: ${body.msg}`);
         }
     }

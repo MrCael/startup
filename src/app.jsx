@@ -1,4 +1,5 @@
 import React from "react";
+
 import { useEffect } from "react";
 import { BrowserRouter, NavLink, Route, Routes, useLocation } from "react-router-dom";
 import { ActivePageProvider, useActivePage } from "./activePageContext";
@@ -17,6 +18,7 @@ import { Purchase } from "./purchase/purchase";
 import { PurchaseHistory } from "./purchaseHistory/purchaseHistory";
 import { Shop } from "./shop/shop";
 import { AuthState } from "./login/authState";
+
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./app.css";
 

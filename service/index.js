@@ -1,6 +1,7 @@
 const cookieParser = require('cookie-parser');
 const express = require('express');
 
+const jsonpatch = require('fast-json-patch');
 const bcrypt = require('bcryptjs');
 const uuid = require('uuid');
 const app = express();
@@ -40,6 +41,17 @@ function setAuthCookie(res, authToken) {
     sameSite: 'strict',
   });
 }
+
+// Middleware to verify that the user is authorized to call an endpoint
+const verifyAuth = async (req, res, next) => {
+    const user = await findUser('token', req.cookies[authCookieName]);
+    if (user) {
+        req.user = user;
+        next();
+    } else {
+        res.status(401).send({ msg: 'Unauthorized' });
+    }
+};
 
 // JSON body parsing using built-in middleware
 app.use(express.json());
@@ -90,15 +102,14 @@ apiRouter.delete('/auth/logout', async (req, res) => {
     res.status(204).end();
 });
 
-// Middleware to verify that the user is authorized to call an endpoint
-const verifyAuth = async (req, res, next) => {
-    const user = await findUser('token', req.cookies[authCookieName]);
-    if (user) {
-        next();
-    } else {
-        res.status(401).send({ msg: 'Unauthorized' });
-    }
-};
+apiRouter.patch("/user/personalInfo", verifyAuth, (req, res) => {
+    const user = req.user;
+    if (!user.profile) user.profile = {};
+    jsonpatch.applyPatch(user, req.body);
+    console.log(user);
+    console.log(users);
+    res.send({ msg: "User successfully updated", user });
+});
 
 // Default error handler
 app.use(function (err, req, res, next) {

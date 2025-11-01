@@ -1,19 +1,16 @@
 import React from "react";
+import Button from "react-bootstrap/Button";
+
 import { useNavigate } from "react-router-dom";
 import { MessageDialog } from "../messageDialog/messageDialog";
 import { AuthState } from "../login/authState";
-import Button from "react-bootstrap/Button";
 
-export function CreateUser({ onLogin }) {
+export function CreateUser({ onLogin, onAuthChange }) {
     const [setupUserName, setSetupUserName] = React.useState("");
     const [setupPassword, setSetupPassword] = React.useState("");
     const [confirmPassword, setConfirmPassword] = React.useState("");
     const [displayError, setDisplayError] = React.useState(null);
     const navigate = useNavigate();
-
-    function onLogin(loginUserName) {
-        onAuthChange(AuthState.Authenticated, loginUserName);
-    }
 
     async function createUser() {
         const response = await fetch("/api/auth/create", {
@@ -23,12 +20,14 @@ export function CreateUser({ onLogin }) {
                 "Content-type": "application/json; charset=UTF-8",
             },
         });
+
+        const body = await response.json();
         if (response?.status === 200) {
-            localStorage.setItem('userName', setupUserName);
+            localStorage.setItem("userName", body.userName);
+            onAuthChange(AuthState.Authenticated, body.userName);
             navigate("/personalInfo");
-            onLogin(userName)
         } else {
-            const body = await response.json();
+            localStorage.setItem("userName", "");
             setDisplayError(`Error: ${body.msg}`);
         }
     }
