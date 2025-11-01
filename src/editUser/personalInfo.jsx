@@ -10,7 +10,7 @@ export function PersonalInfo({ from }) {
     const [email, setEmail] = React.useState("");
     const [phone, setPhone] = React.useState("");
     const [profileImg, setProfileImg] = React.useState("");
-    const [notifications, setNotifications] = React.useState(0);
+    const [notifications, setNotifications] = React.useState(false);
     const [displayError, setDisplayError] = React.useState(null);
     const navigate = useNavigate();
 
@@ -46,7 +46,7 @@ export function PersonalInfo({ from }) {
                 {
                     "op": "add",
                     "path": "/profile/notifications",
-                    "value": notifications == 1
+                    "value": notifications
                 }
             ]),
             headers: {
@@ -99,8 +99,7 @@ export function PersonalInfo({ from }) {
                         <tr>
                             <td colSpan="2">
                                 <label>
-                                    <span><input type="checkbox" value="1" onChange={(e) => setNotifications(e.target.value)} /> Opt in to recieve notifications</span>
-                                    {/* This one doesn't work completely */}
+                                    <span><input type="checkbox" onChange={(e) => setNotifications(e.target.checked)} disabled={!email} /> Opt in to recieve notifications</span>
                                 </label>
                             </td>
                         </tr>
