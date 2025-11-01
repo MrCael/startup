@@ -1,40 +1,44 @@
 import React from "react";
 import Button from "react-bootstrap/Button";
+
 import { NavLink } from "react-router-dom";
+import { MessageDialog } from "../messageDialog/messageDialog";
 
-function CardList({ cardList, addingCard, setAddingCard }) {
-    return (
-        <div className="centered">
-            <p>{cardList.length} cards assigned to this user</p>
-            {!addingCard && <Button className="btn btn-secondary form-control" onClick={() => setAddingCard(true)}>Add Card</Button>}
-        </div>
-    );
-}
-
-function AddCard({ cardList, setCardList, setAddingCard }) {
+function AddCard({ setCardList, setAddingCard }) {
     const [cardNum, setCardNum] = React.useState("");
     const [cardName, setCardName] = React.useState("");
-    const [expirationMonth, setExpirationMonth] = React.useState("");
-    const [expirationYear, setExpirationYear] = React.useState("");
+    const [expirationMonth, setExpirationMonth] = React.useState("01");
+    const [expirationYear, setExpirationYear] = React.useState("25");
     const [cvv, setCVV] = React.useState("");
 
-    function addAddress() {
-        const prevCardList = [...cardList];
-        const newCard = {
-            cardNum: cardNum,
-            cardName: cardName,
-            expirationDate: `${expirationMonth}/${expirationYear}`,
-            cvv: cvv
-        };
+    async function addAddress() {
+        const response = await fetch("/api/user/billingInfo", {
+            method: "PATCH",
+            body: JSON.stringify([
+                {
+                    "op": "add",
+                    "path": "/profile/cardList/-",
+                    "value": {
+                        cardNum: cardNum,
+                        cardName: cardName,
+                        expirationDate: `${expirationMonth}/${expirationYear}`,
+                        cvv: cvv
+                    }
+                }
+            ]),
+            headers: {
+                "Content-type": "application/json; charset=UTF-8"
+            },
+            credentials: "include"
+        });
 
-        let newCardList = {};
-        if (prevCardList.some(card => card.cardNum === newCard.cardNum && card.cardName === newCard.cardName && card.expirationDate === newCard.expirationDate && card.cvv === newCard.cvv)) {
-            newCardList = prevCardList;
-        } else {
-            newCardList = [...cardList, newCard];
+        const body = await response.json();
+
+        if (response.status == 409) {
+            setDisplayError(`Error: ${body.msg}`);
         }
 
-        setCardList(newCardList);
+        setCardList(body.cardList);
         setAddingCard(false);
     }
 
@@ -49,7 +53,7 @@ function AddCard({ cardList, setCardList, setAddingCard }) {
                 </tr>
                 <tr>
                     <td colSpan="2">
-                        <p>Name on Card</p>
+                        <p>Name on Card</p> {/* At some point make this auto-format */}
                         <input type="text" className="form-control" onChange={(e) => setCardName(e.target.value)} />
                     </td>
                 </tr>
@@ -122,15 +126,30 @@ function AddCard({ cardList, setCardList, setAddingCard }) {
 export function BillingInfo({ from }) {
     const [cardList, setCardList] = React.useState([]);
     const [addingCard, setAddingCard] = React.useState(false);
+    const [displayError, setDisplayError] = React.useState(null);
 
     return (
         <main>
             <div className="d-flex flex-column justify-content-center align-div">
                 <h1 className="centered">Billing Information</h1>
-                <CardList cardList={cardList} addingCard={addingCard} setAddingCard={setAddingCard} />
-                {addingCard && <AddCard cardList={cardList} setCardList={setCardList} setAddingCard={setAddingCard} />}
+                <div className="centered">
+                    {cardList.map((card) => {
+                        return (
+                            <div className="card">
+                                <div className="card-body">
+                                    <p className="address-info">{card.cardName}</p>
+                                    <p className="address-info">{"**** **** **** " + card.cardNum.slice(12)}</p>
+                                    <p className="address-info">{"expires: " + card.expirationDate}</p>
+                                </div>
+                            </div>
+                        );
+                    })}
+                    {!addingCard && <Button className="btn btn-secondary form-control" style={{ marginTop: "10px" }} onClick={() => setAddingCard(true)}>Add Card</Button>}
+                </div>
+                {addingCard && <AddCard setCardList={setCardList} setAddingCard={setAddingCard} />}
                 <NavLink className="btn btn-primary form-control" to={from === "login" ? "/measurementInfo" : "/profile"}>{from === "login" ? "Continue" : "Save"}</NavLink>
                 {from !== "login" && <NavLink className="btn btn-primary form-control" to="/profile">Back</NavLink>}
+                <MessageDialog message={displayError} onHide={() => setDisplayError(null)} />
             </div>
         </main>
     );

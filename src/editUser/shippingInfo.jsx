@@ -1,7 +1,7 @@
 import React from "react";
 import Button from "react-bootstrap/Button";
 
-import { useNavigate } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import { MessageDialog } from "../messageDialog/messageDialog";
 
 function AddAddress({ setAddressList, setAddingAddress, setDisplayError }) {
@@ -150,7 +150,6 @@ export function ShippingInfo({ from }) {
     const [addressList, setAddressList] = React.useState([]);
     const [addingAddress, setAddingAddress] = React.useState(false);
     const [displayError, setDisplayError] = React.useState(null);
-    const navigate = useNavigate();
 
     return (
         <main>
@@ -172,7 +171,7 @@ export function ShippingInfo({ from }) {
                     {!addingAddress && <Button className="btn btn-secondary form-control" style={{ marginTop: "10px" }} onClick={() => setAddingAddress(true)}>Add Address</Button>}
                 </div>
                 {addingAddress && <AddAddress setAddressList={setAddressList} setAddingAddress={setAddingAddress} setDisplayError={setDisplayError} />}
-                <Button className="btn btn-primary form-control" onClick={() => navigate(from === "login" ? "/billingInfo" : "/profile")}>{from === "login" ? "Continue" : "Save"}</Button>
+                <NavLink className="btn btn-primary form-control" to={from === "login" ? "/billingInfo" : "/profile"}>{from === "login" ? "Continue" : "Save"}</NavLink>
                 {from !== "login" && <NavLink className="btn btn-primary form-control" to="/profile">Cancel</NavLink>}
                 <MessageDialog message={displayError} onHide={() => setDisplayError(null)} />
             </div>
