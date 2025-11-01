@@ -276,6 +276,10 @@ td {
     margin-right: 10px;
 }
 
+.address-info {
+    margin-bottom: 0;
+}
+
 @media (min-width: 800px) {
     .three-div {
         flex-direction: row  !important;

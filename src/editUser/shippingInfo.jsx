@@ -4,19 +4,6 @@ import Button from "react-bootstrap/Button";
 import { useNavigate } from "react-router-dom";
 import { MessageDialog } from "../messageDialog/messageDialog";
 
-function AddressList({ addressList, addingAddress, setAddingAddress }) {
-    // return addressList.map((address) => (
-    //     <div></div>
-    // ));
-
-    return (
-        <div className="centered">
-            <p>{addressList.length} addresses assigned to this user</p>
-            {!addingAddress && <Button className="btn btn-secondary form-control" onClick={() => setAddingAddress(true)}>Add Address</Button>}
-        </div>
-    );
-}
-
 function AddAddress({ setAddressList, setAddingAddress, setDisplayError }) {
     const [addressFirstName, setAddressFirstName] = React.useState("");
     const [addressLastName, setAddressLastName] = React.useState("");
@@ -169,7 +156,21 @@ export function ShippingInfo({ from }) {
         <main>
             <div className="d-flex flex-column justify-content-center align-div">
                 <h1 className="centered">Shipping Information</h1>
-                <AddressList addressList={addressList} addingAddress={addingAddress} setAddingAddress={setAddingAddress} />
+                <div className="centered">
+                    {addressList.map((address) => {
+                        return (
+                            <div className="card">
+                                <div className="card-body">
+                                    <p className="address-info">{address.firstName} {address.lastName}</p>
+                                    <p className="address-info">{address.line1}</p>
+                                    {address.line2 && <p className="address-info">{address.line2}</p>}
+                                    <p className="address-info">{address.city} {address.state} {address.zip}</p>
+                                </div>
+                            </div>
+                        );
+                    })}
+                    {!addingAddress && <Button className="btn btn-secondary form-control" style={{ marginTop: "10px" }} onClick={() => setAddingAddress(true)}>Add Address</Button>}
+                </div>
                 {addingAddress && <AddAddress setAddressList={setAddressList} setAddingAddress={setAddingAddress} setDisplayError={setDisplayError} />}
                 <Button className="btn btn-primary form-control" onClick={() => navigate(from === "login" ? "/billingInfo" : "/profile")}>{from === "login" ? "Continue" : "Save"}</Button>
                 {from !== "login" && <NavLink className="btn btn-primary form-control" to="/profile">Cancel</NavLink>}
