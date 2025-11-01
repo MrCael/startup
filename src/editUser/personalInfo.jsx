@@ -21,41 +21,40 @@ export function PersonalInfo({ from }) {
                 {
                     "op": "add",
                     "path": "/profile/firstName",
-                    "value": firstName,
+                    "value": firstName
                 },
                 {
                     "op": "add",
                     "path": "/profile/lastName",
-                    "value": lastName,
+                    "value": lastName
                 },
                 {
                     "op": "add",
                     "path": "/profile/email",
-                    "value": email,
+                    "value": email
                 },
                 {
                     "op": "add",
                     "path": "/profile/phone",
-                    "value": phone,
+                    "value": phone
                 },
                 {
                     "op": "add",
                     "path": "/profile/profileImg",
-                    "value": profileImg,
+                    "value": profileImg
                 },
                 {
                     "op": "add",
                     "path": "/profile/notifications",
-                    "value": notifications == 1,
-                },
+                    "value": notifications == 1
+                }
             ]),
             headers: {
                 "Content-type": "application/json; charset=UTF-8",
             },
-            credentials: "include",
+            credentials: "include"
         });
 
-        console.log(response.status);
         if (response?.status == 200) {
             navigate(from === "login" ? "/shippingInfo" : "/profile");
         } else {

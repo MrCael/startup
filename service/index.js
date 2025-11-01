@@ -102,13 +102,27 @@ apiRouter.delete('/auth/logout', async (req, res) => {
     res.status(204).end();
 });
 
+// Edit user personal information
 apiRouter.patch("/user/personalInfo", verifyAuth, (req, res) => {
     const user = req.user;
     if (!user.profile) user.profile = {};
     jsonpatch.applyPatch(user, req.body);
-    console.log(user);
-    console.log(users);
     res.send({ msg: "User successfully updated", user });
+});
+
+// Add address to user
+apiRouter.patch("/user/shippingInfo", verifyAuth, (req, res) => {
+    const user = req.user;
+
+    if (!user.profile) user.profile = {};
+    if (!user.profile.addressList) user.profile.addressList = [];
+
+    if (user.profile.addressList.find(address => JSON.stringify(address) === JSON.stringify(req.body[0].value))) {
+        res.status(409).send({ msg: "Address already assigned to user", addressList: user.profile.addressList });
+    } else {
+        jsonpatch.applyPatch(user, req.body);
+        res.send({ addressList: user.profile.addressList });
+    }
 });
 
 // Default error handler
@@ -118,7 +132,7 @@ app.use(function (err, req, res, next) {
 
 // Return the application's default page if the path is unknown
 app.use((_req, res) => {
-    res.sendFile('index.html', { root: 'public' });
+    res.sendFile('index.html', { root: 'src' });
 });
 
 app.listen(port, () => {

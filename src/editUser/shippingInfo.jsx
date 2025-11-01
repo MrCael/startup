@@ -1,6 +1,8 @@
 import React from "react";
 import Button from "react-bootstrap/Button";
-import { NavLink } from "react-router-dom";
+
+import { useNavigate } from "react-router-dom";
+import { MessageDialog } from "../messageDialog/messageDialog";
 
 function AddressList({ addressList, addingAddress, setAddingAddress }) {
     // return addressList.map((address) => (
@@ -15,7 +17,7 @@ function AddressList({ addressList, addingAddress, setAddingAddress }) {
     );
 }
 
-function AddAddress({ addressList, setAddressList, setAddingAddress }) {
+function AddAddress({ setAddressList, setAddingAddress, setDisplayError }) {
     const [addressFirstName, setAddressFirstName] = React.useState("");
     const [addressLastName, setAddressLastName] = React.useState("");
     const [addressLine1, setAddressLine1] = React.useState("");
@@ -24,26 +26,37 @@ function AddAddress({ addressList, setAddressList, setAddingAddress }) {
     const [addressState, setAddressState] = React.useState("");
     const [addressZip, setAddressZip] = React.useState("");
 
-    function addAddress() {
-        const prevAddressList = [...addressList];
-        const newAddress = {
-            firstName: addressFirstName,
-            lastName: addressLastName,
-            line1: addressLine1,
-            line2: addressLine2,
-            city: addressCity,
-            state: addressState,
-            zip: addressZip
-        };
+    async function addAddress() {
+        const response = await fetch("/api/user/shippingInfo", {
+            method: "PATCH",
+            body: JSON.stringify([
+                {
+                    "op": "add",
+                    "path": "/profile/addressList/-",
+                    "value": {
+                        firstName: addressFirstName,
+                        lastName: addressLastName,
+                        line1: addressLine1,
+                        line2: addressLine2,
+                        city: addressCity,
+                        state: addressState,
+                        zip: addressZip
+                    }
+                }
+            ]),
+            headers: {
+                "Content-type": "application/json; charset=UTF-8"
+            },
+            credentials: "include"
+        });
 
-        let newAddressList = {};
-        if (prevAddressList.some(address => address.firstName === newAddress.firstName && address.lastName === newAddress.lastName && address.line1 === newAddress.line1 && address.line2 === newAddress.line2 && address.city === newAddress.city && address.state === newAddress.state && address.zip === newAddress.zip)) {
-            newAddressList = prevAddressList;
-        } else {
-            newAddressList = [...addressList, newAddress];
+        const body = await response.json();
+
+        if (response.status == 409) {
+            setDisplayError(`Error: ${body.msg}`);
         }
 
-        setAddressList(newAddressList);
+        setAddressList(body.addressList);
         setAddingAddress(false);
     }
 
@@ -149,15 +162,18 @@ function AddAddress({ addressList, setAddressList, setAddingAddress }) {
 export function ShippingInfo({ from }) {
     const [addressList, setAddressList] = React.useState([]);
     const [addingAddress, setAddingAddress] = React.useState(false);
+    const [displayError, setDisplayError] = React.useState(null);
+    const navigate = useNavigate();
 
     return (
         <main>
             <div className="d-flex flex-column justify-content-center align-div">
                 <h1 className="centered">Shipping Information</h1>
                 <AddressList addressList={addressList} addingAddress={addingAddress} setAddingAddress={setAddingAddress} />
-                {addingAddress && <AddAddress addressList={addressList} setAddressList={setAddressList} setAddingAddress={setAddingAddress} />}
-                <NavLink className="btn btn-primary form-control" to={from === "login" ? "/billingInfo" : "/profile"}>{from === "login" ? "Continue" : "Save"}</NavLink>
-                {from !== "login" && <NavLink className="btn btn-primary form-control" to="/profile">Back</NavLink>}
+                {addingAddress && <AddAddress setAddressList={setAddressList} setAddingAddress={setAddingAddress} setDisplayError={setDisplayError} />}
+                <Button className="btn btn-primary form-control" onClick={() => navigate(from === "login" ? "/billingInfo" : "/profile")}>{from === "login" ? "Continue" : "Save"}</Button>
+                {from !== "login" && <NavLink className="btn btn-primary form-control" to="/profile">Cancel</NavLink>}
+                <MessageDialog message={displayError} onHide={() => setDisplayError(null)} />
             </div>
         </main>
     );
