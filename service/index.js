@@ -148,7 +148,6 @@ apiRouter.get("/user/measurementInfo", verifyAuth, (req, res) => {
     if (!user.profile.measurements) user.profile.measurements = {};
     if (!user.profile.measurements.left) user.profile.measurements.left = { "1": 0, "2": 0, "3": 0, "4": 0, "5": 0, "5a": 0, "6": 0, "6a": 0, "7": 0, "7a": 0, "8": 0, "8a": 0, "9": 0, "10": 0 };
     if (!user.profile.measurements.right) user.profile.measurements.right = { "1": 0, "2": 0, "3": 0, "4": 0, "5": 0, "5a": 0, "6": 0, "6a": 0, "7": 0, "7a": 0, "8": 0, "8a": 0, "9": 0, "10": 0 };
-    console.log(user.profile.measurements);
 
     res.send({ measurements: user.profile.measurements });
 });

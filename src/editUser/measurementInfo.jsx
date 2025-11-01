@@ -123,26 +123,34 @@ function ViewMeasurements({ measurements }) {
 }
 
 function EditMeasurements({ measurements }) {
-        return (
-            <div className="d-flex flex-row">
-                <div style={{ margin: "10px" }}>
-                    {Object.entries(measurements.left).map(([key, value]) => (
-                        <div>
-                            <p style={{ paddingLeft: "10px" }}>{key}</p>
-                            <input type="text" className="form-control" defaultValue={value || ""} />
-                        </div>
-                    ))}
-                </div>
-                <div style={{ margin: "10px" }}>
-                    {Object.entries(measurements.left).map(([key, value]) => (
-                        <div>
-                            <p style={{ paddingLeft: "10px" }}>{key}</p>
-                            <input type="text" className="form-control" defaultValue={value || ""} />
-                        </div>
-                    ))}
-                </div>
+    function sortMeasurements(keyA, keyB) {
+        const [, numA, letterA = ""] = keyA.match(/^(\d+)([a-zA-Z]?)$/);
+        const [, numB, letterB = ""] = keyB.match(/^(\d+)([a-zA-Z]?)$/);
+
+        const numDiff = Number(numA) - Number(numB);
+        return numDiff !== 0 ? numDiff : letterA.localeCompare(letterB);
+    }
+
+    return (
+        <div className="d-flex flex-row">
+            <div style={{ margin: "10px" }}>
+                {Object.entries(measurements.left).sort(([keyA], [keyB]) => sortMeasurements(keyA, keyB)).map(([key, value]) => (
+                    <div>
+                        <p style={{ paddingLeft: "10px" }}>{key}</p>
+                        <input type="text" className="form-control" defaultValue={value || ""} />
+                    </div>
+                ))}
             </div>
-        );
+            <div style={{ margin: "10px" }}>
+                {Object.entries(measurements.right).sort(([keyA], [keyB]) => sortMeasurements(keyA, keyB)).map(([key, value]) => (
+                    <div>
+                        <p style={{ paddingLeft: "10px" }}>{key}</p>
+                        <input type="text" className="form-control" defaultValue={value || ""} />
+                    </div>
+                ))}
+            </div>
+        </div>
+    );
 }
 
 export function MeasurementInfo({ from }) {
