@@ -1,5 +1,5 @@
 import React from "react";
-import { NavLink } from "react-router-dom";
+import Button from "react-bootstrap/Button";
 
 function ViewMeasurements() { /// Probably impliment this in a list or something ///
     return (
@@ -269,7 +269,13 @@ function EditMeasurements() { /// Probably impliment this in a list or something
 
 export function MeasurementInfo({ from }) {
     // If `method` is `true` then the page is in view mode. If it is `false` then is it in edit mode
-    const [method, setMethod] = React.useState(true);
+    const [method, setMethod] = React.useState(from != "login");
+
+    async function saveInfo() {
+        const response = await fetch("/api/user/measurementInfo", {
+            // code
+        });
+    }
 
     return (
         <main>
@@ -294,10 +300,14 @@ export function MeasurementInfo({ from }) {
                                 <h3>Right</h3>
                             </td>
                         </tr>
-                        {method == "view" && <ViewMeasurements />}
-                        {method == "edit" && <EditMeasurements />}
-                        <Button className="btn btn-primary form-control" onClick={() => setMethod(!method)}>{method ? "Edit" : "Save"}</Button>
-                        {!method && <Button className="btn btn-secondary form-control" onClick={() => setMethod(true)}>Cancel</Button>}
+                        {method && <ViewMeasurements />}
+                        {!method && <EditMeasurements />}
+                        <tr>
+                            <td colSpan="2">
+                                <Button className="btn btn-primary form-control" onClick={() => setMethod(!method)}>{method ? "Edit" : "Save"}</Button>
+                                {!method && <Button className="btn btn-secondary form-control" onClick={() => setMethod(true)}>Cancel</Button>}
+                            </td>
+                        </tr>
                     </tbody>
                 </table>
             </div>

@@ -107,7 +107,7 @@ apiRouter.patch("/user/personalInfo", verifyAuth, (req, res) => {
     const user = req.user;
     if (!user.profile) user.profile = {};
     jsonpatch.applyPatch(user, req.body);
-    res.send({ msg: "User successfully updated", user });
+    res.send({ msg: "User successfully updated" });
 });
 
 // Add address to user
@@ -138,6 +138,19 @@ apiRouter.patch("/user/billingInfo", verifyAuth, (req, res) => {
         jsonpatch.applyPatch(user, req.body);
         res.send({ cardList: user.profile.cardList });
     }
+});
+
+// Add measurements to user
+apiRouter.patch("/user/measurementInfo", verifyAuth, (req, res) => {
+    const user = req.user;
+
+    if (!user.profile) user.profile = {};
+    if (!user.profile.measurements) user.profile.measurements = {};
+    if (!user.profile.measurements.left) user.profile.left = [];
+    if (!user.profile.measurements.right) user.profile.right = [];
+
+    jsonpatch.applyPatch(user, req.body);
+    res.send({ msg: "Measurements successfully updated" });
 });
 
 // Default error handler
