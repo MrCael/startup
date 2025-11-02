@@ -35,8 +35,8 @@ export function PersonalInfo({ from }) {
         }
     }
 
-    function updateUser(field, value) {
-        setUser(prev => ({ ...prev, [field]: value }));
+    function updateUser(e) {
+        setUser(prev => ({ ...prev, [e.target.name]: (e.target.type === "checkbox" ? e.target.checked : e.target.value) }));
     }
         
     useEffect(() => {
@@ -64,33 +64,35 @@ export function PersonalInfo({ from }) {
                         </tr>
                         <tr>
                             <td>
-                                <p>First Name: <input type="text" className="form-control" onChange={(e) => updateUser("firstName", e.target.value)} defaultValue={user ? user.firstName : ""} /></p>
+                                <p>First Name: <input type="text" className="form-control" name="firstName" onChange={updateUser} defaultValue={user?.firstName || ""} /></p>
                             </td>
                             <td>
-                                <p>Last Name: <input type="text" className="form-control" onChange={(e) => updateUser("lastName", e.target.value)} defaultValue={user ? user.lastName : ""} /></p>
+                                <p>Last Name: <input type="text" className="form-control" name="lastName" onChange={updateUser} defaultValue={user?.lastName || ""} /></p>
                             </td>
                         </tr>
                         <tr>
                             <td colSpan="2">
-                                <p>Email: <input type="text" className="form-control" onChange={(e) => updateUser("email", e.target.value)} defaultValue={user ? user.email : ""} /></p>
+                                <p>Email: <input type="text" className="form-control" name="email" onChange={updateUser} defaultValue={user?.email || ""} /></p>
                             </td>
                         </tr>
                         <tr>
                             <td colSpan="2">
-                                <p>Phone Number: <input type="text" className="form-control" onChange={(e) => updateUser("phone", e.target.value)} defaultValue={user ? user.phone : ""} /></p>
+                                <p>Phone Number: <input type="text" className="form-control" name="phone" onChange={updateUser} defaultValue={user?.phone || ""} /></p>
                             </td>
                         </tr>
                         <tr>
                             <td colSpan="2">
                                 <label>
-                                    <span><input type="checkbox" onChange={(e) => updateUser("notifications", e.target.checked)} disabled={user ? !user.email : true} /* checked={user ? user.notifications : false} */ /> Opt in to recieve notifications</span>
+                                    <span><input type="checkbox" name="notifications" onChange={updateUser} disabled={user ? !user.email : true} /* checked={user ? user.notifications : false} */ /> Opt in to recieve notifications</span>
                                 </label>
                             </td>
                         </tr>
                         <tr>
                             <td colSpan="2" className="centered">
-                                <Button className="btn btn-primary form-control" style={{ width: "fit-content", margin: "auto", marginTop: "10px" }} onClick={() => saveInfo()}>{from === "login" ? "Continue" : "Save"}</Button>
-                                {from !== "login" && <NavLink className="btn btn-secondary form-control" style={{ width: "fit-content", margin: "auto", marginTop: "10px" }} to="/profile">Back</NavLink>}
+                                <div className="d-flex flex-column justify-content-center">
+                                    <Button className="btn btn-primary form-control" style={{ width: "fit-content", margin: "auto", marginTop: "10px" }} onClick={() => saveInfo()}>{from === "login" ? "Continue" : "Save"}</Button>
+                                    {from !== "login" && <NavLink className="btn btn-secondary form-control" style={{ width: "fit-content", margin: "auto", marginTop: "10px" }} to="/profile">Back</NavLink>}
+                                </div>
                             </td>
                         </tr>
                     </tbody>

@@ -36,8 +36,6 @@ function ViewMeasurements({ measurements }) { /// The formatting needs to be fix
 }
 
 function EditMeasurements({ measurements, setMeasurements }) {
-    const measurementList = structuredClone(measurements);
-
     function sortMeasurements(keyA, keyB) {
         const [, numA, letterA = ""] = keyA.match(/^(\d+)([a-zA-Z]?)$/);
         const [, numB, letterB = ""] = keyB.match(/^(\d+)([a-zA-Z]?)$/);
@@ -46,26 +44,26 @@ function EditMeasurements({ measurements, setMeasurements }) {
         return numDiff !== 0 ? numDiff : letterA.localeCompare(letterB);
     }
 
-    /// Finish implementing this function next time ///
-    // function updateMeasurements(side, field, value) {
-    //     setMeasurements(prev => ({ ...prev, }))
-    // }
+    function updateMeasurements(e) {
+        const keys = e.target.name.split(".");
+        setMeasurements(prev => ({ ...prev, [keys[0]]: { ...prev[keys[0]], [keys[1]]: e.target.value }}));
+    }
 
     return (
         <div className="d-flex flex-row">
             <div style={{ margin: "10px" }}>
-                {Object.entries(measurementList.left).sort(([keyA], [keyB]) => sortMeasurements(keyA, keyB)).map(([key, value]) => (
+                {Object.entries(measurements.left).sort(([keyA], [keyB]) => sortMeasurements(keyA, keyB)).map(([key, value]) => (
                     <div>
                         <p style={{ paddingLeft: "10px" }}>{key}</p>
-                        <input type="text" className="form-control" id={key} onChange={(e) => { measurementList.left[key] = e.target.value; setMeasurements(measurementList); }} defaultValue={value || ""} />
+                        <input type="text" className="form-control" name={`left.${key}`} onChange={updateMeasurements} defaultValue={value || ""} />
                     </div>
                 ))}
             </div>
             <div style={{ margin: "10px" }}>
-                {Object.entries(measurementList.right).sort(([keyA], [keyB]) => sortMeasurements(keyA, keyB)).map(([key, value]) => (
+                {Object.entries(measurements.right).sort(([keyA], [keyB]) => sortMeasurements(keyA, keyB)).map(([key, value]) => (
                     <div>
                         <p style={{ paddingLeft: "10px" }}>{key}</p>
-                        <input type="text" className="form-control" id={key} onChange={(e) => { measurementList.right[key] = e.target.value; setMeasurements(measurementList); }} defaultValue={value || ""} />
+                        <input type="text" className="form-control" name={`right.${key}`} onChange={updateMeasurements} defaultValue={value || ""} />
                     </div>
                 ))}
             </div>
