@@ -110,12 +110,19 @@ apiRouter.patch("/user/personalInfo", verifyAuth, (req, res) => {
     res.send({ msg: "User successfully updated" });
 });
 
-// Add address to user
-apiRouter.patch("/user/shippingInfo", verifyAuth, (req, res) => {
+// Get user addresses
+apiRouter.get("/user/shippingInfo", verifyAuth, (req, res) => {
     const user = req.user;
 
     if (!user.profile) user.profile = {};
     if (!user.profile.addressList) user.profile.addressList = [];
+
+    res.send({ addressList: user.profile.addressList });
+});
+
+// Add address to user
+apiRouter.patch("/user/shippingInfo", verifyAuth, (req, res) => {
+    const user = req.user;
 
     if (user.profile.addressList.find(address => JSON.stringify(address) === JSON.stringify(req.body[0].value))) {
         res.status(409).send({ msg: "Address already assigned to user", addressList: user.profile.addressList });
@@ -132,7 +139,7 @@ apiRouter.get("/user/billingInfo", verifyAuth, (req, res) => {
     if (!user.profile) user.profile = {};
     if (!user.profile.cardList) user.profile.cardList = [];
 
-    res.send({ cardList: user.profile.cardList});
+    res.send({ cardList: user.profile.cardList });
 });
 
 // Add cards to user

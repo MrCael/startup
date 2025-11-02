@@ -2,6 +2,7 @@ import React from "react";
 import Button from "react-bootstrap/Button";
 
 import { NavLink } from "react-router-dom";
+import { useEffect } from "react";
 
 import { MessageDialog } from "../messageDialog/messageDialog";
 
@@ -53,31 +54,31 @@ function AddAddress({ setAddressList, setAddingAddress, setDisplayError }) {
             <tbody>
                 <tr>
                     <td>
-                        <p>First Name: <input type="text" className="form-control" onChange={(e) => setAddressFirstName(e.target.value)} /></p>
+                        <p>First Name <input type="text" className="form-control" onChange={(e) => setAddressFirstName(e.target.value)} /></p>
                     </td>
                     <td>
-                        <p>Last Name: <input type="text" className="form-control" onChange={(e) => setAddressLastName(e.target.value)} /></p>
+                        <p>Last Name <input type="text" className="form-control" onChange={(e) => setAddressLastName(e.target.value)} /></p>
                     </td>
                 </tr>
                 <tr>
                     <td colSpan="2">
-                        <p>Address Line 1: <input type="text" className="form-control" onChange={(e) => setAddressLine1(e.target.value)} /></p>
+                        <p>Address Line 1 <input type="text" className="form-control" onChange={(e) => setAddressLine1(e.target.value)} /></p>
                     </td>
                 </tr>
                 <tr>
                     <td colSpan="2">
-                        <p>Address Line 2: <input type="text" className="form-control" onChange={(e) => setAddressLine2(e.target.value)} /></p>
+                        <p>Address Line 2 <input type="text" className="form-control" onChange={(e) => setAddressLine2(e.target.value)} /></p>
                     </td>
                 </tr>
                 <tr>
                     <td colSpan="2">
-                        <p>City: <input type="text" className="form-control" onChange={(e) => setAddressCity(e.target.value)} /></p>
+                        <p>City <input type="text" className="form-control" onChange={(e) => setAddressCity(e.target.value)} /></p>
                     </td>
                 </tr>
                 <tr>
                     <td>
                         <p>
-                            State:
+                            State
                             <select className="form-select" onChange={(e) => setAddressState(e.target.value)}>
                                 <option value="--">--</option>
                                 <option value="Alabama">Alabama</option>
@@ -134,12 +135,17 @@ function AddAddress({ setAddressList, setAddingAddress, setDisplayError }) {
                         </p>
                     </td>
                     <td>
-                        <p>Zip Code: <input type="text" className="form-control" onChange={(e) => setAddressZip(e.target.value)} /></p>
+                        <p>Zip Code <input type="text" className="form-control" onChange={(e) => setAddressZip(e.target.value)} /></p>
                     </td>
                 </tr>
                 <tr>
-                    <td colSpan="2">
-                        <Button className="btn btn-secondary form-control" onClick={() => addAddress()}>Add</Button>
+                    <td colSpan="2" className="centered">
+                        <Button className="btn btn-secondary form-control" style={{ width: "fit-content", margin: "auto", marginTop: "10px", marginLeft: "7px" }} onClick={() => addAddress()}>Add</Button>
+                    </td>
+                </tr>
+                <tr>
+                    <td colSpan="2" className="centered">
+                        <Button className="btn btn-secondary form-control" style={{ width: "fit-content", margin: "auto", marginTop: "10px", marginLeft: "7px" }} onClick={() => setAddingAddress(false)}>Cancel</Button>
                     </td>
                 </tr>
             </tbody>
@@ -148,18 +154,31 @@ function AddAddress({ setAddressList, setAddingAddress, setDisplayError }) {
 }
 
 export function ShippingInfo({ from }) {
-    const [addressList, setAddressList] = React.useState([]);
+    const [addressList, setAddressList] = React.useState(null);
     const [addingAddress, setAddingAddress] = React.useState(false);
     const [displayError, setDisplayError] = React.useState(null);
+    
+    useEffect(() => {
+        async function getAddresses() {
+            const response = await fetch("/api/user/shippingInfo", {
+                credentials: "include"
+            });
+
+            const body = await response.json();
+            setAddressList(body.addressList);
+        }
+
+        getAddresses();
+    }, []);
 
     return (
         <main>
             <div className="d-flex flex-column justify-content-center align-div">
                 <h1 className="centered">Shipping Information</h1>
-                <div className="centered">
-                    {addressList.map((address) => {
+                <div className="d-flex flex-column centered" style={{ margin: "auto" }}>
+                    {addressList && addressList.map((address) => {
                         return (
-                            <div className="card">
+                            <div className="card" style={{ width: "fit-content", margin: "auto", marginTop: "10px", marginBottom: "10px" }}>
                                 <div className="card-body">
                                     <p className="address-info">{address.firstName} {address.lastName}</p>
                                     <p className="address-info">{address.line1}</p>
@@ -169,11 +188,10 @@ export function ShippingInfo({ from }) {
                             </div>
                         );
                     })}
-                    {!addingAddress && <Button className="btn btn-secondary form-control" style={{ marginTop: "10px" }} onClick={() => setAddingAddress(true)}>Add Address</Button>}
+                    {addingAddress && <AddAddress setAddressList={setAddressList} setAddingAddress={setAddingAddress} />}
+                    {!addingAddress && <Button className="btn btn-secondary form-control" style={{ width: "fit-content", margin: "auto", marginBottom: "10px" }} onClick={() => setAddingAddress(true)}>Add Address</Button>}
+                    {!addingAddress && <NavLink className="btn btn-primary form-control" style={{ width: "fit-content", margin: "auto", marginBottom: "10px" }} to={from == "login" ? "/billingInfo" : "/profile"}>{from == "login" ? "Continue" : "Back"}</NavLink>}
                 </div>
-                {addingAddress && <AddAddress setAddressList={setAddressList} setAddingAddress={setAddingAddress} setDisplayError={setDisplayError} />}
-                <NavLink className="btn btn-primary form-control" to={from === "login" ? "/billingInfo" : "/profile"}>{from === "login" ? "Continue" : "Save"}</NavLink>
-                {from !== "login" && <NavLink className="btn btn-primary form-control" to="/profile">Cancel</NavLink>}
                 <MessageDialog message={displayError} onHide={() => setDisplayError(null)} />
             </div>
         </main>

@@ -22,7 +22,7 @@ function AddCard({ setCardList, setAddingCard }) {
                     "path": "/profile/cardList/-",
                     "value": {
                         cardNum: cardNum,
-                        cardName: cardName,
+                        cardName: cardName, /// Possibly only store the last four digits for 'security' (even though there won't be any real card information here) ///
                         expirationDate: `${expirationMonth}/${expirationYear}`,
                         cvv: cvv
                     }
@@ -109,20 +109,12 @@ function AddCard({ setCardList, setAddingCard }) {
                 </tr>
                 <tr>
                     <td colSpan="2">
-                        <label>
-                            <input type="checkbox" name="shipping_billing_same" />
-                            <span>Billing address same as shipping address?</span>
-                        </label>
+                        <Button className="btn btn-secondary form-control" style={{ width: "fit-content", margin: "auto", marginTop: "10px", marginLeft: "7px" }} onClick={() => addAddress()}>Add</Button>
                     </td>
                 </tr>
                 <tr>
                     <td colSpan="2">
-                        <Button className="btn btn-secondary form-control" style={{ width: "fit-content", marginTop: "10px", marginLeft: "7px" }} onClick={() => addAddress()}>Add</Button>
-                    </td>
-                </tr>
-                <tr>
-                    <td colSpan="2">
-                        <Button className="btn btn-secondary form-control" style={{ width: "fit-content", marginTop: "10px", marginLeft: "7px" }} onClick={() => setAddingCard(false)}>Cancel</Button>
+                        <Button className="btn btn-secondary form-control" style={{ width: "fit-content", margin: "auto", marginTop: "10px", marginLeft: "7px" }} onClick={() => setAddingCard(false)}>Cancel</Button>
                     </td>
                 </tr>
             </tbody>
@@ -155,7 +147,7 @@ export function BillingInfo({ from }) {
                 <div className="d-flex flex-column centered" style={{ margin: "auto" }}>
                     {cardList && cardList.map((card) => {
                         return (
-                            <div className="card centered" style={{ width: "fit-content", margin: "auto", marginTop: "10px", marginBottom: "10px" }}>
+                            <div className="card" style={{ width: "fit-content", margin: "auto", marginTop: "10px", marginBottom: "10px" }}>
                                 <div className="card-body">
                                     <p className="address-info">{card.cardName}</p>
                                     <p className="address-info">{"**** **** **** " + card.cardNum.slice(12)}</p>
