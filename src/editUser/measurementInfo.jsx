@@ -4,125 +4,8 @@ import Button from "react-bootstrap/Button";
 import { useEffect } from "react";
 
 function ViewMeasurements({ measurements }) {
-    return (
-        <>
-            <tr>
-                <td>
-                    <p>1:</p>
-                </td>
-                <td>
-                    <p>1:</p>
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <p>2:</p>
-                </td>
-                <td>
-                    <p>2:</p>
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <p>3:</p>
-                </td>
-                <td>
-                    <p>3:</p>
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <p>4:</p>
-                </td>
-                <td>
-                    <p>4:</p>
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <p>5:</p>
-                </td>
-                <td>
-                    <p>5:</p>
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <p>5a:</p>
-                </td>
-                <td>
-                    <p>5a:</p>
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <p>6:</p>
-                </td>
-                <td>
-                    <p>6:</p>
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <p>6a:</p>
-                </td>
-                <td>
-                    <p>6a:</p>
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <p>7:</p>
-                </td>
-                <td>
-                    <p>7:</p>
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <p>7a:</p>
-                </td>
-                <td>
-                    <p>7a:</p>
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <p>8:</p>
-                </td>
-                <td>
-                    <p>8:</p>
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <p>8a:</p>
-                </td>
-                <td>
-                    <p>8a:</p>
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <p>9:</p>
-                </td>
-                <td>
-                    <p>9:</p>
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <p>10:</p>
-                </td>
-                <td>
-                    <p>10:</p>
-                </td>
-            </tr>
-        </>
-    );
-}
+    const measurementList = structuredClone(measurements);
 
-function EditMeasurements({ measurements }) {
     function sortMeasurements(keyA, keyB) {
         const [, numA, letterA = ""] = keyA.match(/^(\d+)([a-zA-Z]?)$/);
         const [, numB, letterB = ""] = keyB.match(/^(\d+)([a-zA-Z]?)$/);
@@ -134,18 +17,49 @@ function EditMeasurements({ measurements }) {
     return (
         <div className="d-flex flex-row">
             <div style={{ margin: "10px" }}>
-                {Object.entries(measurements.left).sort(([keyA], [keyB]) => sortMeasurements(keyA, keyB)).map(([key, value]) => (
+                {Object.entries(measurementList.left).sort(([keyA], [keyB]) => sortMeasurements(keyA, keyB)).map(([key, value]) => (
                     <div>
-                        <p style={{ paddingLeft: "10px" }}>{key}</p>
-                        <input type="text" className="form-control" defaultValue={value || ""} />
+                        <p>{key}: {value}</p>
                     </div>
                 ))}
             </div>
             <div style={{ margin: "10px" }}>
-                {Object.entries(measurements.right).sort(([keyA], [keyB]) => sortMeasurements(keyA, keyB)).map(([key, value]) => (
+                {Object.entries(measurementList.right).sort(([keyA], [keyB]) => sortMeasurements(keyA, keyB)).map(([key, value]) => (
+                    <div>
+                        <p>{key}: {value}</p>
+                    </div>
+                ))}
+            </div>
+        </div>
+    );
+}
+
+function EditMeasurements({ measurements, setMeasurements }) {
+    const measurementList = structuredClone(measurements);
+
+    function sortMeasurements(keyA, keyB) {
+        const [, numA, letterA = ""] = keyA.match(/^(\d+)([a-zA-Z]?)$/);
+        const [, numB, letterB = ""] = keyB.match(/^(\d+)([a-zA-Z]?)$/);
+
+        const numDiff = Number(numA) - Number(numB);
+        return numDiff !== 0 ? numDiff : letterA.localeCompare(letterB);
+    }
+
+    return (
+        <div className="d-flex flex-row">
+            <div style={{ margin: "10px" }}>
+                {Object.entries(measurementList.left).sort(([keyA], [keyB]) => sortMeasurements(keyA, keyB)).map(([key, value]) => (
                     <div>
                         <p style={{ paddingLeft: "10px" }}>{key}</p>
-                        <input type="text" className="form-control" defaultValue={value || ""} />
+                        <input type="text" className="form-control" id={key} onChange={(e) => { measurementList.left[key] = e.target.value; setMeasurements(measurementList); }} defaultValue={value || ""} />
+                    </div>
+                ))}
+            </div>
+            <div style={{ margin: "10px" }}>
+                {Object.entries(measurementList.right).sort(([keyA], [keyB]) => sortMeasurements(keyA, keyB)).map(([key, value]) => (
+                    <div>
+                        <p style={{ paddingLeft: "10px" }}>{key}</p>
+                        <input type="text" className="form-control" id={key} onChange={(e) => { measurementList.right[key] = e.target.value; setMeasurements(measurementList); }} defaultValue={value || ""} />
                     </div>
                 ))}
             </div>
@@ -200,11 +114,11 @@ export function MeasurementInfo({ from }) {
                 </div>
                 <div>
                     {method && measurements && <ViewMeasurements measurements={measurements} />}
-                    {!method && measurements && <EditMeasurements measurements={measurements} />}
+                    {!method && measurements && <EditMeasurements measurements={measurements} setMeasurements={setMeasurements} />}
                 </div>
                 <div className="centered">
-                    <Button className="btn btn-primary form-control" onClick={() => setMethod(!method)}>{method ? "Edit" : "Save"}</Button>
-                    {!method && <Button className="btn btn-secondary form-control" onClick={() => setMethod(true)}>Cancel</Button>}
+                    <Button className="btn btn-primary form-control" onClick={() => setMethod(!method)}>{method ? "Edit" : (from == "login" ? "Continue" : "Save")}</Button>
+                    {!method && from != "login" && <Button className="btn btn-secondary form-control" onClick={() => setMethod(true)}>Cancel</Button>}
                 </div>
             </div>
         </main>
