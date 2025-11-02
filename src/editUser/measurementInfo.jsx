@@ -105,7 +105,6 @@ export function MeasurementInfo({ from }) {
                 credentials: "include"
             });
 
-
             const body = await response.json();
             setMeasurements(body.measurements);
         }
@@ -126,10 +125,10 @@ export function MeasurementInfo({ from }) {
                 </div>
                 {view && measurements && <ViewMeasurements measurements={measurements} />}
                 {!view && measurements && <EditMeasurements measurements={measurements} setMeasurements={setMeasurements} />}
-                <div className="centered">
-                    {!view && <Button className="btn btn-primary form-control" style={{ width: "fit-content", marginLeft: "10px", marginRight: "10px", marginTop: "7px" }} onClick={() => saveInfo()}>{from == "login" ? "Complete" : "Save"}</Button>}
-                    {from != "login" && <Button className="btn btn-secondary form-control" style={{ width: "fit-content", marginLeft: "10px", marginRight: "10px", marginTop: "7px" }} onClick={() => setView(!view)}>{view ? "Edit" : "Cancel"}</Button>}
-                    {view && from != "login" && <NavLink className="btn btn-secondary form-control" style={{ width: "fit-content", marginLeft: "10px", marginRight: "10px" }} to="/profile">Back</NavLink>}
+                <div className="d-flex flex-column justify-content-center" style={{ width: "fit-content", margin: "auto", marginBottom: "10px" }}>
+                    {!view && <Button className="btn btn-primary form-control" style={{ width: "fit-content", margin: "auto", marginTop: "10px" }} onClick={() => saveInfo()}>{from == "login" ? "Complete" : "Save"}</Button>}
+                    {from != "login" && <Button className="btn btn-secondary form-control" style={{ width: "fit-content", margin: "auto", marginTop: "10px" }} onClick={() => setView(!view)}>{view ? "Edit" : "Cancel"}</Button>}
+                    {view && from != "login" && <NavLink className="btn btn-secondary form-control" style={{ width: "fit-content", margin: "auto", marginTop: "10px" }} to="/profile">Back</NavLink>}
                 </div>
             </div>
         </main>

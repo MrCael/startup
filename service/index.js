@@ -125,12 +125,19 @@ apiRouter.patch("/user/shippingInfo", verifyAuth, (req, res) => {
     }
 });
 
-// Add cards to user
-apiRouter.patch("/user/billingInfo", verifyAuth, (req, res) => {
+// Get user cards
+apiRouter.get("/user/billingInfo", verifyAuth, (req, res) => {
     const user = req.user;
 
     if (!user.profile) user.profile = {};
     if (!user.profile.cardList) user.profile.cardList = [];
+
+    res.send({ cardList: user.profile.cardList});
+});
+
+// Add cards to user
+apiRouter.patch("/user/billingInfo", verifyAuth, (req, res) => {
+    const user = req.user;
 
     if (user.profile.cardList.find(card => JSON.stringify(card) === JSON.stringify(req.body[0].value))) {
         res.status(409).send({ msg: "Card already assigned to user", cardList: user.profile.cardList });
@@ -172,7 +179,7 @@ app.use(function (err, req, res, next) {
 
 // Return the application's default page if the path is unknown
 app.use((_req, res) => {
-    res.sendFile('index.html', { root: 'startup/src' });
+    res.sendFile('index.html', { root: 'startup' });
 });
 
 app.listen(port, () => {

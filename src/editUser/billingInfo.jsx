@@ -2,6 +2,8 @@ import React from "react";
 import Button from "react-bootstrap/Button";
 
 import { NavLink } from "react-router-dom";
+import { useEffect } from "react";
+
 import { MessageDialog } from "../messageDialog/messageDialog";
 
 function AddCard({ setCardList, setAddingCard }) {
@@ -118,19 +120,29 @@ function AddCard({ setCardList, setAddingCard }) {
                         <Button className="btn btn-secondary form-control" style={{ width: "fit-content", marginTop: "10px", marginLeft: "7px" }} onClick={() => addAddress()}>Add</Button>
                     </td>
                 </tr>
+                <tr>
+                    <td colSpan="2">
+                        <Button className="btn btn-secondary form-control" style={{ width: "fit-content", marginTop: "10px", marginLeft: "7px" }} onClick={() => setAddingCard(false)}>Cancel</Button>
+                    </td>
+                </tr>
             </tbody>
         </table>
     );
 }
 
 export function BillingInfo({ from }) {
-    const [cardList, setCardList] = React.useState([]);
+    const [cardList, setCardList] = React.useState(null);
     const [addingCard, setAddingCard] = React.useState(false);
     const [displayError, setDisplayError] = React.useState(null);
 
     useEffect(() => {
         async function getCards() {
-            // code
+            const response = await fetch("/api/user/billingInfo", {
+                credentials: "include"
+            });
+
+            const body = await response.json();
+            setCardList(body.cardList);
         }
 
         getCards();
@@ -141,9 +153,9 @@ export function BillingInfo({ from }) {
             <div className="d-flex flex-column justify-content-center align-div" style={{ width: "fit-content" }}>
                 <h1 className="centered">Billing Information</h1>
                 <div className="d-flex flex-column centered" style={{ margin: "auto" }}>
-                    {cardList.map((card) => {
+                    {cardList && cardList.map((card) => {
                         return (
-                            <div className="card centered" style={{ width: "fit-content", marginTop: "10px", marginBottom: "10px" }}>
+                            <div className="card centered" style={{ width: "fit-content", margin: "auto", marginTop: "10px", marginBottom: "10px" }}>
                                 <div className="card-body">
                                     <p className="address-info">{card.cardName}</p>
                                     <p className="address-info">{"**** **** **** " + card.cardNum.slice(12)}</p>
@@ -154,8 +166,7 @@ export function BillingInfo({ from }) {
                     })}
                     {addingCard && <AddCard setCardList={setCardList} setAddingCard={setAddingCard} />}
                     {!addingCard && <Button className="btn btn-secondary form-control" style={{ width: "fit-content", margin: "auto", marginBottom: "10px" }} onClick={() => setAddingCard(true)}>Add Card</Button>}
-                    <NavLink className="btn btn-primary form-control" style={{ width: "fit-content", margin: "auto", marginBottom: "10px" }} to={from === "login" ? "/measurementInfo" : "/profile"}>{from === "login" ? "Continue" : "Save"}</NavLink>
-                    {from !== "login" && <NavLink className="btn btn-primary form-control" style={{ width: "fit-content", margin: "auto" }} to="/profile">Back</NavLink>}
+                    {!addingCard && <NavLink className="btn btn-primary form-control" style={{ width: "fit-content", margin: "auto", marginBottom: "10px" }} to={from == "login" ? "/measurementInfo" : "/profile"}>{from == "login" ? "Continue" : "Back"}</NavLink>}
                 </div>
                 <MessageDialog message={displayError} onHide={() => setDisplayError(null)} />
             </div>

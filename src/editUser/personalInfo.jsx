@@ -2,6 +2,7 @@ import React from "react";
 import Button from "react-bootstrap/Button";
 
 import { NavLink, useNavigate } from "react-router-dom";
+
 import { MessageDialog } from "../messageDialog/messageDialog";
 
 export function PersonalInfo({ from }) {
