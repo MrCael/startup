@@ -108,7 +108,6 @@ export function MeasurementInfo({ from }) {
 
             const body = await response.json();
             setMeasurements(body.measurements);
-            console.log(measurements);
         }
 
         getMeasurements();

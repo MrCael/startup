@@ -2,8 +2,10 @@ import React from "react";
 import Button from "react-bootstrap/Button";
 
 import { NavLink } from "react-router-dom";
+import { useEffect } from "react";
 
 export function Profile({ setFrom }) {
+    const [user, setUser] = React.useState(null);
     const passwordTrue = "password123";
     const passwordStar = "***********";
     const [password, setPassword] = React.useState(passwordStar);
@@ -32,6 +34,19 @@ export function Profile({ setFrom }) {
         setFrom("profile")
     }
 
+    useEffect(() => {
+        async function getUser() {
+            const response = await fetch("/api/user/profile", {
+                credentials: "include"
+            });
+
+            const body = await response.json();
+            setUser(body.user);
+        }
+
+        getUser();
+    }, []);
+
     return (
         <main>
             <div className="d-flex flex-row profile-div" style={{margin: "10px"}}>
@@ -52,7 +67,7 @@ export function Profile({ setFrom }) {
                             </tr>
                             <tr>
                                 <td colSpan="2">
-                                    <p>Username: cerickson</p>
+                                    <p>Username: {user ? user.userName : ""}</p>
                                 </td>
                             </tr>
                             <tr>
@@ -62,23 +77,23 @@ export function Profile({ setFrom }) {
                             </tr>
                             <tr>
                                 <td colSpan="2">
-                                    <p>Name: Cael Erickson</p>
+                                    <p>Name: {user ? user.profile.firstName : ""} {user ? user.profile.lastName : ""}</p>
                                 </td>
                             </tr>
                             <tr>
                                 <td colSpan="2">
-                                    <p>Email: cael.erickson@gmail.com</p>
+                                    <p>Email: {user ? user.profile.email : ""}</p>
                                 </td>
                             </tr>
                             <tr>
                                 <td colSpan="2">
-                                    <p>Phone Number:(801) 205-7320</p>
+                                    <p>Phone Number: {user ? user.profile.phone : ""}</p>
                                 </td>
                             </tr>
                             <tr>
                                 <td colSpan="2">
                                     <label>
-                                        <input type="checkbox" value="1" />
+                                        <input type="checkbox" checked={user ? user.profile.notifications : false} />
                                         <span>Opt in to recieve notifications</span>
                                     </label>
                                 </td>

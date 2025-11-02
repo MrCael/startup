@@ -160,6 +160,11 @@ apiRouter.patch("/user/measurementInfo", verifyAuth, (req, res) => {
     res.send({ msg: "Measurements successfully updated" });
 });
 
+apiRouter.get("/user/profile", verifyAuth, (req, res) => {
+    const user = req.user;
+    res.send({ user: user });
+});
+
 // Default error handler
 app.use(function (err, req, res, next) {
     res.status(500).send({ type: err.name, message: err.message });
@@ -167,7 +172,7 @@ app.use(function (err, req, res, next) {
 
 // Return the application's default page if the path is unknown
 app.use((_req, res) => {
-    res.sendFile('index.html', { root: 'src' });
+    res.sendFile('index.html', { root: 'startup/src' });
 });
 
 app.listen(port, () => {
