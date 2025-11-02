@@ -125,7 +125,7 @@ button.form-control {
     text-align: center;
 }
 
-div.card {
+div.card.product {
     width: 250px; /* change this based on screen size */
     margin: 0 auto;
     margin-top: 10px;
@@ -135,11 +135,6 @@ div.card {
     width: fit-content;
     margin: 0 auto;
     margin-top: 5%;
-}
-
-div.profile-box {
-    flex: 1;
-    margin-top: 0;
 }
 
 div:not([class]) {
@@ -288,10 +283,6 @@ td {
     .details-div {
         flex-direction: row !important;
     }
-
-    .profile-div {
-        flex-direction: row !important;
-    }
 }
 
 @media (max-width: 800px) {
@@ -300,10 +291,6 @@ td {
     }
 
     .details-div {
-        flex-direction: column !important;
-    }
-
-    .profile-div {
         flex-direction: column !important;
     }
 

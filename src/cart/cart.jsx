@@ -15,7 +15,7 @@ function FullCart({ cart }) {
             <div className="d-flex flex-column justify-content-center">
                 <div className="d-flex justify-content-around three-div">
                     {cart.map((item) => (
-                        <div className="card">
+                        <div className="card product">
                             <div className="card-body">
                                 <NavLink to="/details">
                                     <img src={item.img} alt={item.name} height="100" />
