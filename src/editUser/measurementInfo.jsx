@@ -1,7 +1,7 @@
 import React from "react";
 import Button from "react-bootstrap/Button";
 
-import { useNavigate } from "react-router-dom";
+import { useNavigate, NavLink } from "react-router-dom";
 import { useEffect } from "react";
 
 function ViewMeasurements({ measurements }) { /// The formatting needs to be fixed here ///
@@ -16,18 +16,18 @@ function ViewMeasurements({ measurements }) { /// The formatting needs to be fix
     }
 
     return (
-        <div className="d-flex flex-row">
+        <div className="d-flex flex-row justify-content-around">
             <div style={{ margin: "10px" }}>
                 {Object.entries(measurementList.left).sort(([keyA], [keyB]) => sortMeasurements(keyA, keyB)).map(([key, value]) => (
-                    <div>
-                        <p>{key}: {value}</p>
+                    <div className="centered">
+                        <p><b>{key}:</b> {value} {value ? "in." : ""}</p>
                     </div>
                 ))}
             </div>
             <div style={{ margin: "10px" }}>
                 {Object.entries(measurementList.right).sort(([keyA], [keyB]) => sortMeasurements(keyA, keyB)).map(([key, value]) => (
-                    <div>
-                        <p>{key}: {value}</p>
+                    <div className="centered">
+                        <p><b>{key}:</b> {value} {value ? "in." : ""}</p>
                     </div>
                 ))}
             </div>
@@ -96,7 +96,7 @@ export function MeasurementInfo({ from }) {
         }
 
         setView(!view);
-        navigate("/profile");
+        if (from == "login") navigate("/profile");
     }
 
     useEffect(() => {
@@ -124,13 +124,12 @@ export function MeasurementInfo({ from }) {
                         <h3 className="centered">Right</h3>
                     </div>
                 </div>
-                <div>
-                    {view && measurements && <ViewMeasurements measurements={measurements} />}
-                    {!view && measurements && <EditMeasurements measurements={measurements} setMeasurements={setMeasurements} />}
-                </div>
+                {view && measurements && <ViewMeasurements measurements={measurements} />}
+                {!view && measurements && <EditMeasurements measurements={measurements} setMeasurements={setMeasurements} />}
                 <div className="centered">
-                    {!view && <Button className="btn btn-primary form-control" onClick={() => saveInfo()}>{from == "login" ? "Complete" : "Save"}</Button>}
-                    {from != "login" && <Button className="btn btn-secondary form-control" onClick={() => setView(!view)}>{view ? "Edit" : "Cancel"}</Button>}
+                    {!view && <Button className="btn btn-primary form-control" style={{ width: "fit-content", marginLeft: "10px", marginRight: "10px", marginTop: "7px" }} onClick={() => saveInfo()}>{from == "login" ? "Complete" : "Save"}</Button>}
+                    {from != "login" && <Button className="btn btn-secondary form-control" style={{ width: "fit-content", marginLeft: "10px", marginRight: "10px", marginTop: "7px" }} onClick={() => setView(!view)}>{view ? "Edit" : "Cancel"}</Button>}
+                    {view && from != "login" && <NavLink className="btn btn-secondary form-control" style={{ width: "fit-content", marginLeft: "10px", marginRight: "10px" }} to="/profile">Back</NavLink>}
                 </div>
             </div>
         </main>

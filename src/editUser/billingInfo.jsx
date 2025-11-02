@@ -115,7 +115,7 @@ function AddCard({ setCardList, setAddingCard }) {
                 </tr>
                 <tr>
                     <td colSpan="2">
-                        <Button className="btn btn-secondary form-control" onClick={() => addAddress()}>Add</Button>
+                        <Button className="btn btn-secondary form-control" style={{ width: "fit-content", marginTop: "10px", marginLeft: "7px" }} onClick={() => addAddress()}>Add</Button>
                     </td>
                 </tr>
             </tbody>
@@ -128,14 +128,22 @@ export function BillingInfo({ from }) {
     const [addingCard, setAddingCard] = React.useState(false);
     const [displayError, setDisplayError] = React.useState(null);
 
+    useEffect(() => {
+        async function getCards() {
+            // code
+        }
+
+        getCards();
+    }, []);
+
     return (
         <main>
-            <div className="d-flex flex-column justify-content-center align-div">
+            <div className="d-flex flex-column justify-content-center align-div" style={{ width: "fit-content" }}>
                 <h1 className="centered">Billing Information</h1>
-                <div className="centered">
+                <div className="d-flex flex-column centered" style={{ margin: "auto" }}>
                     {cardList.map((card) => {
                         return (
-                            <div className="card">
+                            <div className="card centered" style={{ width: "fit-content", marginTop: "10px", marginBottom: "10px" }}>
                                 <div className="card-body">
                                     <p className="address-info">{card.cardName}</p>
                                     <p className="address-info">{"**** **** **** " + card.cardNum.slice(12)}</p>
@@ -144,11 +152,11 @@ export function BillingInfo({ from }) {
                             </div>
                         );
                     })}
-                    {!addingCard && <Button className="btn btn-secondary form-control" style={{ marginTop: "10px" }} onClick={() => setAddingCard(true)}>Add Card</Button>}
+                    {addingCard && <AddCard setCardList={setCardList} setAddingCard={setAddingCard} />}
+                    {!addingCard && <Button className="btn btn-secondary form-control" style={{ width: "fit-content", margin: "auto", marginBottom: "10px" }} onClick={() => setAddingCard(true)}>Add Card</Button>}
+                    <NavLink className="btn btn-primary form-control" style={{ width: "fit-content", margin: "auto", marginBottom: "10px" }} to={from === "login" ? "/measurementInfo" : "/profile"}>{from === "login" ? "Continue" : "Save"}</NavLink>
+                    {from !== "login" && <NavLink className="btn btn-primary form-control" style={{ width: "fit-content", margin: "auto" }} to="/profile">Back</NavLink>}
                 </div>
-                {addingCard && <AddCard setCardList={setCardList} setAddingCard={setAddingCard} />}
-                <NavLink className="btn btn-primary form-control" to={from === "login" ? "/measurementInfo" : "/profile"}>{from === "login" ? "Continue" : "Save"}</NavLink>
-                {from !== "login" && <NavLink className="btn btn-primary form-control" to="/profile">Back</NavLink>}
                 <MessageDialog message={displayError} onHide={() => setDisplayError(null)} />
             </div>
         </main>
