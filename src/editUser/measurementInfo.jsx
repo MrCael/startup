@@ -1,9 +1,10 @@
 import React from "react";
 import Button from "react-bootstrap/Button";
 
+import { useNavigate } from "react-router-dom";
 import { useEffect } from "react";
 
-function ViewMeasurements({ measurements }) {
+function ViewMeasurements({ measurements }) { /// The formatting needs to be fixed here ///
     const measurementList = structuredClone(measurements);
 
     function sortMeasurements(keyA, keyB) {
@@ -68,22 +69,34 @@ function EditMeasurements({ measurements, setMeasurements }) {
 }
 
 export function MeasurementInfo({ from }) {
-    // If `method` is `true` then the page is in view mode. If it is `false` then is it in edit mode
-    const [method, setMethod] = React.useState(from != "login");
+    // If `view` is `true` then the page is in view mode. If it is `false` then is it in edit mode
+    const [view, setView] = React.useState(from != "login");
     const [measurements, setMeasurements] = React.useState(null);
+    const navigate = useNavigate();
 
     async function saveInfo() {
-        const response = await fetch("/api/user/measurementInfo", {
-            method: "PATCH",
-            body: measurements,
-            headers: {
-                "Content-type": "application/json; charset=UTF-8"
-            },
-            credentials: "include"
-        });
-        
-        const body = await response.json();
-        console.log(body.msg);
+        if (!view) {
+            const response = await fetch("/api/user/measurementInfo", {
+                method: "PATCH",
+                body: JSON.stringify([
+                    {
+                        "op": "replace",
+                        "path": "/profile/measurements",
+                        "value": measurements
+                    }
+                ]),
+                headers: {
+                    "Content-type": "application/json; charset=UTF-8"
+                },
+                credentials: "include"
+            });
+            
+            const body = await response.json();
+            console.log(body.msg);
+        }
+
+        setView(!view);
+        navigate("/profile");
     }
 
     useEffect(() => {
@@ -113,12 +126,12 @@ export function MeasurementInfo({ from }) {
                     </div>
                 </div>
                 <div>
-                    {method && measurements && <ViewMeasurements measurements={measurements} />}
-                    {!method && measurements && <EditMeasurements measurements={measurements} setMeasurements={setMeasurements} />}
+                    {view && measurements && <ViewMeasurements measurements={measurements} />}
+                    {!view && measurements && <EditMeasurements measurements={measurements} setMeasurements={setMeasurements} />}
                 </div>
                 <div className="centered">
-                    <Button className="btn btn-primary form-control" onClick={() => setMethod(!method)}>{method ? "Edit" : (from == "login" ? "Continue" : "Save")}</Button>
-                    {!method && from != "login" && <Button className="btn btn-secondary form-control" onClick={() => setMethod(true)}>Cancel</Button>}
+                    {!view && <Button className="btn btn-primary form-control" onClick={() => saveInfo()}>{from == "login" ? "Complete" : "Save"}</Button>}
+                    {from != "login" && <Button className="btn btn-secondary form-control" onClick={() => setView(!view)}>{view ? "Edit" : "Cancel"}</Button>}
                 </div>
             </div>
         </main>
