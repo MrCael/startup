@@ -21,7 +21,7 @@ function AddAddress({ setAddressList, setAddingAddress, setDisplayError }) {
             body: JSON.stringify([
                 {
                     "op": "add",
-                    "path": "/profile/addressList/-",
+                    "path": "/addressList/-",
                     "value": {
                         firstName: addressFirstName,
                         lastName: addressLastName,

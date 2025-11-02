@@ -2,16 +2,12 @@ import React from "react";
 import Button from "react-bootstrap/Button";
 
 import { NavLink, useNavigate } from "react-router-dom";
+import { useEffect } from "react";
 
 import { MessageDialog } from "../messageDialog/messageDialog";
 
 export function PersonalInfo({ from }) {
-    const [firstName, setFirstName] = React.useState("");
-    const [lastName, setLastName] = React.useState("");
-    const [email, setEmail] = React.useState("");
-    const [phone, setPhone] = React.useState("");
-    const [profileImg, setProfileImg] = React.useState("");
-    const [notifications, setNotifications] = React.useState(false);
+    const [user, setUser] = React.useState(null);
     const [displayError, setDisplayError] = React.useState(null);
     const navigate = useNavigate();
 
@@ -21,33 +17,8 @@ export function PersonalInfo({ from }) {
             body: JSON.stringify([
                 {
                     "op": "add",
-                    "path": "/profile/firstName",
-                    "value": firstName
-                },
-                {
-                    "op": "add",
-                    "path": "/profile/lastName",
-                    "value": lastName
-                },
-                {
-                    "op": "add",
-                    "path": "/profile/email",
-                    "value": email
-                },
-                {
-                    "op": "add",
-                    "path": "/profile/phone",
-                    "value": phone
-                },
-                {
-                    "op": "add",
-                    "path": "/profile/profileImg",
-                    "value": profileImg
-                },
-                {
-                    "op": "add",
-                    "path": "/profile/notifications",
-                    "value": notifications
+                    "path": "/profile",
+                    "value": user
                 }
             ]),
             headers: {
@@ -64,6 +35,23 @@ export function PersonalInfo({ from }) {
         }
     }
 
+    function updateUser(field, value) {
+        setUser(prev => ({ ...prev, [field]: value }));
+    }
+        
+    useEffect(() => {
+        async function getInfo() {
+            const response = await fetch("/api/user/personalInfo", {
+                credentials: "include"
+            });
+
+            const body = await response.json();
+            setUser(body.profile);
+        }
+
+        getInfo();
+    }, []);
+
     return (
         <main>
             <div className="d-flex flex-column justify-content-center align-div">
@@ -76,38 +64,33 @@ export function PersonalInfo({ from }) {
                         </tr>
                         <tr>
                             <td>
-                                <p>First Name: <input type="text" className="form-control" onChange={(e) => setFirstName(e.target.value)} /></p>
+                                <p>First Name: <input type="text" className="form-control" onChange={(e) => updateUser("firstName", e.target.value)} defaultValue={user ? user.firstName : ""} /></p>
                             </td>
                             <td>
-                                <p>Last Name: <input type="text" className="form-control" onChange={(e) => setLastName(e.target.value)} /></p>
+                                <p>Last Name: <input type="text" className="form-control" onChange={(e) => updateUser("lastName", e.target.value)} defaultValue={user ? user.lastName : ""} /></p>
                             </td>
                         </tr>
                         <tr>
                             <td colSpan="2">
-                                <p>Email: <input type="text" className="form-control" onChange={(e) => setEmail(e.target.value)} /></p>
+                                <p>Email: <input type="text" className="form-control" onChange={(e) => updateUser("email", e.target.value)} defaultValue={user ? user.email : ""} /></p>
                             </td>
                         </tr>
                         <tr>
                             <td colSpan="2">
-                                <p>Phone Number: <input type="text" className="form-control" onChange={(e) => setPhone(e.target.value)} /></p>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td colSpan="2">
-                                <p>Profile Image: <input type="file" className="form-control" onChange={(e) => setProfileImg(e.target.value)} /></p>
+                                <p>Phone Number: <input type="text" className="form-control" onChange={(e) => updateUser("phone", e.target.value)} defaultValue={user ? user.phone : ""} /></p>
                             </td>
                         </tr>
                         <tr>
                             <td colSpan="2">
                                 <label>
-                                    <span><input type="checkbox" onChange={(e) => setNotifications(e.target.checked)} disabled={!email} /> Opt in to recieve notifications</span>
+                                    <span><input type="checkbox" onChange={(e) => updateUser("notifications", e.target.checked)} disabled={user ? !user.email : true} /* checked={user ? user.notifications : false} */ /> Opt in to recieve notifications</span>
                                 </label>
                             </td>
                         </tr>
                         <tr>
-                            <td colSpan="2">
-                                <Button className="btn btn-primary form-control" onClick={() => saveInfo()}>{from === "login" ? "Continue" : "Save"}</Button>
-                                {from !== "login" && <NavLink className="btn btn-secondary form-control" to="/profile">Back</NavLink>}
+                            <td colSpan="2" className="centered">
+                                <Button className="btn btn-primary form-control" style={{ width: "fit-content", margin: "auto", marginTop: "10px" }} onClick={() => saveInfo()}>{from === "login" ? "Continue" : "Save"}</Button>
+                                {from !== "login" && <NavLink className="btn btn-secondary form-control" style={{ width: "fit-content", margin: "auto", marginTop: "10px" }} to="/profile">Back</NavLink>}
                             </td>
                         </tr>
                     </tbody>

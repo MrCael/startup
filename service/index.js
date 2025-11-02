@@ -102,10 +102,19 @@ apiRouter.delete('/auth/logout', async (req, res) => {
     res.status(204).end();
 });
 
+// Get user personal information
+apiRouter.get("/user/personalInfo", verifyAuth, (req, res) => {
+    const user = req.user;
+
+    if (!user.profile) user.profile = { "firstName": null, "lastName": null, "email": null, "phone": null, "notifications": null };
+
+    res.send({ profile: user.profile });
+});
+
 // Edit user personal information
 apiRouter.patch("/user/personalInfo", verifyAuth, (req, res) => {
     const user = req.user;
-    if (!user.profile) user.profile = {};
+    
     jsonpatch.applyPatch(user, req.body);
     res.send({ msg: "User successfully updated" });
 });
@@ -114,21 +123,20 @@ apiRouter.patch("/user/personalInfo", verifyAuth, (req, res) => {
 apiRouter.get("/user/shippingInfo", verifyAuth, (req, res) => {
     const user = req.user;
 
-    if (!user.profile) user.profile = {};
-    if (!user.profile.addressList) user.profile.addressList = [];
+    if (!user.addressList) user.addressList = [];
 
-    res.send({ addressList: user.profile.addressList });
+    res.send({ addressList: user.addressList });
 });
 
 // Add address to user
 apiRouter.patch("/user/shippingInfo", verifyAuth, (req, res) => {
     const user = req.user;
 
-    if (user.profile.addressList.find(address => JSON.stringify(address) === JSON.stringify(req.body[0].value))) {
-        res.status(409).send({ msg: "Address already assigned to user", addressList: user.profile.addressList });
+    if (user.addressList.find(address => JSON.stringify(address) === JSON.stringify(req.body[0].value))) {
+        res.status(409).send({ msg: "Address already assigned to user", addressList: user.addressList });
     } else {
         jsonpatch.applyPatch(user, req.body);
-        res.send({ addressList: user.profile.addressList });
+        res.send({ addressList: user.addressList });
     }
 });
 
@@ -136,21 +144,20 @@ apiRouter.patch("/user/shippingInfo", verifyAuth, (req, res) => {
 apiRouter.get("/user/billingInfo", verifyAuth, (req, res) => {
     const user = req.user;
 
-    if (!user.profile) user.profile = {};
-    if (!user.profile.cardList) user.profile.cardList = [];
+    if (!user.cardList) user.cardList = [];
 
-    res.send({ cardList: user.profile.cardList });
+    res.send({ cardList: user.cardList });
 });
 
 // Add cards to user
 apiRouter.patch("/user/billingInfo", verifyAuth, (req, res) => {
     const user = req.user;
 
-    if (user.profile.cardList.find(card => JSON.stringify(card) === JSON.stringify(req.body[0].value))) {
-        res.status(409).send({ msg: "Card already assigned to user", cardList: user.profile.cardList });
+    if (user.cardList.find(card => JSON.stringify(card) === JSON.stringify(req.body[0].value))) {
+        res.status(409).send({ msg: "Card already assigned to user", cardList: user.cardList });
     } else {
         jsonpatch.applyPatch(user, req.body);
-        res.send({ cardList: user.profile.cardList });
+        res.send({ cardList: user.cardList });
     }
 });
 
@@ -158,12 +165,11 @@ apiRouter.patch("/user/billingInfo", verifyAuth, (req, res) => {
 apiRouter.get("/user/measurementInfo", verifyAuth, (req, res) => {
     const user = req.user;
 
-    if (!user.profile) user.profile = {};
-    if (!user.profile.measurements) user.profile.measurements = {};
-    if (!user.profile.measurements.left) user.profile.measurements.left = { "1": null, "2": null, "3": null, "4": null, "5": null, "5a": null, "6": null, "6a": null, "7": null, "7a": null, "8": null, "8a": null, "9": null, "10": null };
-    if (!user.profile.measurements.right) user.profile.measurements.right = { "1": null, "2": null, "3": null, "4": null, "5": null, "5a": null, "6": null, "6a": null, "7": null, "7a": null, "8": null, "8a": null, "9": null, "10": null };
+    if (!user.measurements) user.measurements = {};
+    if (!user.measurements.left) user.measurements.left = { "1": null, "2": null, "3": null, "4": null, "5": null, "5a": null, "6": null, "6a": null, "7": null, "7a": null, "8": null, "8a": null, "9": null, "10": null };
+    if (!user.measurements.right) user.measurements.right = { "1": null, "2": null, "3": null, "4": null, "5": null, "5a": null, "6": null, "6a": null, "7": null, "7a": null, "8": null, "8a": null, "9": null, "10": null };
 
-    res.send({ measurements: user.profile.measurements });
+    res.send({ measurements: user.measurements });
 });
 
 // Add measurements to user

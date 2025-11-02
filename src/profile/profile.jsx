@@ -12,12 +12,6 @@ export function Profile({ setFrom }) {
     const [passwordButtonText, setPasswordButtonText] = React.useState("Show Password");
     const [passwordShown, setPasswordShown] = React.useState(false);
 
-    const cardNumTrue = "1234 5678 9000 0000";
-    const cardNumStar = "**** **** **** 0000";
-    const [cardNum, setCardNum] = React.useState(cardNumStar);
-    const [cardNumButtonText, setCardNumButtonText] = React.useState("Show Card Number");
-    const [cardNumShown, setCardNumShown] = React.useState(false);
-
     function toggleField(shown, setField, valueTrue, valueStar, setText, fieldName, setShown) {
         if (!shown) {
             setField(valueTrue)
@@ -55,7 +49,6 @@ export function Profile({ setFrom }) {
                     <div className="card" style={{ marginBottom: "10px" }}>
                         <div className="card-body">
                             <h1>{user ? user.userName : ""}'s Profile</h1>
-                            <img src="cael.jpg" alt="Profile Image" className="img-fluid img-thumbnail profile-pic" />
                             <p><b>Name:</b> {user ? `${user.profile.firstName} ${user.profile.lastName}` : ""}</p>
                             <p><b>Password:</b> {password}</p>
                             <Button className="btn btn-secondary" style={{ marginBottom: "16px" }} onClick={() => toggleField(passwordShown, setPassword, passwordTrue, passwordStar, setPasswordButtonText, "Password", setPasswordShown)}>{passwordButtonText}</Button>

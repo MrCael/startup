@@ -46,6 +46,11 @@ function EditMeasurements({ measurements, setMeasurements }) {
         return numDiff !== 0 ? numDiff : letterA.localeCompare(letterB);
     }
 
+    /// Finish implementing this function next time ///
+    // function updateMeasurements(side, field, value) {
+    //     setMeasurements(prev => ({ ...prev, }))
+    // }
+
     return (
         <div className="d-flex flex-row">
             <div style={{ margin: "10px" }}>
@@ -81,7 +86,7 @@ export function MeasurementInfo({ from }) {
                 body: JSON.stringify([
                     {
                         "op": "replace",
-                        "path": "/profile/measurements",
+                        "path": "/measurements",
                         "value": measurements
                     }
                 ]),

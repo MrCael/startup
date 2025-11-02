@@ -19,7 +19,7 @@ function AddCard({ setCardList, setAddingCard }) {
             body: JSON.stringify([
                 {
                     "op": "add",
-                    "path": "/profile/cardList/-",
+                    "path": "/cardList/-",
                     "value": {
                         cardNum: cardNum,
                         cardName: cardName, /// Possibly only store the last four digits for 'security' (even though there won't be any real card information here) ///
