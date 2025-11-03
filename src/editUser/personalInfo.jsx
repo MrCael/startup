@@ -22,15 +22,32 @@ export function PersonalInfo({ from }) {
                 }
             ]),
             headers: {
-                "Content-type": "application/json; charset=UTF-8",
+                "Content-type": "application/json; charset=UTF-8"
             },
             credentials: "include"
         });
 
+        const body = await response.json();
+
+        if (body.user.profile.notifications) {
+            await fetch("/api/user/email", {
+                method: "POST",
+                body: JSON.stringify({
+                    to: body.user.profile.email,
+                    subject: "Welcome to Freedom Dance Footwear!",
+                    html: `<h1>Welcome to Freedom Dance Footwear, ${body.user.profile.firstName}!</h1>
+                        <p>We're so excited to be able to provide for all of your dance footwear needs</p>
+                        <p>Please don't hesitate to contact us with any questions or concerns</p>`
+                }),
+                headers: {
+                    "Content-Type": "application/json; charset=UTF-8"
+                }
+            });
+        }
+
         if (response?.status == 200) {
             navigate(from === "login" ? "/shippingInfo" : "/profile");
         } else {
-            const body = await response.json();
             setDisplayError(`Error: ${body.msg}`);
         }
     }

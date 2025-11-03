@@ -1,11 +1,16 @@
+require("dotenv").config({ path: __dirname + "/.env" });
+
 const cookieParser = require('cookie-parser');
 const express = require('express');
+
+const { Resend } = require("resend");
 
 const jsonpatch = require('fast-json-patch');
 const bcrypt = require('bcryptjs');
 const uuid = require('uuid');
 const app = express();
 
+const resend = new Resend(process.env.RESEND_API_KEY);
 const authCookieName = 'token';
 
 let users = [];
@@ -116,7 +121,26 @@ apiRouter.patch("/user/personalInfo", verifyAuth, (req, res) => {
     const user = req.user;
     
     jsonpatch.applyPatch(user, req.body);
-    res.send({ msg: "User successfully updated" });
+    res.send({ msg: "User successfully updated", user });
+});
+
+apiRouter.post("/user/email", async (req, res) => {
+    console.log("📨 Received test email request");
+    try {
+        const data = await resend.emails.send({
+            from: "Freedom Dance Footwear <fdf@startup.csecs260.click>",
+            to: req.body.to,
+            subject: req.body.subject,
+            html: req.body.html
+        });
+
+        console.log("✅ Resend response:", data);
+        res.send({ success: true, data });
+    } catch (err) {
+        console.error("❌ Error sending email:", err);
+        res.status(500).send({ error: err.message });
+    }
+
 });
 
 // Get user addresses
