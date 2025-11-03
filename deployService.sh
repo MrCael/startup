@@ -35,6 +35,7 @@ ENDSSH
 # Step 3
 printf "\n----> Copy the distribution package to the target\n"
 scp -r -i "$key" build/* ubuntu@$hostname:services/$service
+scp -r -i "$key" service/.env ubuntu@$hostname:services/$service # This line copies my .env file so I can send email notifications with Resend
 
 # Step 4
 printf "\n----> Deploy the service on the target\n"
