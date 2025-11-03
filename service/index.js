@@ -16,7 +16,7 @@ const authCookieName = 'token';
 let users = [];
 
 // The service port. In production the front-end code is statically hosted by the service on the same port.
-const port = process.argv.length > 2 ? process.argv[2] : 3000;
+const port = process.argv.length > 2 ? process.argv[2] : 4000;
 
 async function findUser(field, value) {
     if (!value) return null;
@@ -216,7 +216,7 @@ app.use(function (err, req, res, next) {
 
 // Return the application's default page if the path is unknown
 app.use((_req, res) => {
-    res.sendFile('index.html', { root: 'startup' });
+    res.sendFile('index.html', { root: 'public' });
 });
 
 app.listen(port, () => {
