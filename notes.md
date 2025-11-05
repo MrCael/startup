@@ -149,3 +149,13 @@ This function takes two inputs: a function, and a list of dependancies. The func
 ### Misc.
 
 JSON stands for JavaScript Object Notation and is a readable way to store data. It is used for sending data between servers and web applications.
+
+## Services
+
+### Express
+
+Express was super nice to use. I had to work out some kinks, especially with `PATCH` requests, but I ended up getting those figured out. The biggest thing was to make sure I had the `method` in the request completely capitalized.
+
+### 3rd-party APIs
+
+These were also pretty simple to use and implement. I ended up going with an API to allow me to send email notifications which was a bit more complex than what we did in class, but I still didn't have much trouble getting it to work. The main roadblock I found was when pushing my code to my production environment. Because I added a `.env` file to hold an API key I had to add that to the `deployService.sh` script so it would be uploaded to my server. But once I added that one command to the file everything worked perfectly.
