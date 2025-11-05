@@ -144,12 +144,12 @@ For this deliverable I did the following. I checked the box `[x]` and added a de
 
 For this deliverable I did the following. I checked the box `[x]` and added a description for things I completed.
 
-- [ ] **Node.js/Express HTTP service** - I did not complete this part of the deliverable.
-- [ ] **Static middleware for frontend** - I did not complete this part of the deliverable.
-- [ ] **Calls to third party endpoints** - I did not complete this part of the deliverable.
-- [ ] **Backend service endpoints** - I did not complete this part of the deliverable.
-- [ ] **Frontend calls service endpoints** - I did not complete this part of the deliverable.
-- [ ] **Supports registration, login, logout, and restricted endpoint** - I did not complete this part of the deliverable.
+- [x] **Node.js/Express HTTP service** - I created my HTTP service in `service/index.js`.
+- [x] **Static middleware for frontend** - I have middleware functions to parse the request body into json, parse cookies, serve files in the public directory, and to verify users before reading or writing their personal data.
+- [x] **Calls to third party endpoints** - I have a call to a 3rd party endpoint called Resend that allows me to send email notifications if users opt in.
+- [x] **Backend service endpoints** - I have backend service endpoints for all the login functionality we went through in class, as well as creating a username and password, getting a user profile, and getting and editing the following: personal information, shipping information, billing information, and measurements.
+- [x] **Frontend calls service endpoints** - My frontend calls my service endpoints on each page of the create user process, as well as when editing and displaying a user profile (as well as on each of the following pages: personal info, shipping info, billing info, measurements).
+- [x] **Supports registration, login, logout, and restricted endpoint** - I implemented all of these functionalities as we went through them in class. I also included a number of other restricted endpoints for getting and editing personal info, shipping info, billing info, and measurements.
 
 
 ## 🚀 DB deliverable
