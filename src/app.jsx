@@ -30,6 +30,7 @@ function NotFound() {
 function AppContent() {
     const { activePage, setActivePage } = useActivePage();
     const location = useLocation();
+    // TODO: Get current user based on cookie
     const [userName, setUserName] = React.useState(localStorage.getItem("userName") || "");
     const [authState, setAuthState] = React.useState(userName !== "" ? AuthState.Authenticated : AuthState.Unauthenticated);
     const [cart, setCart] = React.useState(JSON.parse(localStorage.getItem("cart")) || []);
@@ -87,7 +88,7 @@ function AppContent() {
                 <Route path="/cart" element={<Cart cart={cart} />} />
                 <Route path="/contact" element={<Contact />} />
                 <Route path="/details" element={<Details />} />
-                <Route path="/createUser" element={<CreateUser onAuthChange={(authState, userName) => { setAuthState(authState); setUserName(userName); }} />} />
+                <Route path="/createUser" element={<CreateUser onAuthChange={(authState, userName) => { setAuthState(authState); setUserName(userName); }} setFrom={setFrom} />} />
                 <Route path="/personalInfo" element={<PersonalInfo from={from} />} />
                 <Route path="/shippingInfo" element={<ShippingInfo from={from} />} />
                 <Route path="/billingInfo" element={<BillingInfo from={from} />} />

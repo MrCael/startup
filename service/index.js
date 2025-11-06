@@ -9,6 +9,7 @@ const jsonpatch = require('fast-json-patch');
 const bcrypt = require('bcryptjs');
 const uuid = require('uuid');
 const app = express();
+const DB = require('./database.js');
 
 const resend = new Resend(process.env.RESEND_API_KEY);
 const authCookieName = 'token';
@@ -33,7 +34,7 @@ async function createUser(userName, password) {
         token: uuid.v4(),
     };
 
-    users.push(user);
+    await DB.addUser(user);
     return user;
 }
 
@@ -49,7 +50,7 @@ function setAuthCookie(res, authToken) {
 
 // Middleware to verify that the user is authorized to call an endpoint
 const verifyAuth = async (req, res, next) => {
-    const user = await findUser('token', req.cookies[authCookieName]);
+    const user = await DB.getUser(req.cookies[authCookieName]);
     if (user) {
         req.user = user;
         next();
@@ -73,7 +74,7 @@ app.use(`/api`, apiRouter);
 
 // CreateAuth a new user
 apiRouter.post('/auth/create', async (req, res) => {
-    if (await findUser('userName', req.body.userName)) {
+    if (await DB.getUserByUserName(req.body.userName)) {
         res.status(409).send({ msg: 'Existing user' });
     } else {
         const user = await createUser(req.body.userName, req.body.password);
@@ -85,11 +86,12 @@ apiRouter.post('/auth/create', async (req, res) => {
 
 // GetAuth login an existing user
 apiRouter.post('/auth/login', async (req, res) => {
-    const user = await findUser('userName', req.body.userName);
+    const user = await DB.getUserByUserName(req.body.userName);
     if (user) {
         if (await bcrypt.compare(req.body.password, user.password)) {
             user.token = uuid.v4();
             setAuthCookie(res, user.token);
+            DB.updateUser(user);
             res.send({ userName: user.userName });
             return;
         }
@@ -102,6 +104,7 @@ apiRouter.delete('/auth/logout', async (req, res) => {
     const user = await findUser('token', req.cookies[authCookieName]);
     if (user) {
         delete user.token;
+        DB.updateUser(user);
     }
     res.clearCookie(authCookieName);
     res.status(204).end();
@@ -111,7 +114,10 @@ apiRouter.delete('/auth/logout', async (req, res) => {
 apiRouter.get("/user/personalInfo", verifyAuth, (req, res) => {
     const user = req.user;
 
-    if (!user.profile) user.profile = { "firstName": null, "lastName": null, "email": null, "phone": null, "notifications": null };
+    if (!user.profile) {
+        user.profile = { "firstName": null, "lastName": null, "email": null, "phone": null, "notifications": false };
+        DB.updateUser(user);
+    }
 
     res.send({ profile: user.profile });
 });
@@ -121,6 +127,8 @@ apiRouter.patch("/user/personalInfo", verifyAuth, (req, res) => {
     const user = req.user;
     
     jsonpatch.applyPatch(user, req.body);
+    DB.updateUser(user);
+
     res.send({ msg: "User successfully updated", user });
 });
 
@@ -147,7 +155,10 @@ apiRouter.post("/user/email", async (req, res) => {
 apiRouter.get("/user/shippingInfo", verifyAuth, (req, res) => {
     const user = req.user;
 
-    if (!user.addressList) user.addressList = [];
+    if (!user.addressList) {
+        user.addressList = [];
+        DB.updateUser(user);
+    }
 
     res.send({ addressList: user.addressList });
 });
@@ -160,6 +171,8 @@ apiRouter.patch("/user/shippingInfo", verifyAuth, (req, res) => {
         res.status(409).send({ msg: "Address already assigned to user", addressList: user.addressList });
     } else {
         jsonpatch.applyPatch(user, req.body);
+        DB.updateUser(user);
+
         res.send({ addressList: user.addressList });
     }
 });
@@ -168,7 +181,10 @@ apiRouter.patch("/user/shippingInfo", verifyAuth, (req, res) => {
 apiRouter.get("/user/billingInfo", verifyAuth, (req, res) => {
     const user = req.user;
 
-    if (!user.cardList) user.cardList = [];
+    if (!user.cardList) {
+        user.cardList = [];
+        DB.updateUser(user);
+    }
 
     res.send({ cardList: user.cardList });
 });
@@ -181,6 +197,8 @@ apiRouter.patch("/user/billingInfo", verifyAuth, (req, res) => {
         res.status(409).send({ msg: "Card already assigned to user", cardList: user.cardList });
     } else {
         jsonpatch.applyPatch(user, req.body);
+        DB.updateUser(user);
+
         res.send({ cardList: user.cardList });
     }
 });
@@ -189,9 +207,13 @@ apiRouter.patch("/user/billingInfo", verifyAuth, (req, res) => {
 apiRouter.get("/user/measurementInfo", verifyAuth, (req, res) => {
     const user = req.user;
 
-    if (!user.measurements) user.measurements = {};
-    if (!user.measurements.left) user.measurements.left = { "1": null, "2": null, "3": null, "4": null, "5": null, "5a": null, "6": null, "6a": null, "7": null, "7a": null, "8": null, "8a": null, "9": null, "10": null };
-    if (!user.measurements.right) user.measurements.right = { "1": null, "2": null, "3": null, "4": null, "5": null, "5a": null, "6": null, "6a": null, "7": null, "7a": null, "8": null, "8a": null, "9": null, "10": null };
+    if (!user.measurements) {
+        user.measurements = {
+            "left": { "1": null, "2": null, "3": null, "4": null, "5": null, "5a": null, "6": null, "6a": null, "7": null, "7a": null, "8": null, "8a": null, "9": null, "10": null },
+            "right": { "1": null, "2": null, "3": null, "4": null, "5": null, "5a": null, "6": null, "6a": null, "7": null, "7a": null, "8": null, "8a": null, "9": null, "10": null }
+        };
+        DB.updateUser(user);
+    }
 
     res.send({ measurements: user.measurements });
 });
@@ -201,12 +223,13 @@ apiRouter.patch("/user/measurementInfo", verifyAuth, (req, res) => {
     const user = req.user;
 
     jsonpatch.applyPatch(user, req.body);
+    DB.updateUser(user);
+
     res.send({ msg: "Measurements successfully updated" });
 });
 
 apiRouter.get("/user/profile", verifyAuth, (req, res) => {
-    const user = req.user;
-    res.send({ user: user });
+    res.send({ user: req.user });
 });
 
 // Default error handler

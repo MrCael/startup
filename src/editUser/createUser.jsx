@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Button from "react-bootstrap/Button";
 
 import { useNavigate } from "react-router-dom";
@@ -6,7 +6,7 @@ import { useNavigate } from "react-router-dom";
 import { MessageDialog } from "../messageDialog/messageDialog";
 import { AuthState } from "../login/authState";
 
-export function CreateUser({ onAuthChange }) {
+export function CreateUser({ onAuthChange, setFrom }) {
     const [setupUserName, setSetupUserName] = React.useState("");
     const [setupPassword, setSetupPassword] = React.useState("");
     const [confirmPassword, setConfirmPassword] = React.useState("");
@@ -32,6 +32,10 @@ export function CreateUser({ onAuthChange }) {
             setDisplayError(`Error: ${body.msg}`);
         }
     }
+
+    useEffect(() => {
+        setFrom("login");
+    }, []);
 
     return (
         <main>

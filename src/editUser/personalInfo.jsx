@@ -107,7 +107,7 @@ export function PersonalInfo({ from }) {
                         <tr>
                             <td colSpan="2" className="centered">
                                 <div className="d-flex flex-column justify-content-center">
-                                    <Button className="btn btn-primary form-control" style={{ width: "fit-content", margin: "auto", marginTop: "10px" }} onClick={() => saveInfo()}>{from === "login" ? "Continue" : "Save"}</Button>
+                                    <Button className="btn btn-primary form-control" style={{ width: "fit-content", margin: "auto", marginTop: "10px" }} onClick={() => saveInfo()}>{from == "login" ? "Continue" : "Save"}</Button>
                                     {from !== "login" && <NavLink className="btn btn-secondary form-control" style={{ width: "fit-content", margin: "auto", marginTop: "10px" }} to="/profile">Back</NavLink>}
                                 </div>
                             </td>
