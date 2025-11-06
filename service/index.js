@@ -228,6 +228,7 @@ apiRouter.patch("/user/measurementInfo", verifyAuth, (req, res) => {
     res.send({ msg: "Measurements successfully updated" });
 });
 
+// Get user for profile page
 apiRouter.get("/user/profile", verifyAuth, (req, res) => {
     res.send({ user: req.user });
 });

@@ -33,9 +33,14 @@ async function updateUser(user) {
   await userCollection.updateOne({ userName: user.userName }, { $set: user });
 }
 
+async function getProducts(filter) {
+    return productCollection.find(filter);
+}
+
 module.exports = {
   getUser,
   getUserByUserName,
   addUser,
   updateUser,
+  getProducts
 };
