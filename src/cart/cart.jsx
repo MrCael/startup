@@ -10,25 +10,39 @@ function EmptyCart() {
 }
 
 function FullCart({ cart }) {
+    function partitionProducts(products) {
+        const partition = [];
+
+        for (let i = 0; i < products.length; i += 3) {
+            partition.push(products.slice(i, i + 3));
+        }
+
+        return partition;
+    }
+
+    const partitionedCart = partitionProducts(cart);
+
     return (
         <>
             <div className="d-flex flex-column justify-content-center">
-                <div className="d-flex justify-content-around three-div">
-                    {cart.map((item) => (
-                        <div className="card product">
-                            <div className="card-body">
-                                <NavLink to="/details">
-                                    <img src={item.img} alt={item.name} height="100" />
-                                </NavLink>
-                                <p>{item.name}</p>
-                                <p>${item.price}</p>
+                {partitionedCart.map((productSet) => (
+                    <div className="d-flex justify-content-around three-div">
+                        {productSet.map((product) => (
+                            <div className="card product">
+                                <div className="card-body">
+                                    <NavLink to="/details">
+                                        <img src={product.img} alt={product.name} height="100" />
+                                    </NavLink>
+                                    <p>{product.name}</p>
+                                    <p>${product.price}</p>
+                                </div>
+                                <div className="card-footer d-flex flex-column align-content-center">
+                                    <NavLink className="form-control btn btn-primary" to="/purchase">Buy Now</NavLink>
+                                </div>
                             </div>
-                            <div className="card-footer d-flex flex-column align-content-center">
-                                <NavLink className="form-control btn btn-primary" to="/purchase">Buy Now</NavLink>
-                            </div>
-                        </div>
-                    ))}
-                </div>
+                        ))}
+                    </div>
+                ))}
             </div>
             <div className="checkout-cart">
                 <NavLink className="btn btn-secondary" to="/purchase">Checkout Cart</NavLink>
