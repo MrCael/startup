@@ -100,7 +100,7 @@ export function PersonalInfo({ from }) {
                         <tr>
                             <td colSpan="2">
                                 <label>
-                                    <span><input type="checkbox" name="notifications" onChange={updateUser} disabled={user ? !user.email : true} /* checked={user ? user.notifications : false} */ /> Opt in to recieve notifications</span>
+                                    <span><input type="checkbox" name="notifications" onChange={updateUser} disabled={user ? !user.email : true} checked={user ? user?.notifications : false} /> Opt in to recieve notifications</span>
                                 </label>
                             </td>
                         </tr>
