@@ -34,7 +34,7 @@ async function updateUser(user) {
 }
 
 async function getProducts(filter) {
-    return productCollection.find(filter);
+    return productCollection.find(filter).toArray();
 }
 
 module.exports = {

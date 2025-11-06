@@ -1,6 +1,8 @@
 import React from "react";
 import Button from "react-bootstrap/Button";
+
 import { NavLink } from "react-router-dom";
+import { useEffect } from "react";
 
 function ConfirmAddToCart({ productAdded }) {
     return (
@@ -11,15 +13,9 @@ function ConfirmAddToCart({ productAdded }) {
 }
 
 export function Shop({ setCart }) {
-    const products = [
-        {img: "clogging.jpg", name: "Clogging Shoes", price: 160.00},
-        {img: "tap.jpg.webp", name: "Tap Shoes", price: 120.00},
-        {img: "irish_hard.jpg", name: "Irish Hard Shoes", price: 180.00},
-        {img: "ballet.jpeg", name: "Ballet Shoes", price: 30.00},
-        {img: "pointe.jpeg", name: "Point Shoes", price: 150.00},
-        {img: "character.jpeg", name: "Character Shoes", price: 140.00}
-    ];
+    const [products, setProducts] = React.useState(null);
     const [productAdded, setProductAdded] = React.useState("");
+    const [searchTerm, setSearchTerm] = React.useState("");
 
     function updateCart(newItem) {
         setCart(prevCart => {
@@ -40,10 +36,21 @@ export function Shop({ setCart }) {
             }
         });
     }
+
+    useEffect(() => {
+        async function getProducts() {
+            const productList = await fetch(`/api/shop/products${searchTerm ? `?searchTerm=${searchTerm}` : ""}`);
+
+            const body = await productList.json();
+            setProducts(body.products);
+        }
+
+        getProducts();
+    }, [searchTerm]);
     
     return (
         <main>
-            <input type="text" className="search-bar form-control" placeholder="search" />
+            <input type="text" className="search-bar form-control" onChange={(e) => setSearchTerm(e.target.value)} placeholder="search" />
             <ConfirmAddToCart productAdded={productAdded} />
             <div className="d-flex flex-column justify-content-center">
                 <div className="d-flex justify-content-around three-div">
@@ -56,7 +63,7 @@ export function Shop({ setCart }) {
                             <p>$160.00</p>
                         </div>
                         <div className="card-footer d-flex flex-column align-content-center">
-                            <Button className="form-control btn btn-secondary" onClick={() => updateCart(products[0])}>Add to Cart</Button>
+                            {/* <Button className="form-control btn btn-secondary" onClick={() => updateCart(products[0])}>Add to Cart</Button> */}
                             <NavLink className="form-control btn btn-primary" to="/purchase">Buy Now</NavLink>
                         </div>
                     </div>
@@ -69,7 +76,7 @@ export function Shop({ setCart }) {
                             <p>$120.00</p>
                         </div>
                         <div className="card-footer">
-                            <Button className="form-control btn btn-secondary" onClick={() => updateCart(products[1])}>Add to Cart</Button>
+                            {/* <Button className="form-control btn btn-secondary" onClick={() => updateCart(products[1])}>Add to Cart</Button> */}
                             <NavLink className="form-control btn btn-primary" to="/purchase">Buy Now</NavLink>
                         </div>
                     </div>
@@ -82,7 +89,7 @@ export function Shop({ setCart }) {
                             <p>$180.00</p>
                         </div>
                         <div className="card-footer">
-                            <Button className="form-control btn btn-secondary" onClick={() => updateCart(products[2])}>Add to Cart</Button>
+                            {/* <Button className="form-control btn btn-secondary" onClick={() => updateCart(products[2])}>Add to Cart</Button> */}
                             <NavLink className="form-control btn btn-primary" to="/purchase">Buy Now</NavLink>
                         </div>
                     </div>
@@ -97,7 +104,7 @@ export function Shop({ setCart }) {
                             <p>$30.00</p>
                         </div>
                         <div className="card-footer">
-                            <Button className="form-control btn btn-secondary" onClick={() => updateCart(products[3])}>Add to Cart</Button>
+                            {/* <Button className="form-control btn btn-secondary" onClick={() => updateCart(products[3])}>Add to Cart</Button> */}
                             <NavLink className="form-control btn btn-primary" to="/purchase">Buy Now</NavLink>
                         </div>
                     </div>
@@ -110,7 +117,7 @@ export function Shop({ setCart }) {
                             <p>$150.00</p>
                         </div>
                         <div className="card-footer">
-                            <Button className="form-control btn btn-secondary" onClick={() => updateCart(products[4])}>Add to Cart</Button>
+                            {/* <Button className="form-control btn btn-secondary" onClick={() => updateCart(products[4])}>Add to Cart</Button> */}
                             <NavLink className="form-control btn btn-primary" to="/purchase">Buy Now</NavLink>
                         </div>
                     </div>
@@ -123,7 +130,7 @@ export function Shop({ setCart }) {
                             <p>$140.00</p>
                         </div>
                         <div className="card-footer">
-                            <Button className="form-control btn btn-secondary" onClick={() => updateCart(products[5])}>Add to Cart</Button>
+                            {/* <Button className="form-control btn btn-secondary" onClick={() => updateCart(products[5])}>Add to Cart</Button> */}
                             <NavLink className="form-control btn btn-primary" to="/purchase">Buy Now</NavLink>
                         </div>
                     </div>

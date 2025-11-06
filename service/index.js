@@ -233,6 +233,10 @@ apiRouter.get("/user/profile", verifyAuth, (req, res) => {
     res.send({ user: req.user });
 });
 
+apiRouter.get("/shop/products", async (req, res) => {
+    res.send({products: await DB.getProducts(!req.query.searchTerm ? {} : { "name" : { $regex: req.query.searchTerm, $options: "i" } })});
+});
+
 // Default error handler
 app.use(function (err, req, res, next) {
     res.status(500).send({ type: err.name, message: err.message });
