@@ -6,23 +6,6 @@ import { useEffect } from "react";
 
 export function Profile({ setFrom }) {
     const [user, setUser] = React.useState(null);
-    const passwordTrue = "password123";
-    const passwordStar = "***********";
-    const [password, setPassword] = React.useState(passwordStar);
-    const [passwordButtonText, setPasswordButtonText] = React.useState("Show Password");
-    const [passwordShown, setPasswordShown] = React.useState(false);
-
-    function toggleField(shown, setField, valueTrue, valueStar, setText, fieldName, setShown) {
-        if (!shown) {
-            setField(valueTrue)
-            setText(`Hide ${fieldName}`);
-            setShown(true);
-        } else {
-            setField(valueStar);
-            setText(`Show ${fieldName}`);
-            setShown(false);
-        }
-    }
 
     function pathConfig() {
         setFrom("profile")
@@ -50,9 +33,6 @@ export function Profile({ setFrom }) {
                         <div className="card-body">
                             <h1>{user ? user.userName : ""}'s Profile</h1>
                             <p><b>Name:</b> {user ? `${user.profile.firstName} ${user.profile.lastName}` : ""}</p>
-                            <p><b>Password:</b> {password}</p>
-                            <Button className="btn btn-secondary" style={{ marginBottom: "16px" }} onClick={() => toggleField(passwordShown, setPassword, passwordTrue, passwordStar, setPasswordButtonText, "Password", setPasswordShown)}>{passwordButtonText}</Button>
-                            <p><b>Name:</b> {user ? user.profile.firstName : ""} {user ? user.profile.lastName : ""}</p>
                             <p><b>Email:</b> {user ? user.profile.email : ""}</p>
                             <p><b>Phone Number:</b> {user ? user.profile.phone : ""}</p>
                             <p>
