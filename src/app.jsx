@@ -48,6 +48,7 @@ function AppContent() {
         }
     }, [location.pathname, setActivePage]);
 
+    // TODO: Update database in the next two usEffect calls
     useEffect(() => {
         localStorage.setItem("cart", JSON.stringify(cart));
     }, [cart]);
@@ -87,7 +88,7 @@ function AppContent() {
                 <Route path="/about" element={<About />} />
                 <Route path="/cart" element={<Cart cart={cart} />} />
                 <Route path="/contact" element={<Contact />} />
-                <Route path="/details" element={<Details />} />
+                <Route path="/details" element={<Details setCart={setCart} />} />
                 <Route path="/createUser" element={<CreateUser onAuthChange={(authState, userName) => { setAuthState(authState); setUserName(userName); }} setFrom={setFrom} />} />
                 <Route path="/personalInfo" element={<PersonalInfo from={from} />} />
                 <Route path="/shippingInfo" element={<ShippingInfo from={from} />} />

@@ -1,23 +1,67 @@
 import React from "react";
-import { NavLink } from "react-router-dom";
+import Button from "react-bootstrap/Button";
 
-export function Details() {
+import { NavLink, useSearchParams } from "react-router-dom";
+import { useEffect } from "react";
+
+function ConfirmAddToCart({ productAdded }) {
+    return (
+        <div className="centered" id="confirmAddToCart" style={{ display: "none" }}>
+            <p style={{ color: "#3CB371" }}>{productAdded} added to cart!</p>
+        </div>
+    );
+}
+
+export function Details({ setCart }) {
+    const [searchParams] = useSearchParams();
+    const productId = searchParams.get("id");
+    const [product, setProduct] = React.useState(null);
+
+    function updateCart(newItem) {
+        setCart(prevCart => {
+            if (prevCart.some(item => item.name === newItem.name)) {
+                return prevCart;
+            } else {
+                const newCart = [...prevCart, newItem];
+
+                new Promise(() => {
+                    document.getElementById("confirmAddToCart").style.display = "block";
+                    setTimeout(() => {
+                        document.getElementById("confirmAddToCart").style.display = "none";
+                    }, 2000);
+                });
+
+                return newCart;
+            }
+        });
+    }
+
+    useEffect(() => {
+        async function getProduct() {
+            const response = await fetch(`/api/details/${productId}`);
+
+            const productInfo = await response.json();
+            setProduct(productInfo.product);
+        }
+
+        getProduct();
+    }, []);
+
     return (
         <main>
             <div className="d-flex flex-row justify-content-around details-div">
                 <div className="item-display">
-                    <img src="clogging.jpg" alt="Clogging Shoes" className="img-thumbnail" />
-                    <p>Clogging Shoes</p>
-                    <p>$160.00</p>
-                    <button className="btn btn-secondary form-control">Add to Cart</button>
-                    <NavLink className="form-control btn btn-primary" to="/purchase">Buy Now</NavLink>
+                    <img src={product?.img} alt={product?.name} className="img-thumbnail" />
+                    <p>{product?.name}</p>
+                    <p>${product?.price}</p>
+                    <ConfirmAddToCart productAdded={product?.name} />
+                    <Button className="form-control btn btn-secondary" onClick={() => updateCart(product)}>Add to Cart</Button>
+                    <NavLink className="form-control btn btn-primary" to={`/purchase?id=${product?._id}`}>Buy Now</NavLink>
                 </div>
                 <div style={{margin: "10px"}}>
-                    <p>The Avriel International white clogging shoe is crafted with precision for dancers who demand both durability and elegance in their footwear. Designed in Canada with an emphasis on performance, these shoes offer a clean, classNameic profile that complements both practice attire and stage costumes. The sleek white finish lends a crisp, professional appearance, making them equally suitable for rehearsals, performances, and exhibitions.</p>
-                    <p>Engineered for demanding footwork, the shoe features a reinforced shank and a protective steel toe box. Together, these elements provide both structural integrity and added resilience, ensuring the shoe can withstand the rigors of clogging’s fast, percussive movements. The steel toe box delivers essential protection without compromising comfort, while the reinforced shank offers reliable arch support, enabling dancers to maintain precision and stability during even the most intricate routines.</p>
-                    <p>Crafted from premium materials, the upper is supple yet durable, paired with reinforced stitching that prolongs the life of the shoe. Inside, a cushioned insole and breathable lining reduce fatigue and enhance comfort, making the shoe suitable for long practice sessions as well as extended stage use. The securely mounted taps are balanced for clarity and resonance, producing a bright, authoritative sound that highlights the artistry and musicality of clogging.</p>
-                    <p>The outsole is engineered for optimal traction and responsiveness, allowing dancers to execute precise movements with confidence. Taps are fitted securely, producing a clear, resonant sound that carries effortlessly across the floor, highlighting the artistry of clogging with professional-grade quality.</p>
-                    <p>With their timeless white finish, superior comfort, and performance-driven design, Avriel International’s clogging shoes embody the company’s reputation for excellence in dance footwear. They are not just a tool for dancers but a reflection of the artistry, discipline, and passion that clogging inspires.</p>
+                    {product?.description.map((text) => (
+                        <p>{text}</p>
+                    ))}
                 </div>
             </div>
         </main>

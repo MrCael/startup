@@ -1,4 +1,4 @@
-const { MongoClient } = require('mongodb');
+const { MongoClient, ObjectId } = require('mongodb');
 const config = require('./dbConfig.json');
 
 const url = `mongodb+srv://${config.userName}:${config.password}@${config.hostname}`;
@@ -37,10 +37,15 @@ async function getProducts(filter) {
     return productCollection.find(filter).toArray();
 }
 
+async function getProduct(id) {
+    return productCollection.findOne({ _id: new ObjectId(String(id)) });
+}
+
 module.exports = {
   getUser,
   getUserByUserName,
   addUser,
   updateUser,
-  getProducts
+  getProducts,
+  getProduct
 };

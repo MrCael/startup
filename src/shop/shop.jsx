@@ -49,10 +49,10 @@ export function Shop({ setCart }) {
 
     useEffect(() => {
         async function getProducts() {
-            const productList = await fetch(`/api/shop/products${searchTerm ? `?searchTerm=${searchTerm}` : ""}`);
+            const response = await fetch(`/api/shop/products${searchTerm ? `?searchTerm=${searchTerm}` : ""}`);
 
-            const body = await productList.json();
-            setProducts(partitionProducts(body.products));
+            const productList = await response.json();
+            setProducts(partitionProducts(productList.products));
         }
 
         getProducts();
@@ -68,7 +68,7 @@ export function Shop({ setCart }) {
                         {productSet.map((product) => (
                             <div className="card product">
                                 <div className="card-body">
-                                    <NavLink to="/details">
+                                    <NavLink to={`/details?id=${product._id}`}>
                                         <img src={product.img} alt={product.name} height="100" />
                                     </NavLink>
                                     <p>{product.name}</p>
@@ -76,7 +76,7 @@ export function Shop({ setCart }) {
                                 </div>
                                 <div className="card-footer d-flex flex-column align-content-center">
                                     <Button className="form-control btn btn-secondary" onClick={() => updateCart(product)}>Add to Cart</Button>
-                                    <NavLink className="form-control btn btn-primary" to="/purchase">Buy Now</NavLink>
+                                    <NavLink className="form-control btn btn-primary" to={`/purchase?id=${product._id}`}>Buy Now</NavLink>
                                 </div>
                             </div>
                         ))}

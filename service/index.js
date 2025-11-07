@@ -233,8 +233,14 @@ apiRouter.get("/user/profile", verifyAuth, (req, res) => {
     res.send({ user: req.user });
 });
 
+// Get products for the shop based on an optional search condition
 apiRouter.get("/shop/products", async (req, res) => {
-    res.send({products: await DB.getProducts(!req.query.searchTerm ? {} : { "name" : { $regex: req.query.searchTerm, $options: "i" } })});
+    res.send({ products: await DB.getProducts(!req.query.searchTerm ? {} : { "name" : { $regex: req.query.searchTerm, $options: "i" } }) });
+});
+
+// Get specific product for details page
+apiRouter.get("/details/:id", async (req, res) => {
+    res.send({ product: await DB.getProduct(req.params.id) });
 });
 
 // Default error handler
