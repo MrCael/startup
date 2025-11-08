@@ -37,7 +37,7 @@ function FullCart({ cart }) {
                                     <p>${product.price}</p>
                                 </div>
                                 <div className="card-footer d-flex flex-column align-content-center">
-                                    <NavLink className="form-control btn btn-primary" to="/purchase">Buy Now</NavLink>
+                                    <NavLink className="form-control btn btn-primary" to={`/purchase?id=${product?._id}`}>Buy Now</NavLink>
                                 </div>
                             </div>
                         ))}
@@ -45,7 +45,7 @@ function FullCart({ cart }) {
                 ))}
             </div>
             <div className="checkout-cart">
-                <NavLink className="btn btn-secondary" to="/purchase">Checkout Cart</NavLink>
+                <NavLink className="btn btn-secondary" to="/purchase?id=cart">Checkout Cart</NavLink>
             </div>
         </>
     );

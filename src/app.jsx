@@ -95,7 +95,7 @@ function AppContent() {
                 <Route path="/billingInfo" element={<BillingInfo from={from} />} />
                 <Route path="/measurementInfo" element={<MeasurementInfo from={from} />} />
                 <Route path="/profile" element={<Profile setFrom={setFrom} />} />
-                <Route path="/purchase" element={<Purchase setCart={setCart} />} />
+                <Route path="/purchase" element={<Purchase cart={cart} setCart={setCart} />} />
                 <Route path="/purchaseHistory" element={<PurchaseHistory />} />
                 <Route path="/shop" element={<Shop setCart={setCart} />} />
                 <Route path="*" element={<NotFound />} />

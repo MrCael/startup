@@ -243,6 +243,12 @@ apiRouter.get("/details/:id", async (req, res) => {
     res.send({ product: await DB.getProduct(req.params.id) });
 });
 
+// Get product list for checkout page
+apiRouter.get("/details/:id", async (req, res) => {
+    // configure req.params.items into a valid query object for the getProducts function
+    res.send({ product: await DB.getProducts(req.params.items) });
+});
+
 // Default error handler
 app.use(function (err, req, res, next) {
     res.status(500).send({ type: err.name, message: err.message });

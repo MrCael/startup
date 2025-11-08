@@ -1,15 +1,33 @@
 import React from "react";
-import { NavLink } from "react-router-dom";
 
-export function Purchase({ setCart }) {
+import { NavLink, useSearchParams } from "react-router-dom";
+import { useEffect } from "react";
+
+export function Purchase({ cart, setCart }) {
+    const [searchParams] = useSearchParams();
+    const checkoutId = searchParams.get("id");
+    const [checkoutItems, setCheckoutItems] = React.useState(null);
+    
+    useEffect(() => {
+        async function getCheckoutItems() {
+            const checkoutString = checkoutId == "cart" ? cart.map(item => `items=${item._id}`).join("&") : `items=${checkoutId}`;
+            const response = await fetch(`/api/purchase?${checkoutId}`);
+
+            const itemList = await response.json();
+            setCheckoutItems(itemList.items);
+        }
+
+        getCheckoutItems();
+    }, []);
+    
     return (
         <main>
             <div className="d-flex flex-column justify-content-center align-div">
                 <table style={{marginBottom: "10px"}}>
                     <tbody>
-                        <tr>
+                        {/* <tr>
                             <td colSpan="2" className="centered">
-                                <h1>Shipping Information</h1> {/* Edit to select shipping address if user has any defined, and to fill one out otherwise */}
+                                <h1>Shipping Information</h1>
                             </td>
                         </tr>
                         <tr>
@@ -101,11 +119,11 @@ export function Purchase({ setCart }) {
                                 <p>Zip Code</p>
                                 <input type="text" className="form-control" pattern="\d{5}" maxLength="5" />
                             </td>
-                        </tr>
+                        </tr> */}
                         <tr><td><br /></td></tr>
-                        <tr>
+                        {/* <tr>
                             <td colSpan="2" className="centered">
-                                <h1>Billing Information</h1> {/* Edit to select billing information if user has any defined, and to fill one out otherwise */}
+                                <h1>Billing Information</h1>
                             </td>
                         </tr>
                         <tr>
@@ -175,7 +193,7 @@ export function Purchase({ setCart }) {
                                     <span>Billing address same as shipping address?</span>
                                 </label>
                             </td>
-                        </tr>
+                        </tr> */}
                         <tr><td><br /></td></tr>
                         <tr>
                             <td colSpan="2">
