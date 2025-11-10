@@ -31,7 +31,10 @@ export function Shop() {
 
     useEffect(() => {
         async function getProducts() {
-            const response = await fetch(`/api/shop/products${searchTerm ? `?searchTerm=${searchTerm}` : ""}`);
+            const response = await fetch(`/api/shop/products${searchTerm ? `?searchTerm=${searchTerm}` : ""}`, {
+                credentials: "include"
+            });
+            
             const body = await response.json();
             const partitionedProducts = [];
 

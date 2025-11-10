@@ -229,8 +229,8 @@ apiRouter.get("/user/profile", verifyAuth, (req, res) => {
 });
 
 // Get products for the shop based on an optional search condition
-apiRouter.get("/shop/products", async (req, res) => {
-    const user = await DB.getUser(req.cookies[authCookieName]);
+apiRouter.get("/shop/products", verifyAuth, async (req, res) => {
+    const user = req.user;
 
     if (user && !user.cart) {
         user.cart = [];
@@ -241,26 +241,25 @@ apiRouter.get("/shop/products", async (req, res) => {
 });
 
 // Update cart from shop page
-apiRouter.patch("/shop/cart", async (req, res) => {
-    const token = req.cookies[authCookieName]
-    const user = await DB.getUser(token);
+apiRouter.patch("/shop/cart", verifyAuth, async (req, res) => {
+    const user = req.user;
 
     if (user) {
         if (!user.cart.includes(req.body.id)) user.cart = [...user.cart, req.body.id];
 
-        DB.updateCart(token, user.cart);
+        DB.updateCart(req.cookies[authCookieName], user.cart);
     }
     res.send({ msg: "Cart successfully updated!" });
 });
 
 // Get products on cart
-apiRouter.get("/cart", async (req, res) => {
+apiRouter.get("/cart", verifyAuth, async (req, res) => {
     const itemIds = await DB.getCart(req.cookies[authCookieName]);
     res.send({ cart: await DB.getProducts({ "_id": { $in: itemIds.map(item => new ObjectId(String(item))) } }) });
 });
 
 // Get specific product for details page
-apiRouter.get("/details/:id", async (req, res) => {
+apiRouter.get("/details/:id", verifyAuth, async (req, res) => {
     res.send({ product: await DB.getProduct(req.params.id) });
 });
 
