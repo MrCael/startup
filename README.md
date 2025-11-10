@@ -156,8 +156,8 @@ For this deliverable I did the following. I checked the box `[x]` and added a de
 
 For this deliverable I did the following. I checked the box `[x]` and added a description for things I completed.
 
-- [ ] **Stores data in MongoDB** - I did not complete this part of the deliverable.
-- [ ] **Stores credentials in MongoDB** - I did not complete this part of the deliverable.
+- [x] **Stores data in MongoDB** - I store data in MongoDB for each product and each user. For the products I store their image url, name, and price. For each user I store their user name, encrypted password, a list of addresses for shipping, a list of cards for billing (not encrypted, I need to do more research about how to be able to safely unencrypt data for that which I haven't had time to do), a list of measurements, and a list representing their cart.
+- [x] **Stores credentials in MongoDB** - I store a token that corresponds to a browser cookie that is created upon login and deleted upon logout. The cookie is used to determine authentication even after closing and reopening the page, so a user doesn't have to login again so long as the cookie hasn't expired.
 
 ## 🚀 WebSocket deliverable
 
