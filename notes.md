@@ -162,4 +162,9 @@ These were also pretty simple to use and implement. I ended up going with an API
 
 ### MongoDB
 
-I realized about halfway through implementing my database that it would be easier to track all my data with state variables and then call useEffects to update the database when those state variables are changed
+> [!NOTE]
+> Double check what is standard for the next two paragraphs before implementing
+
+I realized about halfway through implementing my database that it would be easier to track all my data with state variables and then call useEffects to update the database when those state variables are changed.
+
+It's also probably better to declare all necessary elements to each user when they are created/logged in instead of only on the page it's relevant.
