@@ -3,7 +3,16 @@ import Button from "react-bootstrap/Button";
 
 import { NavLink } from "react-router-dom";
 
-export function Authenticated({ userName, onLogout }) {
+export function Authenticated({ userName, unauthorize }) {
+    async function logout() {
+        await fetch("/api/auth/logout", {
+            method: "DELETE",
+            credentials: "include"
+        });
+
+        unauthorize();
+    }
+
     return (
         <>
             <div>
@@ -11,7 +20,7 @@ export function Authenticated({ userName, onLogout }) {
             </div>
             <div>
                 <NavLink className="btn btn-primary form-control" to="/shop">Shop</NavLink>
-                <Button className="btn btn-secondary form-control" onClick={() => onLogout()}>Log Out</Button>
+                <Button className="btn btn-secondary form-control" onClick={() => logout()}>Log Out</Button>
             </div>
         </>
     );

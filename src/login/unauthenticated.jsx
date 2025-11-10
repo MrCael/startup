@@ -20,10 +20,8 @@ export function Unauthenticated({ userName, setUserName, onLogin }) {
         
         const body = await response.json();
         if (response?.status === 200) {
-            localStorage.setItem("userName", body.userName);
             onLogin(body.userName);
         } else {
-            localStorage.setItem("userName", "");
             setDisplayError(`Error: ${body.msg}`);
         }
     }

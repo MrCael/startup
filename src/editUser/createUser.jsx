@@ -24,11 +24,9 @@ export function CreateUser({ onAuthChange, setFrom }) {
 
         const body = await response.json();
         if (response?.status === 200) {
-            localStorage.setItem("userName", body.userName);
             onAuthChange(AuthState.Authenticated, body.userName);
             navigate("/personalInfo");
         } else {
-            localStorage.setItem("userName", "");
             setDisplayError(`Error: ${body.msg}`);
         }
     }

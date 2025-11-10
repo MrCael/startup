@@ -67,6 +67,11 @@ app.use(express.static('public'));
 var apiRouter = express.Router();
 app.use(`/api`, apiRouter);
 
+apiRouter.get("/cookie", async (req, res) => {
+    const user = await DB.getUser(req.cookies[authCookieName]);
+    res.send({ userName: user ? user.userName : null });
+});
+
 // CreateAuth a new user
 apiRouter.post('/auth/create', async (req, res) => {
     if (await DB.getUserByUserName(req.body.userName)) {
@@ -276,7 +281,7 @@ apiRouter.get("/purchase/info", verifyAuth, async (req, res) => {
         user.cardList = [];
         DB.updateUser(user);
     }
-    
+
     res.send({ addressList: user?.addressList, cardList: user?.cardList });
 });
 

@@ -29,9 +29,8 @@ function NotFound() {
 function AppContent() {
     const { activePage, setActivePage } = useActivePage();
     const location = useLocation();
-    // TODO: Get current user based on cookie
-    const [userName, setUserName] = React.useState(localStorage.getItem("userName") || "");
-    const [authState, setAuthState] = React.useState(userName !== "" ? AuthState.Authenticated : AuthState.Unauthenticated);
+    const [userName, setUserName] = React.useState(null);
+    const [authState, setAuthState] = React.useState(AuthState.Unauthenticated);
     const [from, setFrom] = React.useState("login");
 
     // Update active page when user clicks a nav link
@@ -40,15 +39,23 @@ function AppContent() {
     };
 
     useEffect(() => {
+        async function getUser() {
+            const response = await fetch("/api/cookie");
+            const body = await response.json();
+
+            setUserName(body.userName);
+            if (body.userName) setAuthState(AuthState.Authenticated);
+        }
+
+        getUser();
+    }, []);
+
+    useEffect(() => {
         const knownRoutes = ["/", "/shop", "/cart", "/profile", "/about", "/contact"];
         if (knownRoutes.includes(location.pathname)) {
             setActivePage(location.pathname);
         }
     }, [location.pathname, setActivePage]);
-
-    useEffect(() => {
-        localStorage.setItem("userName", userName);
-    }, [userName]);
 
     return (
         <div className="body d-flex flex-column">
