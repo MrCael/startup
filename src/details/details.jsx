@@ -17,28 +17,23 @@ export function Details({ setCart }) {
     const productId = searchParams.get("id");
     const [product, setProduct] = React.useState(null);
 
-    function updateCart(newItem) {
-        setCart(prevCart => {
-            if (prevCart.some(item => item.name === newItem.name)) {
-                return prevCart;
-            } else {
-                const newCart = [...prevCart, newItem];
-
-                new Promise(() => {
-                    document.getElementById("confirmAddToCart").style.display = "block";
-                    setTimeout(() => {
-                        document.getElementById("confirmAddToCart").style.display = "none";
-                    }, 2000);
-                });
-
-                return newCart;
+    async function updateCart(id) {
+        await fetch("/api/shop/cart", {
+            method: "PATCH",
+            body: JSON.stringify(
+                { "id": id },
+            ),
+            headers: {
+                "Content-type": "application/json; charset=UTF-8"
             }
         });
     }
 
     useEffect(() => {
         async function getProduct() {
-            const response = await fetch(`/api/details/${productId}`);
+            const response = await fetch(`/api/details/${productId}`, {
+                credentials: "include"
+            });
 
             const productInfo = await response.json();
             setProduct(productInfo.product);
@@ -55,7 +50,7 @@ export function Details({ setCart }) {
                     <p>{product?.name}</p>
                     <p>${product?.price}</p>
                     <ConfirmAddToCart productAdded={product?.name} />
-                    <Button className="form-control btn btn-secondary" onClick={() => updateCart(product)}>Add to Cart</Button>
+                    <Button className="form-control btn btn-secondary" onClick={() => updateCart(product?._id)}>Add to Cart</Button>
                     <NavLink className="form-control btn btn-primary" to={`/purchase?id=${product?._id}`}>Buy Now</NavLink>
                 </div>
                 <div style={{margin: "10px"}}>
