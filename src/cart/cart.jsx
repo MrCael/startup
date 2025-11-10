@@ -1,6 +1,7 @@
 import React from "react";
 
 import { NavLink } from "react-router-dom";
+import { useEffect } from "react";
 
 function EmptyCart() {
     return (
@@ -11,22 +12,10 @@ function EmptyCart() {
 }
 
 function FullCart({ cart }) {
-    function partitionProducts(products) {
-        const partition = [];
-
-        for (let i = 0; i < products.length; i += 3) {
-            partition.push(products.slice(i, i + 3));
-        }
-
-        return partition;
-    }
-
-    const partitionedCart = partitionProducts(cart);
-
     return (
         <>
             <div className="d-flex flex-column justify-content-center">
-                {partitionedCart.map((productSet) => (
+                {cart.map((productSet) => (
                     <div className="d-flex justify-content-around three-div">
                         {productSet.map((product) => (
                             <div className="card product">
@@ -38,7 +27,7 @@ function FullCart({ cart }) {
                                     <p>${product.price}</p>
                                 </div>
                                 <div className="card-footer d-flex flex-column align-content-center">
-                                    <NavLink className="form-control btn btn-primary" to={`/purchase?id=${product?._id}`}>Buy Now</NavLink>
+                                    <NavLink className="form-control btn btn-primary" to={`/purchase?id=${product._id}`}>Buy Now</NavLink>
                                 </div>
                             </div>
                         ))}
@@ -52,14 +41,32 @@ function FullCart({ cart }) {
     );
 }
 
-export function Cart({ cart }) {
+export function Cart() {
+    const [cart, setCart] = React.useState(null);
+
+    useEffect(() => {
+        async function getCart() {
+            const response = await fetch("/api/cart");
+            const body = await response.json();
+            const partitionedCart = [];
+
+            for (let i = 0; i < body.cart.length; i += 3) {
+                partitionedCart.push(body.cart.slice(i, i + 3));
+            }
+
+            setCart(partitionedCart);
+        }
+
+        getCart();
+    }, []);
+
     return (
         <main className="centered">
             <div className="cart-text">
                 <h1>Cael Erickson's Cart</h1>
             </div>
-            {cart.length === 0 && <EmptyCart />}
-            {cart.length > 0 && <FullCart cart={cart} />}
+            {cart?.length === 0 && <EmptyCart />}
+            {cart?.length > 0 && <FullCart cart={cart} />}
         </main>
     );
 }

@@ -20,12 +20,6 @@ let users = [];
 // The service port. In production the front-end code is statically hosted by the service on the same port.
 const port = process.argv.length > 2 ? process.argv[2] : 4000;
 
-async function findUser(field, value) {
-    if (!value) return null;
-
-    return users.find((u) => u[field] === value);
-}
-
 async function createUser(userName, password) {
     const passwordHash = await bcrypt.hash(password, 10);
 
@@ -102,7 +96,7 @@ apiRouter.post('/auth/login', async (req, res) => {
 
 // DeleteAuth logout a user
 apiRouter.delete('/auth/logout', async (req, res) => {
-    const user = await findUser('token', req.cookies[authCookieName]);
+    const user = await DB.getUser(req.cookies[authCookieName]);
     if (user) {
         delete user.token;
         DB.updateUser(user);
@@ -236,7 +230,33 @@ apiRouter.get("/user/profile", verifyAuth, (req, res) => {
 
 // Get products for the shop based on an optional search condition
 apiRouter.get("/shop/products", async (req, res) => {
+    const user = await DB.getUser(req.cookies[authCookieName]);
+
+    if (user && !user.cart) {
+        user.cart = [];
+        DB.updateUser(user);
+    }
+
     res.send({ products: await DB.getProducts(!req.query.searchTerm ? {} : { "name" : { $regex: req.query.searchTerm, $options: "i" } }) });
+});
+
+// Update cart from shop page
+apiRouter.patch("/shop/cart", async (req, res) => {
+    const token = req.cookies[authCookieName]
+    const user = await DB.getUser(token);
+
+    if (user) {
+        if (!user.cart.includes(req.body.id)) user.cart = [...user.cart, req.body.id];
+
+        DB.updateCart(token, user.cart);
+    }
+    res.send({ msg: "Cart successfully updated!" });
+});
+
+// Get products on cart
+apiRouter.get("/cart", async (req, res) => {
+    const itemIds = await DB.getCart(req.cookies[authCookieName]);
+    res.send({ cart: await DB.getProducts({ "_id": { $in: itemIds.map(item => new ObjectId(String(item))) } }) });
 });
 
 // Get specific product for details page
@@ -245,8 +265,20 @@ apiRouter.get("/details/:id", async (req, res) => {
 });
 
 // Get product list for checkout page
-apiRouter.get("/purchase", async (req, res) => {
-    res.send({ items: await DB.getProducts({ "_id": { $in: Array.isArray(req.query.items) ? req.query.items.map(item => new ObjectId(item)) : [new ObjectId(req.query.items)] } }) });
+apiRouter.get("/purchase/:id", async (req, res) => {
+    const token = req.cookies[authCookieName]
+    const user = await DB.getUser(token);
+
+    if (user) {
+        if (req.params.id == "cart") {
+            DB.updateCart(token, []);
+        } else {
+            user.cart = user.cart.filter(itemId => itemId != req.params.id);
+            DB.updateCart(token, user.cart);
+        }
+    }
+
+    res.send({ msg: "Cart successfully updated!" });
 });
 
 // Default error handler

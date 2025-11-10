@@ -12,47 +12,34 @@ function ConfirmAddToCart({ productAdded }) {
     );
 }
 
-export function Shop({ setCart }) {
+export function Shop() {
     const [products, setProducts] = React.useState(null);
     const [productAdded, setProductAdded] = React.useState("");
     const [searchTerm, setSearchTerm] = React.useState("");
 
-    function updateCart(newItem) {
-        setCart(prevCart => {
-            if (prevCart.some(item => item.name === newItem.name)) {
-                return prevCart;
-            } else {
-                const newCart = [...prevCart, newItem];
-                setProductAdded(newItem.name);
-
-                new Promise(() => {
-                    document.getElementById("confirmAddToCart").style.display = "block";
-                    setTimeout(() => {
-                        document.getElementById("confirmAddToCart").style.display = "none";
-                    }, 2000);
-                });
-
-                return newCart;
+    async function updateCart(id) {
+        await fetch("/api/shop/cart", {
+            method: "PATCH",
+            body: JSON.stringify(
+                { "id": id },
+            ),
+            headers: {
+                "Content-type": "application/json; charset=UTF-8"
             }
         });
-    }
-
-    function partitionProducts(products) {
-        const partition = [];
-
-        for (let i = 0; i < products.length; i += 3) {
-            partition.push(products.slice(i, i + 3));
-        }
-
-        return partition;
     }
 
     useEffect(() => {
         async function getProducts() {
             const response = await fetch(`/api/shop/products${searchTerm ? `?searchTerm=${searchTerm}` : ""}`);
+            const body = await response.json();
+            const partitionedProducts = [];
 
-            const productList = await response.json();
-            setProducts(partitionProducts(productList.products));
+            for (let i = 0; i < body.products.length; i += 3) {
+                partitionedProducts.push(body.products.slice(i, i + 3));
+            }
+
+            setProducts(partitionedProducts);
         }
 
         getProducts();
@@ -75,7 +62,7 @@ export function Shop({ setCart }) {
                                     <p>${product.price}</p>
                                 </div>
                                 <div className="card-footer d-flex flex-column align-content-center">
-                                    <Button className="form-control btn btn-secondary" onClick={() => updateCart(product)}>Add to Cart</Button>
+                                    <Button className="form-control btn btn-secondary" onClick={() => updateCart(product._id)}>Add to Cart</Button>
                                     <NavLink className="form-control btn btn-primary" to={`/purchase?id=${product._id}`}>Buy Now</NavLink>
                                 </div>
                             </div>

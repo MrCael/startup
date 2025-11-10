@@ -33,7 +33,6 @@ function AppContent() {
     // TODO: Get current user based on cookie
     const [userName, setUserName] = React.useState(localStorage.getItem("userName") || "");
     const [authState, setAuthState] = React.useState(userName !== "" ? AuthState.Authenticated : AuthState.Unauthenticated);
-    const [cart, setCart] = React.useState(JSON.parse(localStorage.getItem("cart")) || []);
     const [from, setFrom] = React.useState("login");
 
     // Update active page when user clicks a nav link
@@ -48,11 +47,6 @@ function AppContent() {
         }
     }, [location.pathname, setActivePage]);
 
-    // TODO: Update database in the next two usEffect calls
-    useEffect(() => {
-        localStorage.setItem("cart", JSON.stringify(cart));
-    }, [cart]);
-
     useEffect(() => {
         localStorage.setItem("userName", userName);
     }, [userName]);
@@ -65,15 +59,16 @@ function AppContent() {
                         <li className="nav-item">
                             <NavLink to="/" className={`nav-link ${activePage === "/" ? "active" : ""}`} onClick={() => handleNavClick("/")}>Login</NavLink>
                         </li>
+                        {authState === AuthState.Authenticated && <>
                         <li className="nav-item">
                             <NavLink to="/shop" className={`nav-link ${activePage === "/shop" ? "active" : ""}`} onClick={() => handleNavClick("/shop")}>Shop</NavLink>
                         </li>
-                        {authState === AuthState.Authenticated && <li className="nav-item">
+                        <li className="nav-item">
                             <NavLink to="/cart" className={`nav-link ${activePage === "/cart" ? "active" : ""}`} onClick={() => handleNavClick("/cart")}>Cart</NavLink>
-                        </li>}
-                        {authState === AuthState.Authenticated && <li className="nav-item">
+                        </li>
+                        <li className="nav-item">
                             <NavLink to="/profile" className={`nav-link ${activePage === "/profile" ? "active" : ""}`} onClick={() => handleNavClick("/profile")}>Profile</NavLink>
-                        </li>}
+                        </li></>}
                         <li className="nav-item opt-item-head">
                             <NavLink to="/about" className={`nav-link ${activePage === "/about" ? "active" : ""}`} onClick={() => handleNavClick("/about")}>About</NavLink>
                         </li>
@@ -86,24 +81,24 @@ function AppContent() {
             <Routes>
                 <Route path="/" element={<Login userName={userName} setUserName={setUserName} authState={authState} onAuthChange={(authState, userName) => { setAuthState(authState); setUserName(userName); }} />} exact />
                 <Route path="/about" element={<About />} />
-                <Route path="/cart" element={<Cart cart={cart} />} />
+                <Route path="/cart" element={<Cart />} />
                 <Route path="/contact" element={<Contact />} />
-                <Route path="/details" element={<Details setCart={setCart} />} />
+                <Route path="/details" element={<Details />} />
                 <Route path="/createUser" element={<CreateUser onAuthChange={(authState, userName) => { setAuthState(authState); setUserName(userName); }} setFrom={setFrom} />} />
                 <Route path="/personalInfo" element={<PersonalInfo from={from} />} />
                 <Route path="/shippingInfo" element={<ShippingInfo from={from} />} />
                 <Route path="/billingInfo" element={<BillingInfo from={from} />} />
                 <Route path="/measurementInfo" element={<MeasurementInfo from={from} />} />
                 <Route path="/profile" element={<Profile setFrom={setFrom} />} />
-                <Route path="/purchase" element={<Purchase cart={cart} setCart={setCart} />} />
+                <Route path="/purchase" element={<Purchase />} />
                 <Route path="/purchaseHistory" element={<PurchaseHistory />} />
-                <Route path="/shop" element={<Shop setCart={setCart} />} />
+                <Route path="/shop" element={<Shop />} />
                 <Route path="*" element={<NotFound />} />
             </Routes>
             <footer>
                 <p>Author Name(s): <a href="https://github.com/MrCael/startup.git">Cael Erickson</a></p>
-                <p className="opt-item-foot"><NavLink to="about">About</NavLink></p>
-                <p className="opt-item-foot"><NavLink to="contact">Contact Us</NavLink></p>
+                <p className="opt-item-foot"><NavLink to="/about">About</NavLink></p>
+                <p className="opt-item-foot"><NavLink to="/contact">Contact Us</NavLink></p>
             </footer>
         </div>
     );

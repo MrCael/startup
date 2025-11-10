@@ -3,28 +3,13 @@ import React from "react";
 import { NavLink, useSearchParams } from "react-router-dom";
 import { useEffect } from "react";
 
-export function Purchase({ cart, setCart }) {
+export function Purchase() {
     const [searchParams] = useSearchParams();
     const checkoutId = searchParams.get("id");
-    const [checkoutItems, setCheckoutItems] = React.useState(null);
 
-    function updateCart() {
-        setCart(prev => {
-            return prev.filter((item) => checkoutItems.includes(item));
-        });
+    async function updateCart() {
+        fetch(`/api/purchase/${checkoutId}`);
     }
-    
-    useEffect(() => {
-        async function getCheckoutItems() {
-            const checkoutString = checkoutId == "cart" ? cart.map(item => `items=${item._id}`).join("&") : `items=${checkoutId}`;
-            const response = await fetch(`/api/purchase?${checkoutString}`);
-
-            const itemList = await response.json();
-            setCheckoutItems(itemList.items);
-        }
-
-        getCheckoutItems();
-    }, []);
     
     return (
         <main>

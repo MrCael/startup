@@ -41,11 +41,22 @@ async function getProduct(id) {
     return productCollection.findOne({ _id: new ObjectId(String(id)) });
 }
 
+async function getCart(token){
+    const user = await getUser(token);
+    return user.cart;
+}
+
+async function updateCart(token, cart) {
+    await userCollection.updateOne({ token: token }, { $set: { "cart": cart } })
+}
+
 module.exports = {
   getUser,
   getUserByUserName,
   addUser,
   updateUser,
   getProducts,
-  getProduct
+  getProduct,
+  getCart,
+  updateCart
 };
