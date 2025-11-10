@@ -159,3 +159,7 @@ Express was super nice to use. I had to work out some kinks, especially with `PA
 ### 3rd-party APIs
 
 These were also pretty simple to use and implement. I ended up going with an API to allow me to send email notifications which was a bit more complex than what we did in class, but I still didn't have much trouble getting it to work. The main roadblock I found was when pushing my code to my production environment. Because I added a `.env` file to hold an API key I had to add that to the `deployService.sh` script so it would be uploaded to my server. But once I added that one command to the file everything worked perfectly.
+
+### MongoDB
+
+I realized about halfway through implementing my database that it would be easier to track all my data with state variables and then call useEffects to update the database when those state variables are changed
