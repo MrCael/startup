@@ -263,10 +263,27 @@ apiRouter.get("/details/:id", verifyAuth, async (req, res) => {
     res.send({ product: await DB.getProduct(req.params.id) });
 });
 
-// Get product list for checkout page
-apiRouter.get("/purchase/:id", async (req, res) => {
-    const token = req.cookies[authCookieName]
-    const user = await DB.getUser(token);
+// Get shipping and billing info for display on purchase page
+apiRouter.get("/purchase/info", verifyAuth, async (req, res) => {
+    const user = req.user;
+
+    if (!user.addressList) {
+        user.addressList = [];
+        DB.updateUser(user);
+    }
+
+    if (!user.cardList) {
+        user.cardList = [];
+        DB.updateUser(user);
+    }
+    
+    res.send({ addressList: user?.addressList, cardList: user?.cardList });
+});
+
+// update cart when checking out on purchase page
+apiRouter.patch("/purchase/:id", verifyAuth,  async (req, res) => {
+    const token = req.cookies[authCookieName];
+    const user = req.user;
 
     if (user) {
         if (req.params.id == "cart") {
