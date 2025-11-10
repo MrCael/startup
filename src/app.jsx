@@ -16,7 +16,6 @@ import { BillingInfo } from "./editUser/billingInfo";
 import { MeasurementInfo } from "./editUser/measurementInfo";
 import { Profile } from "./profile/profile";
 import { Purchase } from "./purchase/purchase";
-import { PurchaseHistory } from "./purchaseHistory/purchaseHistory";
 import { Shop } from "./shop/shop";
 import { AuthState } from "./login/authState";
 
@@ -91,7 +90,6 @@ function AppContent() {
                 <Route path="/measurementInfo" element={<MeasurementInfo from={from} />} />
                 <Route path="/profile" element={<Profile setFrom={setFrom} />} />
                 <Route path="/purchase" element={<Purchase />} />
-                <Route path="/purchaseHistory" element={<PurchaseHistory />} />
                 <Route path="/shop" element={<Shop />} />
                 <Route path="*" element={<NotFound />} />
             </Routes>

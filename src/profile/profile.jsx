@@ -43,7 +43,6 @@ export function Profile({ setFrom }) {
                     <NavLink className="btn btn-primary profile-button" onClick={() => pathConfig()} to="/shippingInfo">Manage Shipping Info</NavLink>
                     <NavLink className="btn btn-primary profile-button" onClick={() => pathConfig()} to="/billingInfo">Manage Billing Info</NavLink>
                     <NavLink className="btn btn-primary profile-button" onClick={() => pathConfig()} to="/measurementInfo">Manage Measurements</NavLink>
-                    <NavLink className="btn btn-primary profile-button" to="/purchaseHistory">View Purchase History</NavLink>
                 </div>
             </div>
         </main>
