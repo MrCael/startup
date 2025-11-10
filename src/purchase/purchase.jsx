@@ -7,11 +7,17 @@ export function Purchase({ cart, setCart }) {
     const [searchParams] = useSearchParams();
     const checkoutId = searchParams.get("id");
     const [checkoutItems, setCheckoutItems] = React.useState(null);
+
+    function updateCart() {
+        setCart(prev => {
+            return prev.filter((item) => checkoutItems.includes(item));
+        });
+    }
     
     useEffect(() => {
         async function getCheckoutItems() {
             const checkoutString = checkoutId == "cart" ? cart.map(item => `items=${item._id}`).join("&") : `items=${checkoutId}`;
-            const response = await fetch(`/api/purchase?${checkoutId}`);
+            const response = await fetch(`/api/purchase?${checkoutString}`);
 
             const itemList = await response.json();
             setCheckoutItems(itemList.items);
@@ -25,7 +31,7 @@ export function Purchase({ cart, setCart }) {
             <div className="d-flex flex-column justify-content-center align-div">
                 <table style={{marginBottom: "10px"}}>
                     <tbody>
-                        {/* <tr>
+                        <tr>
                             <td colSpan="2" className="centered">
                                 <h1>Shipping Information</h1>
                             </td>
@@ -119,9 +125,9 @@ export function Purchase({ cart, setCart }) {
                                 <p>Zip Code</p>
                                 <input type="text" className="form-control" pattern="\d{5}" maxLength="5" />
                             </td>
-                        </tr> */}
+                        </tr>
                         <tr><td><br /></td></tr>
-                        {/* <tr>
+                        <tr>
                             <td colSpan="2" className="centered">
                                 <h1>Billing Information</h1>
                             </td>
@@ -193,11 +199,11 @@ export function Purchase({ cart, setCart }) {
                                     <span>Billing address same as shipping address?</span>
                                 </label>
                             </td>
-                        </tr> */}
+                        </tr>
                         <tr><td><br /></td></tr>
                         <tr>
                             <td colSpan="2">
-                                <NavLink className="btn btn-secondary form-control" onClick={() => setCart([])} to="/shop">Complete Transaction</NavLink>
+                                <NavLink className="btn btn-secondary form-control" onClick={() => updateCart()} to="/shop">Complete Transaction</NavLink>
                             </td>
                         </tr>
                     </tbody>

@@ -4,6 +4,7 @@ const cookieParser = require('cookie-parser');
 const express = require('express');
 
 const { Resend } = require("resend");
+const { ObjectId } = require('mongodb');
 
 const jsonpatch = require('fast-json-patch');
 const bcrypt = require('bcryptjs');
@@ -244,9 +245,8 @@ apiRouter.get("/details/:id", async (req, res) => {
 });
 
 // Get product list for checkout page
-apiRouter.get("/details/:id", async (req, res) => {
-    // configure req.params.items into a valid query object for the getProducts function
-    res.send({ product: await DB.getProducts(req.params.items) });
+apiRouter.get("/purchase", async (req, res) => {
+    res.send({ items: await DB.getProducts({ "_id": { $in: Array.isArray(req.query.items) ? req.query.items.map(item => new ObjectId(item)) : [new ObjectId(req.query.items)] } }) });
 });
 
 // Default error handler
