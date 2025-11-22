@@ -36,18 +36,16 @@ function LiveChat() {
     useEffect(() => {
         if (chatHistory.length > 0) {
             const messageArea = document.getElementById("message-area");
-            if (messageArea.scrollTop == messageArea.scrollHeight - messageArea.clientHeight) {
-                setTimeout(() => {
-                    messageArea.scrollTop = messageArea.scrollHeight;
-                }, 0);
-            }
+            setTimeout(() => {
+                messageArea.scrollTop = messageArea.scrollHeight;
+            }, 0);
         }
     }, [chatHistory]);
     
     return (
         <div className="chat-container-admin d-flex flex-column">
             <div className="chat-header">
-                Live Chat
+                User Name
             </div>
             {chatHistory.length > 0 && <ChatBody chatHistory={chatHistory} />}
             <div className="input-container">
@@ -60,10 +58,16 @@ function LiveChat() {
 
 export function ChatManager() {
     return (
-        <div className="d-flex flex-column centered">
-            <LiveChat />
-            <LiveChat />
-            <LiveChat />
+        <div className="d-flex flex-column justify-content-center align-div" style={{ flex: "1" }}>
+            <div style={{ margin: "10px" }}>
+                <LiveChat />
+            </div>
+            <div style={{ margin: "10px" }}>
+                <LiveChat />
+            </div>
+            <div style={{ margin: "10px" }}>
+                <LiveChat />
+            </div>
         </div>
     );
 }

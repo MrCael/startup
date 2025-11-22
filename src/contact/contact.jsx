@@ -53,7 +53,7 @@ function LiveChat() {
     );
 }
 
-export function Contact({ contactConfirmed }) {
+export function Contact() {
     const [confirmingContact, setConfirmingContact] = React.useState(false);
 
     function confirmContact() {
