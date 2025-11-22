@@ -235,6 +235,11 @@ apiRouter.get("/user/profile", verifyAuth, (req, res) => {
     res.send({ user: req.user });
 });
 
+// Get user admin status after authentication
+apiRouter.get("/user/isAdmin", verifyAuth, (req, res) => {
+    res.send({ isAdmin: req.user.isAdmin });
+});
+
 // Get products for the shop based on an optional search condition
 apiRouter.get("/shop/products", verifyAuth, async (req, res) => {
     const user = req.user;

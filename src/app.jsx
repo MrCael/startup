@@ -91,7 +91,7 @@ function AppContent() {
                 </nav>
             </header>
             <Routes>
-                <Route path="/" element={<Login userName={userName} setUserName={setUserName} authState={authState} onAuthChange={(authState, userName) => { setAuthState(authState); setUserName(userName); }} />} exact />
+                <Route path="/" element={<Login userName={userName} setUserName={setUserName} authState={authState} onAuthChange={(authState, userName) => { setAuthState(authState); setUserName(userName); }} setIsAdmin={setIsAdmin} />} exact />
                 <Route path="/about" element={<About />} />
                 <Route path="/cart" element={<Cart />} />
                 {isAdmin && <Route path="/admin/chat" element={<ChatManager />} />}
