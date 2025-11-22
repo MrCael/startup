@@ -5,6 +5,7 @@ const express = require('express');
 
 const { Resend } = require("resend");
 const { ObjectId } = require('mongodb');
+const { peerProxy } = require('./peerProxy.js');
 
 const jsonpatch = require('fast-json-patch');
 const bcrypt = require('bcryptjs');
@@ -312,6 +313,8 @@ app.use((_req, res) => {
     res.sendFile('index.html', { root: 'public' });
 });
 
-app.listen(port, () => {
+httpServer = app.listen(port, () => {
     console.log(`Listening on port ${port}`);
 });
+
+peerProxy(httpServer)
