@@ -117,6 +117,7 @@ apiRouter.get("/user/personalInfo", verifyAuth, (req, res) => {
 
     if (!user.profile) {
         user.profile = { "firstName": null, "lastName": null, "email": null, "phone": null, "notifications": false };
+        user.isAdmin = false;
         DB.updateUser(user);
     }
 

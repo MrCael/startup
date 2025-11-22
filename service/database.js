@@ -6,7 +6,6 @@ const client = new MongoClient(url);
 const db = client.db('startup');
 const userCollection = db.collection('users');
 const productCollection = db.collection('products');
-const purchaseHistoryCollection = db.collection('purchaseHistories');
 
 (async function testConnection() {
   try {
@@ -47,7 +46,7 @@ async function getCart(token){
 }
 
 async function updateCart(token, cart) {
-    await userCollection.updateOne({ token: token }, { $set: { "cart": cart } })
+    await userCollection.updateOne({ token: token }, { $set: { "cart": cart } });
 }
 
 module.exports = {
