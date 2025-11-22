@@ -18,6 +18,7 @@ import { Profile } from "./profile/profile";
 import { Purchase } from "./purchase/purchase";
 import { Shop } from "./shop/shop";
 import { AuthState } from "./login/authState";
+import { ChatManager } from "./admin/chat/chat";
 
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./app.css";
@@ -32,6 +33,7 @@ function AppContent() {
     const [userName, setUserName] = React.useState(null);
     const [authState, setAuthState] = React.useState(AuthState.Unauthenticated);
     const [from, setFrom] = React.useState("login");
+    const [isAdmin, setIsAdmin] = React.useState(false);
 
     // Update active page when user clicks a nav link
     const handleNavClick = (path) => {
@@ -66,21 +68,25 @@ function AppContent() {
                             <NavLink to="/" className={`nav-link ${activePage === "/" ? "active" : ""}`} onClick={() => handleNavClick("/")}>Login</NavLink>
                         </li>
                         {authState === AuthState.Authenticated && <>
-                        <li className="nav-item">
-                            <NavLink to="/shop" className={`nav-link ${activePage === "/shop" ? "active" : ""}`} onClick={() => handleNavClick("/shop")}>Shop</NavLink>
-                        </li>
-                        <li className="nav-item">
-                            <NavLink to="/cart" className={`nav-link ${activePage === "/cart" ? "active" : ""}`} onClick={() => handleNavClick("/cart")}>Cart</NavLink>
-                        </li>
-                        <li className="nav-item">
-                            <NavLink to="/profile" className={`nav-link ${activePage === "/profile" ? "active" : ""}`} onClick={() => handleNavClick("/profile")}>Profile</NavLink>
-                        </li></>}
+                            <li className="nav-item">
+                                <NavLink to="/shop" className={`nav-link ${activePage === "/shop" ? "active" : ""}`} onClick={() => handleNavClick("/shop")}>Shop</NavLink>
+                            </li>
+                            <li className="nav-item">
+                                <NavLink to="/cart" className={`nav-link ${activePage === "/cart" ? "active" : ""}`} onClick={() => handleNavClick("/cart")}>Cart</NavLink>
+                            </li>
+                            <li className="nav-item">
+                                <NavLink to="/profile" className={`nav-link ${activePage === "/profile" ? "active" : ""}`} onClick={() => handleNavClick("/profile")}>Profile</NavLink>
+                            </li>
+                        </>}
                         <li className="nav-item opt-item-head">
                             <NavLink to="/about" className={`nav-link ${activePage === "/about" ? "active" : ""}`} onClick={() => handleNavClick("/about")}>About</NavLink>
                         </li>
                         <li className="nav-item opt-item-head">
                             <NavLink to="/contact" className={`nav-link ${activePage === "/contact" ? "active" : ""}`} onClick={() => handleNavClick("/contact")}>Contact Us</NavLink>
                         </li>
+                        {isAdmin && <li className="nav-item opt-item-head">
+                            <NavLink to="/admin/chat" className={`nav-link ${activePage === "/contact" ? "active" : ""}`} onClick={() => handleNavClick("/admin/chat")}>Chat Manager</NavLink>
+                        </li>}
                     </menu>
                 </nav>
             </header>
@@ -88,6 +94,7 @@ function AppContent() {
                 <Route path="/" element={<Login userName={userName} setUserName={setUserName} authState={authState} onAuthChange={(authState, userName) => { setAuthState(authState); setUserName(userName); }} />} exact />
                 <Route path="/about" element={<About />} />
                 <Route path="/cart" element={<Cart />} />
+                {isAdmin && <Route path="/admin/chat" element={<ChatManager />} />}
                 <Route path="/contact" element={<Contact />} />
                 <Route path="/details" element={<Details />} />
                 <Route path="/createUser" element={<CreateUser onAuthChange={(authState, userName) => { setAuthState(authState); setUserName(userName); }} setFrom={setFrom} />} />

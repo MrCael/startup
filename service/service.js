@@ -317,4 +317,4 @@ httpServer = app.listen(port, () => {
     console.log(`Listening on port ${port}`);
 });
 
-peerProxy(httpServer)
+// peerProxy(httpServer)

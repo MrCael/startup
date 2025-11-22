@@ -231,6 +231,13 @@ td {
     font-weight: bold;
 }
 
+.chat-container-admin {
+    background-color: #f0f2f5;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    width: 350px; /* scale with screen size */
+}
+
 .message-area {
     flex: 1;
     overflow-y: auto;
