@@ -18,7 +18,7 @@ import { Profile } from "./profile/profile";
 import { Purchase } from "./purchase/purchase";
 import { Shop } from "./shop/shop";
 import { AuthState } from "./login/authState";
-import { ChatManager } from "./admin/chat/chat";
+import { ChatList } from "./admin/chat/chat";
 
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./app.css";
@@ -94,8 +94,8 @@ function AppContent() {
                 <Route path="/" element={<Login userName={userName} setUserName={setUserName} authState={authState} onAuthChange={(authState, userName) => { setAuthState(authState); setUserName(userName); }} setIsAdmin={setIsAdmin} />} exact />
                 <Route path="/about" element={<About />} />
                 <Route path="/cart" element={<Cart />} />
-                {isAdmin && <Route path="/admin/chat" element={<ChatManager />} />}
-                <Route path="/contact" element={<Contact />} />
+                {isAdmin && <Route path="/admin/chat" element={<ChatList />} />}
+                <Route path="/contact" element={<Contact userName={userName} />} />
                 <Route path="/details" element={<Details />} />
                 <Route path="/createUser" element={<CreateUser onAuthChange={(authState, userName) => { setAuthState(authState); setUserName(userName); }} setFrom={setFrom} />} />
                 <Route path="/personalInfo" element={<PersonalInfo from={from} />} />

@@ -1,5 +1,7 @@
 import React from "react";
+
 import { useEffect } from "react";
+import { ChatManager } from "./chatManager";
 
 function ChatBody({ chatHistory }) {
     return (
@@ -13,8 +15,8 @@ function ChatBody({ chatHistory }) {
     );
 }
 
-function LiveChat() {
-    const [chatHistory, setChatHistory] = React.useState([]);
+function LiveChat({ webSocket, chat = [] }) {
+    const [chatHistory, setChatHistory] = React.useState(chat);
 
     async function updateChat() {
         let messageInput = document.getElementById("message-input");
@@ -56,18 +58,17 @@ function LiveChat() {
     );
 }
 
-export function ChatManager() {
+export function ChatList({ webSocket = new ChatManager}) {
+    const [chats, setChats] = React.useState([]);
+
     return (
         <div className="d-flex flex-column justify-content-center align-div" style={{ flex: "1" }}>
-            <div style={{ margin: "10px" }}>
-                <LiveChat />
-            </div>
-            <div style={{ margin: "10px" }}>
-                <LiveChat />
-            </div>
-            <div style={{ margin: "10px" }}>
-                <LiveChat />
-            </div>
+            {chats.length == 0 && <h1>There are no current chat requests</h1>}
+            {chats.length > 0 && chats.map((chat) => {
+                <div style={{ margin: "10px" }}>
+                    <LiveChat webSocket={webSocket} chat={chat} />
+                </div>
+            })}
         </div>
     );
 }
