@@ -58,8 +58,9 @@ function LiveChat({ webSocket, chat = [] }) {
     );
 }
 
-export function ChatList({ webSocket = new ChatManager}) {
+export function ChatList({ userName }) {
     const [chats, setChats] = React.useState([]);
+    const webSocket = new ChatManager(userName);
 
     return (
         <div className="d-flex flex-column justify-content-center align-div" style={{ flex: "1" }}>

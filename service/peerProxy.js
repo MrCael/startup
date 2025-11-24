@@ -4,16 +4,18 @@ function peerProxy(httpServer) {
   // Create a websocket object
   const socketServer = new WebSocketServer({ server: httpServer });
 
-  socketServer.on('connection', (socket) => {
+  socketServer.on('connection', (socket, req) => {
     socket.isAlive = true;
+    socket.user = req.query.user;
+    socket.role = req.query.role;
 
     // Forward messages to everyone except the sender
     socket.on('message', function message(data) {
         // Find some kind of way to find if the socket user is the admin user
-        if (data.from == "admin") {
+        if (data.role == "admin") {
             // code
         } else {
-            // code
+            socketServer.clients.find(client => client.role === "admin").send(data);
         }
     //   socketServer.clients.forEach((client) => {
     //     if (client !== socket && client.readyState === WebSocket.OPEN) {

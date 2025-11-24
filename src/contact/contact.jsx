@@ -7,7 +7,7 @@ function ChatBody({ chatHistory }) {
     return (
         <div className="message-area d-flex flex-column" id="message-area">
             {chatHistory.map((message) => (
-                <div className={`message ${message.sender}`}>
+                <div className={`message ${message.role}`}>
                     {message.message}
                 </div>
             ))}
@@ -22,14 +22,14 @@ function LiveChat({ webSocket, userName }) {
         let message = document.getElementById("message-input").value;
         if (message !== "") {
             webSocket.sendMessage(message, userName, "user");
-            // const newMessage = {sender: "user", message: message}
+            // const newMessage = {role: "user", message: message}
             // const newHistory = [...chatHistory, newMessage]
 
             // message = "";
             // setChatHistory(newHistory);
 
             // setTimeout(() => {
-            //     setChatHistory([...newHistory, {sender: "admin", message: "Sorry, we are not available to chat right now."}]);
+            //     setChatHistory([...newHistory, {role: "admin", message: "Sorry, we are not available to chat right now."}]);
             // }, 1000);
         }
     }
@@ -131,7 +131,7 @@ export function Contact({ userName }) {
                         </tbody>
                     </table>
                 </div>
-                <LiveChat webSocket={new ChatClient} userName={userName} />
+                <LiveChat webSocket={new ChatClient(userName)} userName={userName} />
             </div>
         </main>
     );

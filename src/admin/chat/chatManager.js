@@ -2,9 +2,9 @@ export class ChatManager {
     chats = [];
     connected = false;
 
-    constructor() {
+    constructor(userName) {
         const protocol = window.location.protocol === 'http:' ? 'ws' : 'wss';
-        this.socket = new WebSocket(`${protocol}://${window.location.host}/ws`);
+        this.socket = new WebSocket(`${protocol}://${window.location.host}/ws?role=admin&userName=${userName}`);
 
         // Display that we have opened the webSocket
         this.socket.onopen = (event) => {
@@ -26,8 +26,10 @@ export class ChatManager {
         };
     }
 
-    sendMessage() {
+    sendMessage(message, sender, role) {
         // send a message to a single user
+        this.notifyObservers(message, sender);
+        this.socket.send(JSON.stringify({ message, sender, role }));
     }
 
     addChat() {
