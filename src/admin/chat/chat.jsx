@@ -1,6 +1,6 @@
 import React from "react";
 
-import { useEffect } from "react";
+import { useEffect, useMemo } from "react";
 import { ChatManager } from "./chatManager";
 
 function ChatBody({ chatHistory }) {
@@ -15,26 +15,24 @@ function ChatBody({ chatHistory }) {
     );
 }
 
-function LiveChat({ webSocket, chat = [] }) {
-    const [chatHistory, setChatHistory] = React.useState(chat);
+function LiveChat({ webSocket, chatClient }) {
+    const [chatHistory, setChatHistory] = React.useState([]);
 
     async function updateChat() {
-        let messageInput = document.getElementById("message-input");
-        if (messageInput.value !== "") {
-            const newMessage = {sender: "user", message: messageInput.value}
-            const newHistory = [...chatHistory, newMessage]
-
-            messageInput.value = "";
-            setChatHistory(newHistory);
-
-            await new Promise(
-                setTimeout(() => {
-                    setChatHistory([...newHistory, {sender: "admin", message: "Sorry, we are not available to chat right now."}]);
-                }, 1000)
-            );
+        let message = document.getElementById("message-input").value;
+        if (message !== "") {
+            webSocket.sendMessage(message, chatClient.userName);
         }
     }
 
+    // Define callback function to be used any time a message is sent or received
+    useEffect(() => {
+        chatClient.addObserver((newMessage) => {
+            setChatHistory((chatHistory) => [...chatHistory, newMessage]);
+        });
+    }, []);
+
+    // Keep chat scrolled to the bottom after each message
     useEffect(() => {
         if (chatHistory.length > 0) {
             const messageArea = document.getElementById("message-area");
@@ -52,7 +50,7 @@ function LiveChat({ webSocket, chat = [] }) {
             {chatHistory.length > 0 && <ChatBody chatHistory={chatHistory} />}
             <div className="input-container">
                 <input type="text" id="message-input" />
-                <button className="btn btn-secondary" onClick={() => updateChat()}>Send</button>
+                <button className="btn btn-secondary" onClick={updateChat}>Send</button> {/* The onClick attribute on this line might be broken */}
             </div>
         </div>
     );
@@ -60,14 +58,14 @@ function LiveChat({ webSocket, chat = [] }) {
 
 export function ChatList({ userName }) {
     const [chats, setChats] = React.useState([]);
-    const webSocket = new ChatManager(userName);
+    const webSocket = useMemo(() => new ChatManager(userName, setChats), []);
 
     return (
         <div className="d-flex flex-column justify-content-center align-div" style={{ flex: "1" }}>
             {chats.length == 0 && <h1>There are no current chat requests</h1>}
             {chats.length > 0 && chats.map((chat) => {
                 <div style={{ margin: "10px" }}>
-                    <LiveChat webSocket={webSocket} chat={chat} />
+                    <LiveChat webSocket={webSocket} chatClient={chat} />
                 </div>
             })}
         </div>

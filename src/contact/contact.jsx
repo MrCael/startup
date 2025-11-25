@@ -1,7 +1,7 @@
 import React from "react";
 
 import { useEffect } from "react";
-import { ChatClient } from "./chatClient";
+import { ChatClient } from "../chatClient";
 
 function ChatBody({ chatHistory }) {
     return (
@@ -15,22 +15,14 @@ function ChatBody({ chatHistory }) {
     );
 }
 
-function LiveChat({ webSocket, userName }) {
+// This component could possibly be consolidated with the admin version
+function LiveChat({ webSocket }) {
     const [chatHistory, setChatHistory] = React.useState([]);
 
     function updateChat() {
-        let message = document.getElementById("message-input").value;
+        const message = document.getElementById("message-input").value;
         if (message !== "") {
-            webSocket.sendMessage(message, userName, "user");
-            // const newMessage = {role: "user", message: message}
-            // const newHistory = [...chatHistory, newMessage]
-
-            // message = "";
-            // setChatHistory(newHistory);
-
-            // setTimeout(() => {
-            //     setChatHistory([...newHistory, {role: "admin", message: "Sorry, we are not available to chat right now."}]);
-            // }, 1000);
+            webSocket.sendMessage(message);
         }
     }
 
@@ -39,16 +31,17 @@ function LiveChat({ webSocket, userName }) {
         webSocket.addObserver((newMessage) => {
             setChatHistory((chatHistory) => [...chatHistory, newMessage]);
         });
-    }, [webSocket]);
+    }, []); // I might need to add 'webSocket' back into the dependency list here
 
     // Keep chat scrolled to the bottom after each message
     useEffect(() => {
         if (chatHistory.length > 0) {
+            const messageArea = document.getElementById("message-area");
             setTimeout(() => {
-                document.getElementById("message-area").scrollTop = document.getElementById("message-area").scrollHeight;
+                messageArea.scrollTop = messageArea.scrollHeight;
             }, 0);
         }
-    }, [chatHistory])
+    }, [chatHistory]);
     
     return (
         <div className="chat-container d-flex flex-column">
@@ -131,7 +124,7 @@ export function Contact({ userName }) {
                         </tbody>
                     </table>
                 </div>
-                <LiveChat webSocket={new ChatClient(userName)} userName={userName} />
+                <LiveChat webSocket={new ChatClient(userName, "user")} />
             </div>
         </main>
     );
