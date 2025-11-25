@@ -183,4 +183,5 @@ The long list of stuff I need to remember about WebSocket
 - In the class used to handle WebSocket requests (in the case of the `chatDemo` project, the `ChatClient` class) the constructor is used to define behavior on receiving a WebSocket request, and the class methods are used to define behavior to send requests
 
 *These notes are specific to the `chatDemo` project, but the principles are still important to remember
+
 +These notes are specific to my startup project, but the principles are still important to remember
