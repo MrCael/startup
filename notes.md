@@ -169,3 +169,18 @@ These were also pretty simple to use and implement. I ended up going with an API
 I realized about halfway through implementing my database that it would be easier to track all my data with state variables and then call useEffects to update the database when those state variables are changed.
 
 It's also probably better to declare all necessary elements to each user when they are created/logged in instead of only on the page it's relevant.
+
+### WebSocket
+
+The long list of stuff I need to remember about WebSocket
+- pong frames are sent by the browser automatically when the recieve a ping frame
+- *The `useEffect` hook in the `Conversation` component in the `index.jsx` script of the `chatDemo` project only runs once because the `webSocket` object doesn't change anywhere in the code. This is exactly what we want.
+- Because the `Conversation` component is only mounted once, only one observer will be created in the instance of the `ChatClient` class in the `Chat` component
+- A client is a user connecting to the WebSocket server
+- An observer is a component associated with a client
+- A WebSocket server has multiple clients that each have one or more observers
+- The on connection function runs once for each client connection and sets up event listeners for each client
+- In the class used to handle WebSocket requests (in the case of the `chatDemo` project, the `ChatClient` class) the constructor is used to define behavior on receiving a WebSocket request, and the class methods are used to define behavior to send requests
+
+*These notes are specific to the `chatDemo` project, but the principles are still important to remember
++These notes are specific to my startup project, but the principles are still important to remember
