@@ -9,7 +9,7 @@ export class ChatClient {
         // Adjust the webSocket protocol to what is being used for HTTP
         if (connect) {
             const protocol = window.location.protocol === 'http:' ? 'ws' : 'wss';
-            this.socket = new WebSocket(`${protocol}://${window.location.host}/ws?userName=${this.userName}&role=${this.role}`);
+            this.socket = new WebSocket(`${protocol}://${window.location.host}/ws?role=${this.role}&userName=${this.userName}`);
 
             // Display that we have opened the webSocket
             this.socket.onopen = () => {
@@ -33,7 +33,7 @@ export class ChatClient {
     // Send a message over the webSocket
     sendMessage(text) {
         this.notifyObservers(text, this.role);
-        if (connect) this.socket.send(JSON.stringify({ text, from: this.userName, role: this.role }));
+        this.socket.send(JSON.stringify({ text, from: this.userName, role: this.role }));
     }
 
     // This should only be called once

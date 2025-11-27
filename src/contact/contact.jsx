@@ -1,6 +1,6 @@
 import React from "react";
 
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
 import { ChatClient } from "../chatClient";
 
 function ChatBody({ chatHistory }) {
@@ -8,7 +8,7 @@ function ChatBody({ chatHistory }) {
         <div className="message-area d-flex flex-column" id="message-area">
             {chatHistory.map((message) => (
                 <div className={`message ${message.role}`}>
-                    {message.message}
+                    {message.text}
                 </div>
             ))}
         </div>
@@ -23,15 +23,16 @@ function LiveChat({ webSocket }) {
         const message = document.getElementById("message-input").value;
         if (message !== "") {
             webSocket.sendMessage(message);
+            document.getElementById("message-input").value = "";
         }
     }
 
     // Define callback function to be used any time a message is sent or received
     useEffect(() => {
         webSocket.addObserver((newMessage) => {
-            setChatHistory((chatHistory) => [...chatHistory, newMessage]);
+            setChatHistory(chatHistory => [...chatHistory, newMessage]);
         });
-    }, []); // I might need to add 'webSocket' back into the dependency list here
+    }, []);
 
     // Keep chat scrolled to the bottom after each message
     useEffect(() => {

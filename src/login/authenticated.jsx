@@ -22,7 +22,6 @@ export function Authenticated({ userName, unauthorize, setIsAdmin }) {
 
             const body = await response.json();
             setIsAdmin(body.isAdmin);
-            console.log(body.isAdmin);
         }
 
         getUser();

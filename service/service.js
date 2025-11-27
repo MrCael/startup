@@ -16,8 +16,6 @@ const DB = require('./database.js');
 const resend = new Resend(process.env.RESEND_API_KEY);
 const authCookieName = 'token';
 
-let users = [];
-
 // The service port. In production the front-end code is statically hosted by the service on the same port.
 const port = process.argv.length > 2 ? process.argv[2] : 4000;
 
@@ -323,4 +321,4 @@ httpServer = app.listen(port, () => {
     console.log(`Listening on port ${port}`);
 });
 
-// peerProxy(httpServer)
+peerProxy(httpServer)
