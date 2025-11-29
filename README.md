@@ -163,8 +163,8 @@ For this deliverable I did the following. I checked the box `[x]` and added a de
 
 For this deliverable I did the following. I checked the box `[x]` and added a description for things I completed.
 
-- [ ] **Backend listens for WebSocket connection** - I did not complete this part of the deliverable.
-- [ ] **Frontend makes WebSocket connection** - I did not complete this part of the deliverable.
-- [ ] **Data sent over WebSocket connection** - I did not complete this part of the deliverable.
-- [ ] **WebSocket data displayed** - I did not complete this part of the deliverable.
-- [ ] **Application is fully functional** - I did not complete this part of the deliverable.
+- [x] **Backend listens for WebSocket connection** - I have backend listeners listening for messages sent from users and admins.
+- [x] **Frontend makes WebSocket connection** - I have two classes that make WebSocket connections for users and admins respectively.
+- [x] **Data sent over WebSocket connection** - I send message data and metadata (sender, sender status) over WebSocket connection.
+- [x] **WebSocket data displayed** - I displaly WebSocket data on the Contact Us and Chat Manager page for users and admins respectively.
+- [x] **Application is fully functional** - I have implimented all requirements for this class.
