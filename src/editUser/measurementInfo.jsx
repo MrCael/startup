@@ -95,7 +95,6 @@ export function MeasurementInfo({ from }) {
             });
             
             const body = await response.json();
-            console.log(body.msg);
         }
 
         setView(!view);

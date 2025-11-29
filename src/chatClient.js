@@ -2,14 +2,13 @@ export class ChatClient {
     observers = []; // There should only be one of these
     connected = false;
 
-    constructor(userName, role, connect = true) {
+    constructor(userName, connect = true) {
         this.userName = userName;
-        this.role = role;
 
         // Adjust the webSocket protocol to what is being used for HTTP
         if (connect) {
             const protocol = window.location.protocol === 'http:' ? 'ws' : 'wss';
-            this.socket = new WebSocket(`${protocol}://${window.location.host}/ws?role=${this.role}&userName=${this.userName}`);
+            this.socket = new WebSocket(`${protocol}://${window.location.host}/ws?userName=${this.userName}&status=user`);
 
             // Display that we have opened the webSocket
             this.socket.onopen = () => {
@@ -20,7 +19,7 @@ export class ChatClient {
             this.socket.onmessage = async (event) => {
                 const text = await event.data.text();
                 const message = JSON.parse(text);
-                this.notifyObservers(message.text, message.role);
+                this.notifyObservers(message.text, "receiver");
             };
 
             // If the webSocket is closed then disable the interface
@@ -32,8 +31,8 @@ export class ChatClient {
 
     // Send a message over the webSocket
     sendMessage(text) {
-        this.notifyObservers(text, this.role);
-        this.socket.send(JSON.stringify({ text, from: this.userName, role: this.role }));
+        this.notifyObservers(text, "sender");
+        this.socket.send(JSON.stringify({ text, from: this.userName, status: "user" }));
     }
 
     // This should only be called once

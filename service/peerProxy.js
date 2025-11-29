@@ -10,7 +10,7 @@ function peerProxy(httpServer) {
 
         socket.isAlive = true;
         socket.userName = query.userName;
-        socket.role = query.role;
+        socket.status = query.status;
 
         // Forward messages to everyone except the sender
         socket.on('message', function message(raw) {
@@ -22,12 +22,20 @@ function peerProxy(httpServer) {
                 return;
             }
 
-            if (data.role == "admin") {
-                // Find intended recipient and send them only relevant data
-                [...socketServer.clients].find(client => client.userName == data.to && client.readyState === WebSocket.OPEN).send(JSON.stringify({ text: data.text, role: data.role}));
+            if (data.status == "admin") {
+                // Find intended recipient (user, not admin) and send them only relevant data
+                socketServer.clients.forEach((client) => {
+                    if (client.userName == data.to && client.readyState === WebSocket.OPEN) {
+                        client.send(raw);
+                    }
+                });
             } else {
-                // Send data to admin user (only accounts for a single admin user online at a time)
-                [...socketServer.clients].find(client => client.role == "admin" && client.readyState === WebSocket.OPEN).send(raw);
+                // Send data to admin (only accounts for a single admin user online at a time)
+                socketServer.clients.forEach((client) => {
+                    if (client.status == "admin" && client.readyState === WebSocket.OPEN) {
+                        client.send(raw);
+                    }
+                });
             }
         });
 

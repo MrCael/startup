@@ -1,16 +1,16 @@
 import { ChatClient } from "../../chatClient";
 
 export class ChatManager {
-    chats = []; // This variable sores a list of ChatClient objects, each having a 'from' and a 'role' without a 'socket' attribute
+    chats = []; // This variable sores a list of ChatClient objects, each having a 'from' attribute, but no 'socket' attribute
     connected = false;
 
-    constructor(userName, setChats) {
+    constructor(userName, setReactChats, setFirstMessage) {
         this.userName = userName;
-        this.role = "admin";
-        this.setReactChats = setChats;
+        this.setReactChats = setReactChats;
+        this.setFirstMessage = setFirstMessage
 
         const protocol = window.location.protocol === 'http:' ? 'ws' : 'wss';
-        this.socket = new WebSocket(`${protocol}://${window.location.host}/ws?role=${this.role}&userName=${this.userName}`);
+        this.socket = new WebSocket(`${protocol}://${window.location.host}/ws?userName=${this.userName}&status=admin`);
 
         // Display that we have opened the webSocket
         this.socket.onopen = () => {
@@ -23,14 +23,13 @@ export class ChatManager {
             const message = JSON.parse(text);
             
             if (!this.chats.find(chat => chat.userName == message.from)) {
-                const newChat = new ChatClient(message.from, this.role, false);
+                const newChat = new ChatClient(message.from, false);
                 this.chats.push(newChat);
                 this.setReactChats([...this.chats]);
+                this.setFirstMessage({ text: message.text, from: message.from });
+            } else {
+                this.updateChat(message.text, message.from, "receiver");
             }
-
-            // I wonder if I'll get an error at this point because the React component hasn't rerendered with the updated chat list
-
-            this.updateChat(message.text, message.from, message.role);
         };
 
         // If the webSocket is closed then disable the interface
@@ -41,12 +40,12 @@ export class ChatManager {
 
     // Send a message to a single user
     sendMessage(text, chatName) {
-        this.updateChat(text, chatName, this.role);
-        this.socket.send(JSON.stringify({ text, to: chatName, role: this.role }));
+        this.updateChat(text, chatName, "sender");
+        this.socket.send(JSON.stringify({ text, to: chatName, status: "admin" }));
     }
 
     // update chats when messages are recieved
     updateChat(text, chatName, role) {
-        this.chats.find(chat => chat.userName == chatName).notifyObservers({ text, role });
+        this.chats.find(chat => chat.userName == chatName).notifyObservers(text, role);
     }
 }

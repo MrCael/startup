@@ -52,7 +52,7 @@ function LiveChat({ webSocket }) {
             {chatHistory.length > 0 && <ChatBody chatHistory={chatHistory} />}
             <div className="input-container">
                 <input type="text" id="message-input" />
-                <button className="btn btn-secondary" onClick={updateChat}>Send</button> {/* The onClick attribute on this line might be broken */}
+                <button className="btn btn-secondary" onClick={updateChat}>Send</button>
             </div>
         </div>
     );
@@ -125,7 +125,7 @@ export function Contact({ userName }) {
                         </tbody>
                     </table>
                 </div>
-                <LiveChat webSocket={new ChatClient(userName, "user")} />
+                <LiveChat webSocket={new ChatClient(userName)} />
             </div>
         </main>
     );

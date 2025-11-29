@@ -182,6 +182,7 @@ The long list of stuff I need to remember about WebSocket
 - The on connection function runs once for each client connection and sets up event listeners for each client
 - In the class used to handle WebSocket requests (in the case of the `chatDemo` project, the `ChatClient` class) the constructor is used to define behavior on receiving a WebSocket request, and the class methods are used to define behavior to send requests
 - I'm not sure if it's better to convert `socketServer.clients` to an array and use the `find` method, or if it's better to loop through the set. I'll have to do some research on this.
+- When making a chat feature between just two people and you want to have text bubbles, don't assign each of them a role like 'admin' or 'user'; this will make styling more tedious. Instead, manage the classes for styling on each end for each message.
 
 *These notes are specific to the `chatDemo` project, but the principles are still important to remember
 
