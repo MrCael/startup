@@ -4,6 +4,7 @@
 
 ## Table of Contents
 - [Helpful links](#helpful-links)
+- [Final Notes](#final-notes)
 - [Terminal Commands](#terminal-commands)
 - [AWS](#aws)
   - [EC2 Steps](#ec2-steps)
@@ -22,6 +23,71 @@
 - [Course instruction](https://github.com/webprogramming260)
 - [Canvas](https://byu.instructure.com)
 - [MDN](https://developer.mozilla.org)
+
+## Final Notes
+
+###Default Ports
+
+- HTTP - 80
+- HTTPS - 443
+- SSH - 22
+
+### HTTP Codes
+
+- 300 - Redirection
+- 400 - Client Error
+- 500 - Server Error
+
+### HTTP Headers
+
+- content-type - Allows specification of the data type of body
+
+### Cookie Types
+
+- Secure - Only sent to the server with an encrypted request over HTTPS
+- HTTP Only - Cannot be read by Javascript (all cross-session cookies should be HTTP Only)
+- Same Site - Controls whether or not the cookie will be sent based on the request origin
+  - Strict - Only sends cookie if the request comes from the same site as the cookie
+  - Lax - Sends cookie if the request comes from the same site as the cookie, or a site that links to the cookie site (All cookies are `SameSite=Lax` by default)
+  - None - Will send cookies regardless of the request location (`SameSite=None` cookies must also have the `Secure` attributge
+ 
+### Abreviations
+
+- JSX - JavaScript XML
+- JS - JavaScript
+- AWS - Amazon Web Services
+- NPM - Node Package Manager
+- NVM - Node Version Manager
+
+### React Hooks
+
+React Hooks allow developers to access or 'hook into' React features from funtional components
+
+- State Hook - Used to remember information and re-render components when that information is changed. Implemented by `useState` or `useReducer` 
+- Context Hook - Used to receive information from distant parents without needing to pass that information as a prop. Implemented by `useContext`
+- Ref Hook - Used to hold information that shouldn't trigger a re-render when it is updated. Typically this is information like a DOM node or a timeout ID. Implemented by `useRef` or `useImperativeHandle`
+- Effect Hook - Used to synchronize React with external systems. Implemented with `useEffect`, `useLayoutEffect`, and `useInsertionEffect`
+- Performance Hook - Used to optimize re-rendering and diminish unnecessary renders
+  - `useMemo` - Used to cache the result of an expensive calculation. The value is only recalculated if the data involved in the calculation changes, not on every re-render of the parent component
+  - `useCallback` - Used to cache a function definition before passing it to an optimized component
+  - `useTransition` - Used to mark a state change as non-blocking and allow other updates to interrupt it. Non-blocking updates are updates that don't need to be synchronous.
+  - `useDeferredValue` - Used to defer updating non-critical parts of the UI and allow other, more critical parts to update first
+
+### `package.json` Files
+
+`package.json` files provide necesary meta data and configuration for a project. This included dependencies, dev dependencies, custom comand line scripts, project entry point, and more.
+
+### Node.js
+
+Node.js allows developers to run JavaScript code outside a web brouser which allows for backend development
+
+### PM2
+
+PM2 is an open-source production process for managing Node.js applications. It helps keep projects active indefinitely, avoid crashes and server reboots, and facilitate dev tasks for testing.
+
+### Vite
+
+Vite allows developers to test their website by providing an instant development environment
 
 ## Terminal Commands
 
